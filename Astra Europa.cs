@@ -357,6 +357,32 @@ namespace ConsoleApp1
 			}
 		}
 
+		public static void room10()
+		{
+			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 10");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room9();
+						break;
+					case "east":
+						room15();
+						break;
+					case "west":
+						room5();
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 
 		// Room 13 (To be added by Johnathan)
 		// Room 14 (To be added by Johnathan)
