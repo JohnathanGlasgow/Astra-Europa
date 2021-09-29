@@ -144,11 +144,124 @@ namespace ConsoleApp1
 
 		}
 
+		public static void TitleScreen()
+		{
+			/* Devon 28/09/2021
+             * 
+             * Credit to patorjk.com for ASCII Title Creation
+             * Ignore any yellow backslashes, used as escape characters
+             * for optimal output
+             * 
+            */
+			Console.Clear();
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.DarkBlue;
+			Console.WriteLine("          █████╗ ███████╗████████╗██████╗  ██████╗     ███████╗██╗   ██╗██████╗  ██████╗ ██████╗  █████╗  ");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("         ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██╔════╝██║   ██║██╔══██╗██╔═══██╗██╔══██╗██╔══██╗ ");
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("         ███████║███████╗   ██║   ██████╔╝██║   ██║    █████╗  ██║   ██║██████╔╝██║   ██║██████╔╝███████║ ");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("         ██╔══██║╚════██║   ██║   ██╔══██╗██║   ██║    ██╔══╝  ██║   ██║██╔══██╗██║   ██║██╔═══╝ ██╔══██║ ");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("         ██║  ██║███████║   ██║   ██║  ██║╚██████╔╝    ███████╗╚██████╔╝██║  ██║╚██████╔╝██║     ██║  ██║ ");
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+			Console.WriteLine("         ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝ ");
+			Console.WriteLine("\n");
+			Console.WriteLine("      .         _  .          .          . ╔═══════════════╗   +     .          .          .      .        ");
+			Console.WriteLine("              .(_)          .            . ║               ║          .            .       :               ");
+			Console.WriteLine("              .   .      .    .     .     .║   PLAY        ║   .      .   .      . .  .  -+-        .      ");
+			Console.WriteLine("                .           .   .        . ║   or          ║         .          /         :  .             ");
+			Console.WriteLine("          . .        .  .      /.   .      ║   CONTINUE    ║.      .   .    .  /        . ' .              ");
+			Console.WriteLine("              .  +       .    /     .      ║               ║   .          .   /      .                     ");
+			Console.WriteLine("             .            .  /         .   ║               ║        .        *   .         .     .         ");
+			Console.WriteLine("            .   .      .    *     .     .  ║   CONTROLS    ║ .      .   .       .  .                       ");
+			Console.WriteLine("                .           .           .  ║               ║        .           .         +  .             ");
+			Console.WriteLine("        . .        .  .       .   .      . ║               ║  .     .     .    .      .   .                ");
+			Console.WriteLine("       .   +      .          ___/\\_._/~~\\_.║   CREDITS     ║.__/\\__.._._/~\\        .         .   .         ");
+			Console.WriteLine("             .          _.--'              ║               ║                `--./\\          .   .          ");
+			Console.WriteLine("                 / ~~\\/~\\                  ║               ║                         `-/~\\_            .     ");
+			Console.WriteLine("       .      .-'                          ║   EXIT        ║                              `-/\\_               ");
+			Console.WriteLine("       _ /\\.-'                             ║               ║                                 __/~\\/\\-.__        ");
+			Console.WriteLine("   .'                                      ╚═══════════════╝                                             `.       ");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("\n\t\t\t\tWould you like to begin?");
+			Console.Write("\t\t\t\tType in what you would like to do:   ");
+			Console.ForegroundColor = ConsoleColor.Green;
+			string temp = Console.ReadLine().ToUpper();
 
+			//Using temporary method names for loading etc
+			switch (temp)
+			{
+				case "PLAY":
+					Console.Clear();
+					room1();
+					break;
+
+				case "CONTINUE":
+					Console.Clear();
+					//LoadGame();
+					Console.WriteLine("This is will be LoadGame()");
+					break;
+
+				case "CONTROLS":
+					Console.Clear();
+					//Controls();
+					Console.WriteLine("This is will be Controls()");
+					break;
+
+				case "CREDITS":
+					Console.Clear();
+					//Credits();
+					Console.WriteLine("This is will be Credits()");
+					break;
+
+				case "EXIT":
+					Console.ForegroundColor = ConsoleColor.Yellow;
+					Console.Write("\t\t\tAre you sure you would like to ");
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.Write("EXIT? ");
+					Console.ForegroundColor = ConsoleColor.Yellow;
+					Console.Write("( Y / N ): ");
+					temp = Console.ReadLine().ToUpper();
+					switch (temp)
+					{
+						case "YES":
+						case "Y":
+							Environment.Exit(0);
+							break;
+
+						case "NO":
+						case "N":
+							TitleScreen();
+							break;
+
+						default:
+							Console.Clear();
+							Console.WriteLine("Sorry that was not an available option. Try Again...");
+							TitleScreen();
+							break;
+					}
+					break;
+
+				default:
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.Write("\t\t\t\t\t\t\t\tINVALID CHOICE       Press ");
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.Write("ENTER ");
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("to continue");
+					Console.ReadLine();
+					Console.Clear();
+					TitleScreen();
+					break;
+			}
+		}
 
 		static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+			TitleScreen();
+			Console.WriteLine("Hello World!");
         }
     }
 }
