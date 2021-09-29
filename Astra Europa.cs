@@ -328,6 +328,35 @@ namespace ConsoleApp1
 			}
 		}
 
+		public static void room9()
+		{
+			while (playerInput != "south")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 9");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "south":
+						room10();
+						break;
+					case "get red keycard":
+						Console.WriteLine("You pick up the red keycard.");
+						Thread.Sleep(500);
+						doorE3 = true;
+						doorE13 = true;
+						doorS17 = true;
+						doorS20 = true;
+						doorE74 = true;
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 
 		// Room 13 (To be added by Johnathan)
 		// Room 14 (To be added by Johnathan)
