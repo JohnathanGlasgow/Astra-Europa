@@ -168,6 +168,21 @@ namespace ConsoleApp1
 
 		}
 
+
+		// Room 13 (To be added by Johnathan)
+		// Room 14 (To be added by Johnathan)
+		// Room 15 (To be added by Johnathan)
+		// Room 16 (To be added by Johnathan)
+		// Room 17 (To be added by Johnathan)
+		// Room 18 (To be added by Johnathan)
+		// Room 19 (To be added by Johnathan)
+		// Room 20 (To be added by Johnathan)
+		// Room 21 (To be added by Johnathan)
+		// Room 22 (To be added by Johnathan)
+		// Room 23 (To be added by Johnathan)
+		// Room 24 (To be added by Johnathan)
+		// Room 25 (To be added by Johnathan)
+
 		public static void TitleScreen()
 		{
 			/* Devon 28/09/2021
