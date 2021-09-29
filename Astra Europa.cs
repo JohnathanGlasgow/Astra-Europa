@@ -168,6 +168,55 @@ namespace ConsoleApp1
 
 		}
 
+		public static void room7()
+		{
+			while (playerInput != "south" || playerInput != "west")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 7");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "south":
+						room8();
+						break;
+					case "west":
+						room71();
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		public static void room71()
+		{
+			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 71");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room73();
+						break;
+					case "west":
+						room72();
+						break;
+					case "east":
+						room7();
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 		public static void TitleScreen()
 		{
 			/* Devon 28/09/2021
