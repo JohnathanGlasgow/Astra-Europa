@@ -168,54 +168,21 @@ namespace ConsoleApp1
 
 		}
 
-		public static void room7()
-		{
-			while (playerInput != "south" || playerInput != "west")
-			{
-				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 7");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
-				{
-					case "south":
-						room8();
-						break;
-					case "west":
-						room71();
-						break;
-					default:
-						Console.WriteLine("Invaild Input");
-						Thread.Sleep(500);
-						break;
-				}
-			}
-		}
 
-		public static void room71()
-		{
-			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
-			{
-				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 71");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
-				{
-					case "north":
-						room73();
-						break;
-					case "west":
-						room72();
-						break;
-					case "east":
-						room7();
-						break;
-					default:
-						Console.WriteLine("Invaild Input");
-						Thread.Sleep(500);
-						break;
-				}
-			}
-		}
+		// Room 13 (To be added by Johnathan)
+		// Room 14 (To be added by Johnathan)
+		// Room 15 (To be added by Johnathan)
+		// Room 16 (To be added by Johnathan)
+		// Room 17 (To be added by Johnathan)
+		// Room 18 (To be added by Johnathan)
+		// Room 19 (To be added by Johnathan)
+		// Room 20 (To be added by Johnathan)
+		// Room 21 (To be added by Johnathan)
+		// Room 22 (To be added by Johnathan)
+		// Room 23 (To be added by Johnathan)
+		// Room 24 (To be added by Johnathan)
+		// Room 25 (To be added by Johnathan)
+
 
 		public static void TitleScreen()
 		{
