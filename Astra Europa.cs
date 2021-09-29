@@ -293,6 +293,41 @@ namespace ConsoleApp1
 			}
 		}
 
+		public static void room8()
+		{
+			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 8");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "west":
+						if (doorE3 == true)
+						{
+							room3();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					case "east":
+						room11();
+						break;
+					case "north":
+						room7();
+						break;
+					//case to get item
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 
 		// Room 13 (To be added by Johnathan)
 		// Room 14 (To be added by Johnathan)
