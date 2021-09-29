@@ -94,6 +94,29 @@ namespace ConsoleApp1
 			}
 		}
 
+		public static void room4()
+		{
+			while (playerInput != "south" || playerInput != "north")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 4");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "south":
+						room5();
+						break;
+					case "north":
+						room3();
+						break;
+					default:
+						Console.WriteLine("Invaild input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+
+		}
 
 
 
