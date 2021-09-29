@@ -191,6 +191,108 @@ namespace ConsoleApp1
 			}
 		}
 
+		public static void room71()
+		{
+			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 71");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room73();
+						break;
+					case "west":
+						room72();
+						break;
+					case "east":
+						room7();
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		public static void room72()
+		{
+			while (playerInput != "west")
+			{
+				Console.Clear();
+
+				Console.WriteLine("ROOM DESCRIPTION 72");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "east":
+						room71();
+						break;
+					//case to get item
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		public static void room73()
+		{
+			while (playerInput != "west" || playerInput != "south")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 73");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "west":
+						if (doorE74 == true)
+						{
+							room74();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						break;
+				}
+			}
+		}
+
+
+		public static void room74()
+		{
+			while (playerInput != "east")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 74");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "east":
+						room73();
+						break;
+					case "get blue keycard":
+						Console.WriteLine("You pick up the blue keycard.");
+						Thread.Sleep(500);
+						doorE16 = true;
+						doorS17 = true;
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 
 		// Room 13 (To be added by Johnathan)
 		// Room 14 (To be added by Johnathan)
