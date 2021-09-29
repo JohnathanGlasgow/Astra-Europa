@@ -144,6 +144,30 @@ namespace ConsoleApp1
 
 		}
 
+		public static void room6()
+		{
+			while (playerInput != "west" || playerInput != "east")
+			{
+				Console.Clear();
+				Console.WriteLine("This section of the station has a window witht the view of the barren surface of this harsh planet");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "west":
+						room1();
+						break;
+					case "east":
+						room11();
+						break;
+					default:
+						Console.WriteLine("Invaild input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+
+		}
+
 		public static void TitleScreen()
 		{
 			/* Devon 28/09/2021
