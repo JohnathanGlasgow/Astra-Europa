@@ -57,6 +57,44 @@ namespace ConsoleApp1
 		}
 
 
+		public static void room3()
+		{
+			while (playerInput != "south" || playerInput != "east" || playerInput != "north" || playerInput != "west")
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 3");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "west":
+						//method for outside
+						break;
+					case "north":
+						room2();
+						break;
+					case "east":
+						if (doorE3 == true)
+						{
+							room8();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					case "south":
+						room4();
+						break;
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+
 
 
 		static void Main(string[] args)
