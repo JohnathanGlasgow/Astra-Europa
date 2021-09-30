@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace ConsoleApp1
@@ -13,8 +14,70 @@ namespace ConsoleApp1
 		//Taking the fire extinguisher
 		public static bool fireEx = false;
 
+        /* 
+		 * -Player Input Method-
+		 * This method is called in the rooms when we ask for the next command, i.e. switch(playerInput())
+		 * It checks if the command is to open the inventory, open the help text, open the options, read the notebook,
+		 * or any other command that is universal across the game. 
+		 * If a universal command is triggered, the method returns an empty string.
+		 * The rooms will have an empty case/break for the empty string (so they don't default to "Invalid Command" after a universal command is triggered)
+		 */
+        //public static string playerInput()
+        //{
+        //    Console.Write("What next? ");
+        //    string playerInput = Console.ReadLine();
+        //    switch (playerInput)
+        //    {
+        //        case "inventory":
+        //        case "i":
+        //            showInventory();
+        //            playerInput = "";
+        //            break;
+        //        case "notebook":
+        //        case "n":
+        //            Console.WriteLine("Contents of Notebook");
+        //            Console.ReadLine();
+        //            playerInput = "";
+        //            break;
+        //        case "help":
+        //        case "info":
+        //            Console.WriteLine("How to play:");
+        //            Console.ReadLine();
+        //            playerInput = "";
+        //            break;
+        //        case "options":
+        //        case "o":
+        //            Console.WriteLine("Options Menu");
+        //            Console.ReadLine();
+        //            playerInput = "";
+        //            break;
+        //    }
+        //    return playerInput;
+        //}
+
+        /* -Inventory-
+		 * To add items to inventory use inventory.Add("Item Name")
+		 * To check if an item is in the inventory use inventory.Contains("Item Name") - this returns a bool
+		 * */
+        public static List<string> inventory = new List<string> { "Notebook", "Pencil", "Radio" };
+		// This method formats a string that contains the inventory items
+		public static void showInventory()
+        {
+			string showInv = "";
+            Console.WriteLine("Inventory:");
+			// add a comma and a space for each item and add it to the string
+			foreach (string s in inventory)
+            {
+				showInv += s + ", ";
+            }
+			// remove the last comma and space
+            showInv = showInv[0..^2];
+            Console.WriteLine(showInv);
+			Console.ReadLine();
+        }
+
 		// Have continued playerLocation count from Room 26 
-		//Ship --Need to add extinguishing fires
+		// Ship --Need to add extinguishing fires
 		public static void ship()
 		{
 			playerLocation = 27;
@@ -405,6 +468,9 @@ namespace ConsoleApp1
 						break;
 					case "east":
 						room11();
+						break;
+					case "i":
+						showInventory();
 						break;
 					default:
 						Console.WriteLine("Invalid input");
@@ -1277,7 +1343,7 @@ namespace ConsoleApp1
 
 		static void Main(string[] args)
         {
-            TitleScreen();
+           TitleScreen();
         }
     }
 }
