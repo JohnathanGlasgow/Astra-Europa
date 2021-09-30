@@ -503,6 +503,10 @@ namespace ConsoleApp1
 				playerInput = Console.ReadLine();
 				switch (playerInput)
 				{
+					case "south":
+						room71();
+						break;
+
 					case "west":
 						if (doorE74 == true)
 						{
