@@ -41,6 +41,77 @@ namespace ConsoleApp1
 			}
 		}
 
+		//Escape Pod
+		//Will need additional options for replacing parts
+		public static void escapePod()
+		{
+			playerLocation = 28;
+			while (playerInput != "north")
+			{
+				Console.Clear();
+				//Checks for first visit to room before putting out fires
+				if (fireEx != true)
+				{
+					Console.WriteLine("YOU NOTICE FIRE EXTINGUISHER");
+					playerInput = Console.ReadLine();
+					switch (playerInput)
+					{
+						case "get fire extinguisher":
+							fireEx = true;
+							Console.WriteLine("YOU PICK UP THE FIRE EXTINGUISHER");
+							Thread.Sleep(500);
+							break;
+
+						default:
+							Console.WriteLine("Invalid Input");
+							Thread.Sleep(500);
+							break;
+					}
+				}
+				else
+				{
+					Console.WriteLine("ESCAPE POD DESCRIPTION");
+					playerInput = Console.ReadLine();
+					switch (playerInput)
+					{
+						case "north":
+							ship();
+							break;
+						default:
+							Console.WriteLine("Invalid Input");
+							Thread.Sleep(500);
+							break;
+					}
+				}
+			}
+		}
+
+		//Airlock
+		public static void airlock()
+		{
+			playerLocation = 29;
+			while (playerInput != "west" || playerInput != "east")
+			{
+				Console.Clear();
+				Console.WriteLine("AIRLOCK DESCRIPTION");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "west":
+						ship();
+						break;
+
+					case "east":
+						wasteland();
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
 
 		// Room 1
 		public static void room1()
