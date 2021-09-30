@@ -1168,17 +1168,17 @@ namespace ConsoleApp1
 			Console.Clear();
 			Console.WriteLine();
 			Console.ForegroundColor = ConsoleColor.DarkBlue;
-			Console.WriteLine("          █████╗ ███████╗████████╗██████╗  ██████╗     ███████╗██╗   ██╗██████╗  ██████╗ ██████╗  █████╗  ");
+			Console.WriteLine("         █████╗ ███████╗████████╗██████╗   █████╗      ███████╗██╗   ██╗██████╗  ██████╗ ██████╗  █████╗  ");
 			Console.ForegroundColor = ConsoleColor.Blue;
-			Console.WriteLine("         ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██╔════╝██║   ██║██╔══██╗██╔═══██╗██╔══██╗██╔══██╗ ");
+			Console.WriteLine("        ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗ ██╔══██╗     ██╔════╝██║   ██║██╔══██╗██╔═══██╗██╔══██╗██╔══██╗ ");
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			Console.WriteLine("         ███████║███████╗   ██║   ██████╔╝██║   ██║    █████╗  ██║   ██║██████╔╝██║   ██║██████╔╝███████║ ");
+			Console.WriteLine("        ███████║███████╗   ██║   ██████╔╝ ███████║     █████╗  ██║   ██║██████╔╝██║   ██║██████╔╝███████║ ");
 			Console.ForegroundColor = ConsoleColor.Yellow;
-			Console.WriteLine("         ██╔══██║╚════██║   ██║   ██╔══██╗██║   ██║    ██╔══╝  ██║   ██║██╔══██╗██║   ██║██╔═══╝ ██╔══██║ ");
+			Console.WriteLine("        ██╔══██║╚════██║   ██║   ██╔══██╗ ██╔══██║     ██╔══╝  ██║   ██║██╔══██╗██║   ██║██╔═══╝ ██╔══██║ ");
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.WriteLine("         ██║  ██║███████║   ██║   ██║  ██║╚██████╔╝    ███████╗╚██████╔╝██║  ██║╚██████╔╝██║     ██║  ██║ ");
+			Console.WriteLine("        ██║  ██║███████║   ██║   ██║  ██║ ██║  ██║     ███████╗╚██████╔╝██║  ██║╚██████╔╝██║     ██║  ██║ ");
 			Console.ForegroundColor = ConsoleColor.DarkRed;
-			Console.WriteLine("         ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝ ");
+			Console.WriteLine("        ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═╝  ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝ ");
 			Console.WriteLine("\n");
 			Console.WriteLine("      .         _  .          .          . ╔═══════════════╗   +     .          .          .      .        ");
 			Console.WriteLine("              .(_)          .            . ║               ║          .            .       :               ");
@@ -1207,7 +1207,7 @@ namespace ConsoleApp1
 			{
 				case "PLAY":
 					Console.Clear();
-					room1();
+					ship();
 					break;
 
 				case "CONTINUE":
@@ -1273,8 +1273,6 @@ namespace ConsoleApp1
 		static void Main(string[] args)
         {
             TitleScreen();
-            Console.WriteLine("Hello World!");
-            //room13();
         }
     }
 }
