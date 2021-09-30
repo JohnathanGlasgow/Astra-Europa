@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         public static string inv, playerInput;
         public static int playerLocation;
-        public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
+		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS13 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
 
 		public static void room1()
 		{
@@ -293,8 +293,10 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Changed East to lead to Room 13 -JG
 		public static void room8()
 		{
+			playerLocation = 8;
 			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
 			{
 				Console.Clear();
@@ -314,7 +316,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "east":
-						room11();
+						room13();
 						break;
 					case "north":
 						room7();
@@ -370,7 +372,7 @@ namespace ConsoleApp1
 						room9();
 						break;
 					case "east":
-						room15();
+						//room15();
 						break;
 					case "west":
 						room5();
@@ -431,12 +433,83 @@ namespace ConsoleApp1
 		}
 
 
-		// Room 13 (To be added by Johnathan)
-		// Room 14 (To be added by Johnathan)
+		// Room 13
+		public static void room13()
+		{
+			playerLocation = 13;
+			while (playerLocation == 13)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 13");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+
+					case "east":
+						if (doorE13 == true)
+						{
+							//room18();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					case "west":
+						room8();
+						break;
+
+					case "south":
+						if (doorS13 == true)
+						{
+							room14();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a blue keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		// Room 14
+		public static void room14()
+		{
+			playerLocation = 14;
+			while (playerLocation == 14)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 14");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room13();
+						break;
+					//case to get item
+					default:
+						Console.WriteLine("Invaild Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 		// Room 15 (To be added by Johnathan)
 		// Room 16 (To be added by Johnathan)
 		// Room 17 (To be added by Johnathan)
 		// Room 18 (To be added by Johnathan)
+		public static void room18()
+        {
+			playerLocation = 18;
+        }
 		// Room 19 (To be added by Johnathan)
 		// Room 20 (To be added by Johnathan)
 		// Room 21 (To be added by Johnathan)
@@ -562,8 +635,9 @@ namespace ConsoleApp1
 
 		static void Main(string[] args)
         {
-			TitleScreen();
-			Console.WriteLine("Hello World!");
+            TitleScreen();
+            Console.WriteLine("Hello World!");
+            //room13();
         }
     }
 }
