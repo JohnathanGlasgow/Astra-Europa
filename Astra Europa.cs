@@ -113,6 +113,139 @@ namespace ConsoleApp1
 			}
 		}
 
+		//Wasteland - Outside Ship
+		public static void wasteland()
+		{
+			playerLocation = 30;
+			while (playerInput != "west" || playerInput != "east" || playerInput != "north" || playerInput != "south")
+			{
+				Console.Clear();
+				Console.WriteLine("WASTELAND (OUTSIDE SHIP) DESCRIPTION");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "west":
+						airlock();
+						break;
+					case "east":
+						Console.WriteLine("YOU CONTINUE EAST ... LEVER");
+						playerInput = Console.ReadLine();
+						switch (playerInput)
+						{
+							case "use lever":
+								room3();
+								break;
+
+							default:
+								Console.WriteLine("Invalid Input");
+								Thread.Sleep(500);
+								break;
+						}
+						break;
+
+					case "north":
+						wasteN1();
+						break;
+
+					case "south":
+						wasteS1();
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		//Wasteland - North Once from main path
+		public static void wasteN1()
+		{
+			playerLocation = 31;
+			while (playerInput != "south" || playerInput != "north")
+			{
+				Console.Clear();
+				Console.WriteLine("WASTELAND (NORTH1) DESCRIPTION");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						Console.WriteLine("YOU HAVE GONE TOO FAR"); //DEATH
+						Console.WriteLine("WILL RESET HERE");
+						Thread.Sleep(2000);
+						//EXIT BACK TO TITLESCREEN WITH RESET VALUES
+						break;
+
+					case "south":
+						wasteland();
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		//Wasteland - South Once from main path
+		public static void wasteS1()
+		{
+			playerLocation = 32;
+			while (playerInput != "south" || playerInput != "north")
+			{
+				Console.Clear();
+				Console.WriteLine("WASTELAND (SOUTH1) DESCRIPTION");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						wasteland();
+						break;
+
+					case "south":
+						wasteS2();
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		//Wasteland - South Twice from main path
+		public static void wasteS2()
+		{
+			playerLocation = 33;
+			while (playerInput != "south" || playerInput != "north")
+			{
+				Console.Clear();
+				Console.WriteLine("WASTELAND (SOUTH2) DESCRIPTION");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						wasteS1();
+						break;
+
+					case "south":
+						Console.WriteLine("YOU HAVE GONE TOO FAR"); //DEATH
+						Console.WriteLine("WILL RESET HERE");
+						Thread.Sleep(2000);
+						//EXIT BACK TO TITLESCREEN WITH RESET VALUES
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 		// Room 1
 		public static void room1()
 		{
