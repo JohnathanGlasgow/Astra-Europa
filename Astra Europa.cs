@@ -375,10 +375,10 @@ namespace ConsoleApp1
 				switch (playerInput)
 				{
 					case "east":
-						room5();
+						room6();
 						break;
 					case "north":
-						room3();
+						room4();
 						break;
 					default:
 						Console.WriteLine("Invalid input");
@@ -1201,6 +1201,7 @@ namespace ConsoleApp1
 			Console.Write("\t\t\t\tType in what you would like to do:   ");
 			Console.ForegroundColor = ConsoleColor.Green;
 			string temp = Console.ReadLine().ToUpper();
+			Console.ForegroundColor = ConsoleColor.White;
 
 			//Using temporary method names for loading etc
 			switch (temp)
