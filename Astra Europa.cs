@@ -375,7 +375,7 @@ namespace ConsoleApp1
 				switch (playerInput)
 				{
 					case "east":
-						room6();
+						room10();
 						break;
 					case "north":
 						room4();
