@@ -8,7 +8,9 @@ namespace ConsoleApp1
         public static string inv, playerInput;
         public static int playerLocation;
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
-
+		// puzzle doors:
+		public static bool doorS21 = false, doorS22 = false, doorS23 = false, doorS24 = false, doorE25 = false;
+		// Room 1
 		public static void room1()
 		{
 			playerLocation = 1;
@@ -33,6 +35,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 2
 		public static void room2()
 		{
 			playerLocation = 2;
@@ -57,7 +60,7 @@ namespace ConsoleApp1
 			}
 		}
 
-
+		// Room 3
 		public static void room3()
 		{
 			playerLocation = 3;
@@ -96,6 +99,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 4
 		public static void room4()
 		{
 			playerLocation = 4;
@@ -121,6 +125,7 @@ namespace ConsoleApp1
 
 		}
 
+		// Room 5
 		public static void room5()
 		{
 			playerLocation = 5;
@@ -148,6 +153,7 @@ namespace ConsoleApp1
 
 		}
 
+		// Room 6
 		public static void room6()
 		{
 			playerLocation = 6;
@@ -173,6 +179,7 @@ namespace ConsoleApp1
 
 		}
 
+		// Room 7
 		public static void room7()
 		{
 			playerLocation = 7;
@@ -197,6 +204,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 7.1
 		public static void room71()
 		{
 			playerLocation = 71;
@@ -224,6 +232,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 7.2
 		public static void room72()
 		{
 			playerLocation = 72;
@@ -247,6 +256,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 7.3
 		public static void room73()
 		{
 			playerLocation = 73;
@@ -275,7 +285,7 @@ namespace ConsoleApp1
 			}
 		}
 
-
+		// Room 7.4
 		public static void room74()
 		{
 			playerLocation = 74;
@@ -303,6 +313,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 8
 		public static void room8()
 		{
 			playerLocation = 8;
@@ -339,6 +350,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 9
 		public static void room9()
 		{
 			playerLocation = 9;
@@ -369,6 +381,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 10
 		public static void room10()
 		{
 			playerLocation = 10;
@@ -396,6 +409,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 11
 		public static void room11()
 		{
 			playerLocation = 11;
@@ -420,6 +434,7 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Room 12
 		public static void room12()
 		{
 			playerLocation = 12;
@@ -713,36 +728,196 @@ namespace ConsoleApp1
 		public static void room21()
 		{
 			playerLocation = 21;
+			while (playerLocation == 21)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 21");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					// puzzle door
+					case "south":
+						if (doorS21 == true)
+						{
+							room22();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, you need to answer a question.");
+							Thread.Sleep(500);
+						}
+						break;
+					case "west":
+						room16();
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 22 
 		public static void room22()
 		{
 			playerLocation = 22;
+			while (playerLocation == 22)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 22");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room21();
+						break;
+					// puzzle door
+					case "south":
+						if (doorS22 == true)
+						{
+							room23();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, you need to answer a question.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 23 
 		public static void room23()
 		{
 			playerLocation = 23;
+			while (playerLocation == 23)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 23");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room22();
+						break;
+					// puzzle door
+					case "south":
+						if (doorS23 == true)
+						{
+							room24();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, you need to answer a question.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 24 
 		public static void room24()
 		{
 			playerLocation = 24;
+			while (playerLocation == 24)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 24");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room23();
+						break;
+					// puzzle door
+					case "south":
+						if (doorS24 == true)
+						{
+							room25();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, you need to answer a question.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 25 
 		public static void room25()
 		{
 			playerLocation = 25;
+			while (playerLocation == 25)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 25");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room24();
+						break;
+					// puzzle door
+					case "east":
+						if (doorE25 == true)
+						{
+							room26();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, you need to answer a question.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 26
 		public static void room26()
 		{
 			playerLocation = 26;
+			while (playerLocation == 26)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 26");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					// teleporter
+					case "teleport":
+						room3();
+						break;
+					case "west":
+						room25();
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		public static void TitleScreen()
