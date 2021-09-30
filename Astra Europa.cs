@@ -10,6 +10,38 @@ namespace ConsoleApp1
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
 		// puzzle doors:
 		public static bool doorS21 = false, doorS22 = false, doorS23 = false, doorS24 = false, doorE25 = false;
+		//Taking the fire extinguisher
+		public static bool fireEx = false;
+
+		// Have continued playerLocation count from Room 26 
+		//Ship --Need to add extinguishing fires
+		public static void ship()
+		{
+			playerLocation = 27;
+			while (playerInput != "south" || playerInput != "east")
+			{
+				Console.Clear();
+				Console.WriteLine("SHIP DESCRIPTION");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "south":
+						escapePod();
+						break;
+
+					case "east":
+						airlock();
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+
 		// Room 1
 		public static void room1()
 		{
