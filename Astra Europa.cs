@@ -456,11 +456,10 @@ namespace ConsoleApp1
 				playerInput = Console.ReadLine();
 				switch (playerInput)
 				{
-
 					case "east":
 						if (doorE13 == true)
 						{
-							//room18();
+							room18();
 						}
 						else
 						{
@@ -468,10 +467,6 @@ namespace ConsoleApp1
 							Thread.Sleep(500);
 						}
 						break;
-					case "west":
-						room8();
-						break;
-
 					case "south":
 						if (doorN14 == true)
 						{
@@ -482,6 +477,9 @@ namespace ConsoleApp1
 							Console.WriteLine("The door is locked, looks like you need a blue keycard.");
 							Thread.Sleep(500);
 						}
+						break;
+					case "west":
+						room8();
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
@@ -576,13 +574,78 @@ namespace ConsoleApp1
 		public static void room17()
 		{
 			playerLocation = 17;
+			while (playerLocation == 17)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 17");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "south":
+						if (doorS17 == true)
+						{
+							room18();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					case "west":
+						room12();
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 18
 		public static void room18()
         {
 			playerLocation = 18;
-        }
+			while (playerLocation == 18)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 18");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						if (doorS17 == true)
+						{
+							room17();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					case "south":
+						room19();
+						break;
+					case "west":
+						if (doorE13 == true)
+						{
+							room13();
+						}
+						else
+						{
+							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Thread.Sleep(500);
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
 
 		// Room 19
 		public static void room19()
