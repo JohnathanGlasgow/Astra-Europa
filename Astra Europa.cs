@@ -651,12 +651,62 @@ namespace ConsoleApp1
 		public static void room19()
 		{
 			playerLocation = 19;
-		}
+			while (playerLocation == 19)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 19");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room18();
+						break;
+					case "south":
+						room20();
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+        }
 
 		// Room 20
 		public static void room20()
 		{
 			playerLocation = 20;
+			while (playerLocation == 20)
+			{
+				Console.Clear();
+				Console.WriteLine("ROOM DESCRIPTION 20");
+				playerInput = Console.ReadLine();
+				switch (playerInput)
+				{
+					case "north":
+						room19();
+						break;
+					/* case for the breach */
+                    //case "south":
+                    //	if (doorS20 == true)
+                    //	{
+                    //		breach();
+                    //	}
+                    //	else
+                    //	{
+                    //		Console.WriteLine("The door is locked, looks like you need a red keycard.");
+                    //		Thread.Sleep(500);
+                    //	}
+                    //	break;
+                    case "west":
+						room15();
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
 		}
 
 		// Room 21 
