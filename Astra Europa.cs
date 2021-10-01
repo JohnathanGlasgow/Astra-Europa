@@ -6,7 +6,6 @@ namespace ConsoleApp1
 {
     class Program
     {
-        public static string inv, playerInput;
         public static int playerLocation;
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
 		// puzzle doors:
@@ -15,45 +14,45 @@ namespace ConsoleApp1
 		public static bool fireEx = false;
 
         /* 
-		 * -Player Input Method-
-		 * This method is called in the rooms when we ask for the next command, i.e. switch(playerInput())
-		 * It checks if the command is to open the inventory, open the help text, open the options, read the notebook,
-		 * or any other command that is universal across the game. 
-		 * If a universal command is triggered, the method returns an empty string.
-		 * The rooms will have an empty case/break for the empty string (so they don't default to "Invalid Command" after a universal command is triggered)
-		 */
-        //public static string playerInput()
-        //{
-        //    Console.Write("What next? ");
-        //    string playerInput = Console.ReadLine();
-        //    switch (playerInput)
-        //    {
-        //        case "inventory":
-        //        case "i":
-        //            showInventory();
-        //            playerInput = "";
-        //            break;
-        //        case "notebook":
-        //        case "n":
-        //            Console.WriteLine("Contents of Notebook");
-        //            Console.ReadLine();
-        //            playerInput = "";
-        //            break;
-        //        case "help":
-        //        case "info":
-        //            Console.WriteLine("How to play:");
-        //            Console.ReadLine();
-        //            playerInput = "";
-        //            break;
-        //        case "options":
-        //        case "o":
-        //            Console.WriteLine("Options Menu");
-        //            Console.ReadLine();
-        //            playerInput = "";
-        //            break;
-        //    }
-        //    return playerInput;
-        //}
+   * -Player Input Method-
+   * This method is called in the rooms when we ask for the next command, i.e. switch(playerInput())
+   * It checks if the command is to open the inventory, open the help text, open the options, read the notebook,
+   * or any other command that is universal across the game. 
+   * If a universal command is triggered, the method returns an empty string.
+   * The rooms will have an empty case/break for the empty string (so they don't default to "Invalid Command" after a universal command is triggered)
+   */
+        public static string playerInput()
+        {
+            Console.Write("What next? ");
+            string playerInput = Console.ReadLine();
+            switch (playerInput)
+            {
+                case "inventory":
+                case "i":
+                    showInventory();
+                    playerInput = "";
+                    break;
+                case "notebook":
+                case "n":
+                    Console.WriteLine("Contents of Notebook");
+                    Console.ReadLine();
+                    playerInput = "";
+                    break;
+                case "help":
+                case "info":
+                    Console.WriteLine("How to play:");
+                    Console.ReadLine();
+                    playerInput = "";
+                    break;
+                case "options":
+                case "o":
+                    Console.WriteLine("Options Menu");
+                    Console.ReadLine();
+                    playerInput = "";
+                    break;
+            }
+            return playerInput;
+        }
 
         /* -Inventory-
 		 * To add items to inventory use inventory.Add("Item Name")
@@ -81,13 +80,14 @@ namespace ConsoleApp1
 		public static void ship()
 		{
 			playerLocation = 27;
-			while (playerInput != "south" || playerInput != "east")
+			while (playerLocation == 27)
 			{
 				Console.Clear();
 				Console.WriteLine("SHIP DESCRIPTION");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						escapePod();
 						break;
@@ -109,43 +109,32 @@ namespace ConsoleApp1
 		public static void escapePod()
 		{
 			playerLocation = 28;
-			while (playerInput != "north")
+			while (playerLocation == 28)
 			{
 				Console.Clear();
-				//Checks for first visit to room before putting out fires
-				if (fireEx != true)
+				Console.WriteLine("ESCAPE POD DESCRIPTION");
+				if (!inventory.Contains("Fire Extinguisher"))
 				{
 					Console.WriteLine("YOU NOTICE FIRE EXTINGUISHER");
-					playerInput = Console.ReadLine();
-					switch (playerInput)
-					{
-						case "get fire extinguisher":
-							fireEx = true;
-							Console.WriteLine("YOU PICK UP THE FIRE EXTINGUISHER");
-							Thread.Sleep(500);
-							break;
-
-						default:
-							Console.WriteLine("Invalid Input");
-							Thread.Sleep(500);
-							break;
-					}
 				}
-				else
+				switch (playerInput())
 				{
-					Console.WriteLine("ESCAPE POD DESCRIPTION");
-					playerInput = Console.ReadLine();
-					switch (playerInput)
-					{
-						case "north":
-							ship();
-							break;
-						default:
-							Console.WriteLine("Invalid Input");
-							Thread.Sleep(500);
-							break;
-					}
-				}
+					case "":
+						break;
+					case "get fire extinguisher":
+					case "get extinguisher":
+						Console.WriteLine("YOU PICK UP THE FIRE EXTINGUISHER");
+						inventory.Add("Fire Extinguisher");
+						Thread.Sleep(500);
+						break;
+					case "north":
+                        ship();
+                        break;
+                    default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}			
 			}
 		}
 
@@ -153,13 +142,14 @@ namespace ConsoleApp1
 		public static void airlock()
 		{
 			playerLocation = 29;
-			while (playerInput != "west" || playerInput != "east")
+			while (playerLocation == 29)
 			{
 				Console.Clear();
 				Console.WriteLine("AIRLOCK DESCRIPTION");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "west":
 						ship();
 						break;
@@ -180,22 +170,25 @@ namespace ConsoleApp1
 		public static void wasteland()
 		{
 			playerLocation = 30;
-			while (playerInput != "west" || playerInput != "east" || playerInput != "north" || playerInput != "south")
+			while (playerLocation == 30)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (OUTSIDE SHIP) DESCRIPTION");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "west":
 						airlock();
 						break;
 					case "east":
 						Console.WriteLine("YOU CONTINUE EAST ... LEVER");
-						playerInput = Console.ReadLine();
-						switch (playerInput)
+						switch (playerInput())
 						{
+							case "":
+								break;
 							case "use lever":
+							case "pull lever":
 								room3();
 								break;
 
@@ -226,13 +219,14 @@ namespace ConsoleApp1
 		public static void wasteN1()
 		{
 			playerLocation = 31;
-			while (playerInput != "south" || playerInput != "north")
+			while (playerLocation == 31)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (NORTH1) DESCRIPTION");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						Console.WriteLine("YOU HAVE GONE TOO FAR"); //DEATH
 						Console.WriteLine("WILL RESET HERE");
@@ -256,13 +250,14 @@ namespace ConsoleApp1
 		public static void wasteS1()
 		{
 			playerLocation = 32;
-			while (playerInput != "south" || playerInput != "north")
+			while (playerLocation == 32)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (SOUTH1) DESCRIPTION");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						wasteland();
 						break;
@@ -283,13 +278,14 @@ namespace ConsoleApp1
 		public static void wasteS2()
 		{
 			playerLocation = 33;
-			while (playerInput != "south" || playerInput != "north")
+			while (playerLocation == 33)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (SOUTH2) DESCRIPTION");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						wasteS1();
 						break;
@@ -313,13 +309,14 @@ namespace ConsoleApp1
 		public static void room1()
 		{
 			playerLocation = 1;
-			while (playerInput != "south" || playerInput != "east")
+			while (playerLocation == 1)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 1");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room2();
 						break;
@@ -338,13 +335,14 @@ namespace ConsoleApp1
 		public static void room2()
 		{
 			playerLocation = 2;
-			while (playerInput != "south" || playerInput != "north")
+			while (playerLocation == 2)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 2");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room3();
 						break;
@@ -363,13 +361,14 @@ namespace ConsoleApp1
 		public static void room3()
 		{
 			playerLocation = 3;
-			while (playerInput != "south" || playerInput != "east" || playerInput != "north" || playerInput != "west")
+			while (playerLocation == 3)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 3");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "west":
 						//method for outside
 						break;
@@ -402,13 +401,14 @@ namespace ConsoleApp1
 		public static void room4()
 		{
 			playerLocation = 4;
-			while (playerInput != "south" || playerInput != "north")
+			while (playerLocation == 4)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 4");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room5();
 						break;
@@ -428,15 +428,16 @@ namespace ConsoleApp1
 		public static void room5()
 		{
 			playerLocation = 5;
-			while (playerInput != "east" || playerInput != "north")
+			while (playerLocation == 5)
 			{
 				Console.Clear();
 				Console.WriteLine("You see some damage has been inflicted to the walls of this section, looks like deep slashes.");
-				Console.WriteLine("Faint pools of blood stain the floor but no bodies.");	                 
+				Console.WriteLine("Faint pools of blood stain the floor but no bodies.");
 
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "east":
 						room10();
 						break;
@@ -456,21 +457,19 @@ namespace ConsoleApp1
 		public static void room6()
 		{
 			playerLocation = 6;
-			while (playerInput != "west" || playerInput != "east")
+			while (playerLocation == 6)
 			{
 				Console.Clear();
-				Console.WriteLine("This section of the station has a window witht the view of the barren surface of this harsh planet");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				Console.WriteLine("This section of the station has a window with the view of the barren surface of this harsh planet");
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "west":
 						room1();
 						break;
 					case "east":
 						room11();
-						break;
-					case "i":
-						showInventory();
 						break;
 					default:
 						Console.WriteLine("Invalid input");
@@ -485,13 +484,14 @@ namespace ConsoleApp1
 		public static void room7()
 		{
 			playerLocation = 7;
-			while (playerInput != "south" || playerInput != "west")
+			while (playerLocation == 7)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 7");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room8();
 						break;
@@ -510,13 +510,14 @@ namespace ConsoleApp1
 		public static void room71()
 		{
 			playerLocation = 71;
-			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			while (playerLocation == 71)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 71");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room73();
 						break;
@@ -538,14 +539,15 @@ namespace ConsoleApp1
 		public static void room72()
 		{
 			playerLocation = 72;
-			while (playerInput != "west")
+			while (playerLocation == 72)
 			{
 				Console.Clear();
 
 				Console.WriteLine("ROOM DESCRIPTION 72");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "east":
 						room71();
 						break;
@@ -562,13 +564,14 @@ namespace ConsoleApp1
 		public static void room73()
 		{
 			playerLocation = 73;
-			while (playerInput != "west" || playerInput != "south")
+			while (playerLocation == 73)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 73");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room71();
 						break;
@@ -595,18 +598,20 @@ namespace ConsoleApp1
 		public static void room74()
 		{
 			playerLocation = 74;
-			while (playerInput != "east")
+			while (playerLocation == 74)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 74");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "east":
 						room73();
 						break;
 					case "get blue keycard":
 						Console.WriteLine("You pick up the blue keycard.");
+						inventory.Add("Blue Keycard");
 						Thread.Sleep(500);
 						doorE16 = true;
 						doorS17 = true;
@@ -623,13 +628,14 @@ namespace ConsoleApp1
 		public static void room8()
 		{
 			playerLocation = 8;
-			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			while (playerLocation == 8)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 8");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "west":
 						if (doorE3 == true)
 						{
@@ -660,18 +666,20 @@ namespace ConsoleApp1
 		public static void room9()
 		{
 			playerLocation = 9;
-			while (playerInput != "south")
+			while (playerLocation == 9)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 9");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room10();
 						break;
 					case "get red keycard":
 						Console.WriteLine("You pick up the red keycard.");
+						inventory.Add("Red Keycard");
 						Thread.Sleep(500);
 						doorE3 = true;
 						doorE13 = true;
@@ -691,13 +699,14 @@ namespace ConsoleApp1
 		public static void room10()
 		{
 			playerLocation = 10;
-			while (playerInput != "north" || playerInput != "east" || playerInput != "west")
+			while (playerLocation == 10)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 10");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room9();
 						break;
@@ -719,13 +728,14 @@ namespace ConsoleApp1
 		public static void room11()
 		{
 			playerLocation = 11;
-			while (playerInput != "south" || playerInput != "west")
+			while (playerLocation == 11)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 11");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						room12();
 						break;
@@ -744,18 +754,19 @@ namespace ConsoleApp1
 		public static void room12()
 		{
 			playerLocation = 12;
-			while (playerInput != "north" || playerInput != "east")
+			while (playerLocation == 12)
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 12");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room11();
 						break;
 					case "east":
-						room71();
+						room17();
 						break;
 					//case to get item
 					default:
@@ -774,9 +785,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 13");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "east":
 						if (doorE13 == true)
 						{
@@ -818,9 +830,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 14");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room13();
 						break;
@@ -841,9 +854,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 15");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "east":
 						room20();
 						break;
@@ -866,9 +880,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 16");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "east":
 						if (doorE16 == true)
 						{
@@ -899,9 +914,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 17");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "south":
 						if (doorS17 == true)
 						{
@@ -932,9 +948,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 18");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						if (doorS17 == true)
 						{
@@ -976,9 +993,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 19");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room18();
 						break;
@@ -1001,9 +1019,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 20");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room19();
 						break;
@@ -1038,9 +1057,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 21");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					// puzzle door
 					case "south":
 						if (doorS21 == true)
@@ -1072,9 +1092,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 22");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room21();
 						break;
@@ -1106,9 +1127,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 23");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room22();
 						break;
@@ -1140,9 +1162,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 24");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room23();
 						break;
@@ -1174,9 +1197,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 25");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					case "north":
 						room24();
 						break;
@@ -1208,9 +1232,10 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("ROOM DESCRIPTION 26");
-				playerInput = Console.ReadLine();
-				switch (playerInput)
+				switch (playerInput())
 				{
+					case "":
+						break;
 					// teleporter
 					case "teleport":
 						room3();
@@ -1343,7 +1368,7 @@ namespace ConsoleApp1
 
 		static void Main(string[] args)
         {
-           TitleScreen();
+			TitleScreen();
         }
     }
 }
