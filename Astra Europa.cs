@@ -339,10 +339,7 @@ namespace ConsoleApp1
 						break;
 
 					case "south":
-						Console.WriteLine("YOU HAVE GONE TOO FAR"); //DEATH
-						Console.WriteLine("WILL RESET HERE");
-						Thread.Sleep(2000);
-						//EXIT BACK TO TITLESCREEN WITH RESET VALUES
+						deathSouth();
 						break;
 
 					default:
@@ -1804,7 +1801,65 @@ namespace ConsoleApp1
 			Console.ForegroundColor = ConsoleColor.White;
 			TitleScreen();
 		}
-		
+
+		public static void deathSouth()
+		{
+			Console.Clear();
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine(@"     
+                                  .-        .--.                                          
+                       .+:         -*+:       =%#+=:.                                     
+                         **:        .*%*:.     .*%%%*=.                                   
+                          =#+:.       :*%+:.     .*%%%+                                   
+                           :##*-..      :##*-..    ##%#+=-.                               
+                             *%%#=:...   :#%#*=:    -+%%#%#:                              
+                              +%%%#*+-.    -*%##-.     +%%%*.                             
+                               =%#%%%%=:.    :###*=:.   :##%#=                            
+                           .    --=*%%##+:..  .*%#%#*-.   =#%#*:                          
+                           :*=:     *#%#%#=:.   -*%%#%*-.   :+#%-                         
+                            .##*:.   +%%%#%#=:.   .+%###+      :=-                        
+                             :+%%#-    =#%%%##+:    .*##%=                                
+                               .*%#+:    =%%%%##:.      :#=.                              
+                                .%%##+-.  -*%%%#*=:.     .*#=                             
+                                 .#%%#%*:   :+#%%##+.      .-:                            
+                                   .*%%#%+=.  .=#%%%#-.                                   
+                                     :+%#%%*.    -+#%%*:                                  
+                                       :#%%#*:       :+#=                                 
+                                         -*#%#:         =+.                               
+                                            -*%=          .                               
+                                              .+:                                         
+                                                                                          
+");
+			Console.WriteLine();
+			Console.WriteLine("\t\t\t\tYOU HAVE BEEN CLAWED TO DEATH");
+			Thread.Sleep(5000);
+			Console.BackgroundColor = ConsoleColor.Red;
+			Console.ForegroundColor = ConsoleColor.Black;
+			Console.Clear();
+
+			Console.WriteLine(@"
+
+
+		  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  
+		 ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+		▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+		░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  
+		░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+		 ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+		  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+		░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ 
+			  ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     
+															 ░                   
+");
+			//May need to change with how save/load/resets works
+			Console.WriteLine("\t\t\t\t\tPress ENTER to start again");
+			Console.ReadLine();
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
+			TitleScreen();
+		}
+
 
 		//This will be the main death method called when a player dies in combat etc
 		public static void genericDeath()
