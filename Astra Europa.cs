@@ -1896,8 +1896,8 @@ namespace ConsoleApp1
 
 		static void Main(string[] args)
         {
-			testRoom1();
-			//TitleScreen();
+			//testRoom1();
+			TitleScreen();
         }
     }
 }
