@@ -246,21 +246,7 @@ namespace ConsoleApp1
 						airlock();
 						break;
 					case "east":
-						Console.WriteLine("YOU CONTINUE EAST ... LEVER");
-						switch (playerInput())
-						{
-							case "":
-								break;
-							case "use lever":
-							case "pull lever":
-								room3();
-								break;
-
-							default:
-								Console.WriteLine("Invalid Input");
-								Thread.Sleep(500);
-								break;
-						}
+						wasteE1();
 						break;
 
 					case "north":
@@ -357,6 +343,38 @@ namespace ConsoleApp1
 						Console.WriteLine("WILL RESET HERE");
 						Thread.Sleep(2000);
 						//EXIT BACK TO TITLESCREEN WITH RESET VALUES
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		//Wasteland - East Once from first exiting airlock
+		public static void wasteE1()
+		{
+			playerLocation = 34;
+			while (playerLocation == 34)
+			{
+				Console.Clear();
+				Console.WriteLine("WASTELAND (EAST1) DESCRIPTION 'LEVER'");
+				switch (playerInput())
+				{
+					case "":
+						break;
+
+					case "use lever":
+					case "pull lever":
+                        Console.WriteLine("YOU PULL THE LEVER AND ENTER");
+						Thread.Sleep(500);
+						room3();
+						break;
+
+					case "west":
+						wasteland();
 						break;
 
 					default:
