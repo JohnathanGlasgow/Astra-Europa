@@ -291,11 +291,9 @@ namespace ConsoleApp1
 				{
 					case "":
 						break;
+
 					case "north":
-						Console.WriteLine("YOU HAVE GONE TOO FAR"); //DEATH
-						Console.WriteLine("WILL RESET HERE");
-						Thread.Sleep(2000);
-						//EXIT BACK TO TITLESCREEN WITH RESET VALUES
+						deathNorth();
 						break;
 
 					case "south":
@@ -1515,7 +1513,10 @@ namespace ConsoleApp1
              * Ignore any yellow backslashes, used as escape characters
              * for optimal output
              * 
+             * Need to add Continue/Saving, Controls and Credits
             */
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
 			Console.Clear();
 			Console.WriteLine();
 			Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -1570,7 +1571,20 @@ namespace ConsoleApp1
 
 				case "CONTROLS":
 					Console.Clear();
-					//Controls();
+                    //Controls();
+                    Console.WriteLine("Press i to see intro screen tests");
+                    Console.WriteLine("Press g to see the generic death screen");
+					temp = Console.ReadLine().ToUpper();
+					switch (temp)
+                    {
+						case "I":
+							introScreen();
+							break;
+
+						case "G":
+							//genericDeath();
+							break;
+                    }
 					Console.WriteLine("This is will be Controls()");
 					break;
 
@@ -1620,6 +1634,157 @@ namespace ConsoleApp1
 					TitleScreen();
 					break;
 			}
+		}
+
+		/*
+		 * Added currently as a test in the "CONTROLS" option on the main menu.
+		 * Need to decide if it will go before/after menu as a group
+		 */
+		public static void introScreen()
+		{
+			Console.Clear();
+			Console.ForegroundColor = ConsoleColor.White;
+			string introText1 = "The year is 2221, \n\nYou are an intrepid explorer navigating the vast emptiness of space on a mission of discovery and adventure. \n\nYou have set course on your lengthy pursuit for the outer reaches of an uncharted star system but during this arduous   journey you encounter an electrical storm that fries many electrical components and damages your ship, \nThe Astra Europa. \n\nThe solar winds are too forceful for your already damaged ship, and you are shunted off course. \n\nWhen you awake after the ordeal you find yourself crash landed on a mysterious yet almost familiar planet.";
+			string introText2 = "\n\nYour ship is in desperate need of 5 new components and repairs if you ever wish to leave this unruly planet.";
+			string introText3 = "\n\nYou set off in search for any signs of civilization. But remember due to the damages sustained to your ship you have no life support and";
+			string introText4 = " only one oxygen tank ";
+			string introText5 = "so choose carefully in which direction you take because wrong turns can spell     disaster.";
+
+			foreach (char i in introText1)
+			{
+				Console.Write(i);
+				Thread.Sleep(1);
+			}
+			//Different colour to show importance of ship parts
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			foreach (char i in introText2)
+			{
+				Console.Write(i);
+				Thread.Sleep(1);
+			}
+			Console.ForegroundColor = ConsoleColor.White;
+			foreach (char i in introText3)
+			{
+				Console.Write(i);
+				Thread.Sleep(1);
+			}
+			//Different colour to show importance of oxygen
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			foreach (char i in introText4)
+			{
+				Console.Write(i);
+				Thread.Sleep(1);
+			}
+			Console.ForegroundColor = ConsoleColor.White;
+			foreach (char i in introText5)
+			{
+				Console.Write(i);
+				Thread.Sleep(1);
+			}
+			Console.WriteLine("\n\nPress ENTER to Proceed...");
+			Console.ReadLine();
+			ship();
+		}
+
+		//Scripted Death 1 - North before entering main building
+		public static void deathNorth()
+		{
+			Console.Clear();
+			Console.WriteLine(@"                                                              
+                                  :-=+*############*+=-:.                                 
+                            .=+###+=-:.            .:-=+*##*=:                            
+                        .=*%*=:.                           :=*%#=.                        
+                     :+##=.                                    .=#%+:                     
+              +:   =%#=.                                           -#%=                   
+               =*+%+.                                                .+%+.                
+              .+%*%=                                                    =%*.              
+             =@+...+%+.              .:-=++****++=-:                      =@+             
+           :%#:......*@+.        :+###+=-:.:...:--=+###+-                  .#%:           
+          -@= .....:..:#@*.  .=#%+-                   .:+%#=.                -@=          
+         +@-......:::::.-%@#*%+:                          .=%#:               :%+         
+        *@:.....::::::::.:@@@%-                              -#%-              .%*        
+       +@......::::::::.*%- =@@%=                              -%*.             :@*       
+      -@-.....:::::::.:%*    .+@@@+                              +@:             :@-      
+      %* ...::::::::.-@+       .*@@@+.                            -@=             +@.     
+     +@....::::::::::@=          :#@@@*:                           -@-             %*     
+     @+ .::::::::::.%*             -%@@@#- :--:.                    +@.            =@.    
+    -@:.::::::::::.=@.               -%@@@@@@@@@%=                   @+            .@=    
+    +@ .......:::: %*                  %@@@@@@@@@@#                  +@             %*    
+    #@#############@-                 :@@@@@@@@@@@@-                 :@#############@%    
+                                      .@@@@@@@@@@@@:                                      
+                                       -@@@@@@@@@@@*:                                     
+                                         =#@@@@%@@@@@#:                                   
+                                                -%@@@=                                    
+                                                  -=                                      ");
+			Console.WriteLine("\t\t\t\tOxygen:  ");
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.Write("\t\t\t\t█");
+			Console.ForegroundColor = ConsoleColor.DarkBlue;
+			Console.Write("░░░░░░░░░░░░░░░░░░░");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine(" 5/100");
+			Console.WriteLine("\tYou see your oxygen is almost empty, you have been walking for too long.");
+			Thread.Sleep(6000);
+			Console.Clear();
+			Console.WriteLine(@"                                                              
+                                  :-=+*############*+=-:.                                 
+                            .=+###+=-:.            .:-=+*##*=:                            
+                        .=*%*=:.                           :=*%#=.                        
+                     :+##=.                                    .=#%+:                     
+              +:   =%#=.                                           -#%=                   
+               =*+%+.                                                .+%+.                
+              .+%*%=                                                    =%*.              
+             =@+...+%+.              .:-=++****++=-:                      =@+             
+           :%#:......*@+.        :+###+=-:.:...:--=+###+-                  .#%:           
+          -@= .....:..:#@*.  .=#%+-                   .:+%#=.                -@=          
+         +@-......:::::.-%@#*%+:                          .=%#:               :%+         
+        *@:.....::::::::.:@@@%-                              -#%-              .%*        
+       +@......::::::::.*%- =@@%=                              -%*.             :@*       
+      -@-.....:::::::.:%*    .+@@@+                              +@:             :@-      
+      %* ...::::::::.-@+       .*@@@+.                            -@=             +@.     
+     +@....::::::::::@=          :#@@@*:                           -@-             %*     
+     @+ .::::::::::.%*             -%@@@#- :--:.                    +@.            =@.    
+    -@:.::::::::::.=@.               -%@@@@@@@@@%=                   @+            .@=    
+    +@ .......:::: %*                  %@@@@@@@@@@#                  +@             %*    
+    #@#############@-                 :@@@@@@@@@@@@-                 :@#############@%    
+                                      .@@@@@@@@@@@@:                                      
+                                       -@@@@@@@@@@@*:                                     
+                                         =#@@@@%@@@@@#:                                   
+                                                -%@@@=                                    
+                                                  -=                                      ");
+			Console.WriteLine("\t\t\t\tOxygen:  ");
+			Console.ForegroundColor = ConsoleColor.DarkBlue;
+			Console.Write("\t\t\t\t░░░░░░░░░░░░░░░░░░░░");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine(" 0/100");
+			Console.Write("\t\t\t\tYour Oxygen is ");
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("GONE");
+			Thread.Sleep(4000);
+			Console.BackgroundColor = ConsoleColor.Red;
+			Console.ForegroundColor = ConsoleColor.Black;
+			Console.Clear();
+
+			Console.WriteLine(@"
+
+
+		  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  
+		 ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+		▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+		░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  
+		░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+		 ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+		  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+		░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ 
+			  ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     
+															 ░                   
+");
+			//May need to change with how save/load/resets works
+			Console.WriteLine("\t\t\t\t\tPress ENTER to start again");
+			Console.ReadLine();
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
+			TitleScreen();
 		}
 
 		static void Main(string[] args)
