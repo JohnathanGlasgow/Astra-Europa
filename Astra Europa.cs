@@ -7,25 +7,77 @@ namespace ConsoleApp1
     class Program
     {
         public static int playerLocation;
+		// doors
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
 		// puzzle doors:
 		public static bool doorS21 = false, doorS22 = false, doorS23 = false, doorS24 = false, doorE25 = false;
-		//Taking the fire extinguisher
-		public static bool fireEx = false;
+		// test doors
+		public static bool doorET1, doorST2;
 
-        /* 
-   * -Player Input Method-
-   * This method is called in the rooms when we ask for the next command, i.e. switch(playerInput())
-   * It checks if the command is to open the inventory, open the help text, open the options, read the notebook,
-   * or any other command that is universal across the game. 
-   * If a universal command is triggered, the method returns an empty string.
-   * The rooms will have an empty case/break for the empty string (so they don't default to "Invalid Command" after a universal command is triggered)
-   */
-        public static string playerInput()
+		/* - Notebook -
+		 * Add notes/clues to the clues array.
+		 * When the player finds a clue, pass the index of the clue from the array to the addNote() method.
+		 * This will record the note and update the cluesFound array.
+		 * To check if the player has found a clue, use: if (cluesFound[clueIndex] == clueIndex)
+		 * See the test rooms for examples
+		 */
+		public static string notebook;
+		// the pageNo is used for formatting. The first page lists the missing ship parts so this value begins at 2
+		public static int pageNo = 2;
+		// Notes go here, pass the index of the note to the addNote() method to record the note in the notebook
+		public static string[] clues = new string[]
+		{
+			"This is a clue to riddle",
+			"This is another clue",
+			"Information about solving a riddle"
+		};
+		// the addNote() method changes the -1 values of the cluesFound[] to their corresponding index in the clues array
+		public static int[] cluesFound = new int[] { -1, -1, -1 };
+		// the shipParts array is used to check against the player inventory
+		// the part names I have used here are just placeholders
+		public static string[] shipParts = new string[] { "Windscreen", "Engine", "Exhaust Pipe", "Warp Drive", "Flux Capacitor" };
+
+		// This method add notes/clues to the notebook string and updates the cluesFound array
+		public static void addNote(int clueInd)
+		{
+			notebook += $"\n- Page {pageNo} -\n";
+			pageNo++;
+			notebook += clues[clueInd] + "\n";
+			cluesFound[clueInd] = clueInd;
+		}
+
+		// This method formats and displays the notebook
+		public static void readNotebook()
+        {
+            Console.WriteLine("\n- Page 1 -\nShip parts:");
+			foreach (string s in shipParts)
+			{
+				if (inventory.Contains(s))
+				{
+                    Console.WriteLine("FOUND: " + s);
+				}
+                else
+                {
+					Console.WriteLine("MISSING: " + s);
+				}
+			}
+            Console.WriteLine(notebook);
+			Console.ReadLine();
+		}
+		/*  -Player Input Method-
+		 * This method is called in the rooms when we ask for the next command, i.e. switch(playerInput())
+		 * It checks if the command is to open the inventory, open the help text, open the options, read the notebook,
+		 * or any other command that is universal across the game. 
+		 * If a universal command is triggered, the method returns an empty string.
+		 * The rooms will have an empty case/break for the empty string (so they don't default to "Invalid Command" after a universal command is triggered)
+		 */
+		public static string playerInput()
         {
             Console.Write("What next? ");
             string playerInput = Console.ReadLine();
-            switch (playerInput)
+            playerInput = playerInput.Replace("pick up", "get");
+			playerInput = playerInput.Replace("take", "get");
+			switch (playerInput)
             {
                 case "inventory":
                 case "i":
@@ -33,9 +85,8 @@ namespace ConsoleApp1
                     playerInput = "";
                     break;
                 case "notebook":
-                case "n":
-                    Console.WriteLine("Contents of Notebook");
-                    Console.ReadLine();
+				case "read notebook":
+					readNotebook();
                     playerInput = "";
                     break;
                 case "help":
@@ -50,7 +101,20 @@ namespace ConsoleApp1
                     Console.ReadLine();
                     playerInput = "";
                     break;
-            }
+				case "n":
+					playerInput = "north";
+					break;
+				case "e":
+					playerInput = "east";
+					break;
+				case "s":
+					playerInput = "south";
+					break;
+				case "w":
+					playerInput = "west";
+					break;
+					
+			}
             return playerInput;
         }
 
@@ -1251,6 +1315,198 @@ namespace ConsoleApp1
 			}
 		}
 
+		// Test Room 1 
+		public static void testRoom1()
+		{
+			playerLocation = -1;
+			while (playerLocation == -1)
+			{
+				Console.Clear();
+				Console.WriteLine("Test Room 1");
+				Console.WriteLine("There is scribbling on the wall. There is a door to your east.");
+				if (cluesFound[0] != 0)
+				{
+					Console.WriteLine("You see a crumpled piece of paper on the ground in the corner.");
+				}
+				if (!inventory.Contains("Red Keycard"))
+				{
+					Console.WriteLine("You see a red keycard on the ground");
+				}
+				if (!inventory.Contains("Windscreen"))
+				{
+					Console.WriteLine("In the corner rests a windscreen suitable for a spaceship.");
+				}
+				switch (playerInput())
+				{
+					case "":
+						break;
+					case "get paper":
+						Console.WriteLine($"You uncrumple the paper and find a message:\n\"{clues[0]}\"");
+                        Console.WriteLine("You record it in your notebook.");
+						Console.ReadKey();
+						addNote(0);
+						break;
+					case "look at wall":
+					case "wall":
+						addNote(2);
+						Console.WriteLine($"You squint at the wall and make out a hastily scrawled message:\n\"{clues[2]}\"");
+						Console.WriteLine("You record it in your notebook.");
+						Console.ReadKey();
+						break;
+					case "get windscreen":
+                        Console.WriteLine("You take the windscreen.");
+						Thread.Sleep(1000);
+						inventory.Add("Windscreen");
+						break;
+					case "get red keycard":
+					case "get keycard":
+						Console.WriteLine("You pick up the red keycard.");
+						inventory.Add("Red Keycard");
+						Thread.Sleep(1000);
+						doorET1 = true;
+						break;
+					case "east":
+						if (!doorET1)
+						{
+							Console.WriteLine("Looks like you need a red keycard");
+							Thread.Sleep(1000);
+						}
+						else
+						{
+							Console.WriteLine("You scan the red keycard and go through the door");
+							Thread.Sleep(1000);
+							testRoom2();
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		// Test Room 2 
+		public static void testRoom2()
+		{
+			playerLocation = -2;
+			while (playerLocation == -2)
+			{
+				Console.Clear();
+				Console.WriteLine("Test Room 2");
+				Console.WriteLine("There are doors to your west and south.");
+				if (!inventory.Contains("Flux Capacitor"))
+				{
+                    Console.WriteLine("You spot a flux capacitor underfoot.");
+				}
+				if (cluesFound[1] != 1)
+				{
+					Console.WriteLine("There is a paper airplane on the ground.");
+				}
+				if (!inventory.Contains("Blue Keycard"))
+				{
+					Console.WriteLine("You see a blue keycard on the ground");
+				}
+				switch (playerInput())
+				{
+					case "":
+						break;
+					case "get flux capacitor":
+					case "get capacitor":
+						Console.WriteLine("You pick up the flux capacitor.");
+						inventory.Add("Flux Capacitor");
+						Thread.Sleep(1000);
+						break;
+					case "get airplane":
+						addNote(1);
+						Console.WriteLine($"You pick up the airplane and unfold it. A note is written inside:\n\"{clues[1]}\"");
+                        Console.WriteLine("Your record the note in your notebook.");
+						Console.ReadKey();
+						break;
+					case "get blue keycard":
+					case "get keycard":
+						Console.WriteLine("You pick up the blue keycard.");
+						inventory.Add("Blue Keycard");
+						Thread.Sleep(1000);
+						doorST2 = true;
+						break;
+					case "west":
+						if (!doorET1)
+						{
+							Console.WriteLine("Looks like you need a red keycard");
+							Thread.Sleep(1000);
+						}
+						else
+						{
+							Console.WriteLine("You scan the red keycard and go through the door");
+							Thread.Sleep(1000);
+							testRoom1();
+						}
+						break;
+					case "south":
+						if (!doorST2)
+						{
+							Console.WriteLine("Looks like you need a blue keycard");
+							Thread.Sleep(1000);
+						}
+						else
+						{
+							Console.WriteLine("You scan the blue keycard and go through the door");
+							Thread.Sleep(1000);
+							testRoom3();
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		// Test Room 3 
+		public static void testRoom3()
+		{
+			playerLocation = -3;
+			while (playerLocation == -3)
+			{
+				Console.Clear();
+				Console.WriteLine("Test Room 3");
+				Console.WriteLine("There is a door to your north.");
+				if (!inventory.Contains("Warp Drive"))
+                {
+                    Console.WriteLine( "You spot a warp drive rated for interdimensional travel.");
+                }
+				switch (playerInput())
+				{
+					case "":
+						break;
+					case "get warp drive":
+                        Console.WriteLine("You pick up the warp drive.");
+						Thread.Sleep(1000);
+						inventory.Add("Warp Drive");
+						break;
+					case "north":
+						if (!doorST2)
+						{
+							Console.WriteLine("Looks like you need a blue keycard");
+							Thread.Sleep(1000);
+						}
+						else
+						{
+							Console.WriteLine("You scan the blue keycard and go through the door");
+							Thread.Sleep(1000);
+							testRoom2();
+						}
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 		public static void TitleScreen()
 		{
 			/* Devon 28/09/2021
@@ -1368,6 +1624,7 @@ namespace ConsoleApp1
 
 		static void Main(string[] args)
         {
+			//testRoom1();
 			TitleScreen();
         }
     }
