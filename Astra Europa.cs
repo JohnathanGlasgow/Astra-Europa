@@ -1582,7 +1582,7 @@ namespace ConsoleApp1
 							break;
 
 						case "G":
-							//genericDeath();
+							genericDeath();
 							break;
                     }
 					Console.WriteLine("This is will be Controls()");
@@ -1761,6 +1761,36 @@ namespace ConsoleApp1
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("GONE");
 			Thread.Sleep(4000);
+			Console.BackgroundColor = ConsoleColor.Red;
+			Console.ForegroundColor = ConsoleColor.Black;
+			Console.Clear();
+
+			Console.WriteLine(@"
+
+
+		  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  
+		 ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+		▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+		░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  
+		░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+		 ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+		  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+		░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ 
+			  ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     
+															 ░                   
+");
+			//May need to change with how save/load/resets works
+			Console.WriteLine("\t\t\t\t\tPress ENTER to start again");
+			Console.ReadLine();
+			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
+			TitleScreen();
+		}
+		
+
+		//This will be the main death method called when a player dies in combat etc
+		public static void genericDeath()
+		{
 			Console.BackgroundColor = ConsoleColor.Red;
 			Console.ForegroundColor = ConsoleColor.Black;
 			Console.Clear();
