@@ -18,21 +18,25 @@ namespace ConsoleApp1
 		 * Add notes/clues to the clues array.
 		 * When the player finds a clue, pass the index of the clue from the array to the addNote() method.
 		 * This will record the note and update the cluesFound array.
-		 * To check if the player has found a clue, use: if (cluesFound[clueIndex] == clueIndex)
+		 * To check if the player has found a clue, use: if (cluesFound[clues Index]), see comments above cluesFound[] for more detail
 		 * See the test rooms for examples
 		 */
 		public static string notebook;
-		// the pageNo is used for formatting. The first page lists the missing ship parts so this value begins at 2
+		// the pageNo is used for formatting. The first page of the notebook lists the missing ship parts so this value begins at 2
 		public static int pageNo = 2;
-		// Notes go here, pass the index of the note to the addNote() method to record the note in the notebook
+		// Notes/clues go here, pass the index of the note to the addNote() method to record the note in the notebook
 		public static string[] clues = new string[]
 		{
 			"This is a clue to riddle",
 			"This is another clue",
 			"Information about solving a riddle"
 		};
-		// the addNote() method changes the -1 values of the cluesFound[] to their corresponding index in the clues array
-		public static int[] cluesFound = new int[] { -1, -1, -1 };
+		// This array, cluesFound, contains an equal number of false (default value for bool) values to the clues array.
+		// When a note/clue is added to the notebook, the index in cluesFound that corresponds to to the clue added is changed to true,
+		// this happens in the addNote() method.
+		// So if clues[1] is added to the notebook with addNote(1), then cluesFound[1] becomes true.
+		// We can check if the note is added by: if (cluesFound[1])
+		public static bool[] cluesFound = new bool [clues.Length];
 		// the shipParts array is used to check against the player inventory
 		// the part names I have used here are just placeholders
 		public static string[] shipParts = new string[] { "Windscreen", "Engine", "Exhaust Pipe", "Warp Drive", "Flux Capacitor" };
@@ -43,7 +47,7 @@ namespace ConsoleApp1
 			notebook += $"\n- Page {pageNo} -\n";
 			pageNo++;
 			notebook += clues[clueInd] + "\n";
-			cluesFound[clueInd] = clueInd;
+			cluesFound[clueInd] = true;
 		}
 
 		// This method formats and displays the notebook
@@ -1337,7 +1341,7 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("Test Room 1");
 				Console.WriteLine("There is scribbling on the wall. There is a door to your east.");
-				if (cluesFound[0] != 0)
+				if (!cluesFound[0])
 				{
 					Console.WriteLine("You see a crumpled piece of paper on the ground in the corner.");
 				}
@@ -1412,7 +1416,7 @@ namespace ConsoleApp1
 				{
                     Console.WriteLine("You spot a flux capacitor underfoot.");
 				}
-				if (cluesFound[1] != 1)
+				if (!cluesFound[1])
 				{
 					Console.WriteLine("There is a paper airplane on the ground.");
 				}
@@ -1892,8 +1896,8 @@ namespace ConsoleApp1
 
 		static void Main(string[] args)
         {
-			//testRoom1();
-			TitleScreen();
+			testRoom1();
+			//TitleScreen();
         }
     }
 }
