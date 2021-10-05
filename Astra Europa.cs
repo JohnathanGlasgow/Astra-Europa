@@ -8,7 +8,7 @@ namespace ConsoleApp1
     {
         public static int playerLocation;
 		// doors
-		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false;
+		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false, doorS13 = false;
 		// puzzle doors:
 		public static bool doorS21 = false, doorS22 = false, doorS23 = false, doorS24 = false, doorE25 = false;
 		// test doors
@@ -694,7 +694,7 @@ namespace ConsoleApp1
 						inventory.Add("Blue Keycard");
 						Thread.Sleep(500);
 						doorE16 = true;
-						doorS17 = true;
+						doorS13 = true;
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
@@ -791,7 +791,7 @@ namespace ConsoleApp1
 						room9();
 						break;
 					case "east":
-						//room15();
+						room15();
 						break;
 					case "west":
 						room5();
@@ -881,7 +881,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "south":
-						if (doorN14 == true)
+						if (doorS13 == true)
 						{
 							room14();
 						}
