@@ -457,7 +457,10 @@ namespace ConsoleApp1
 			while (playerLocation == 33)
 			{
 				Console.Clear();
-				Console.WriteLine("WASTELAND (SOUTH1) DESCRIPTION");
+				Console.WriteLine("You perch yourself upon a rock and notice a path that leads down to a");
+                Console.WriteLine("wasteland area, you reach the end of this path where the vast openness");
+                Console.WriteLine("of the wasteland begins. This wasteland you find yourself in seems to be");
+                Console.WriteLine("an endless expanse until you notice an unusually shaped rock in the distance.");
 				switch (playerInput())
 				{
 					case "":
