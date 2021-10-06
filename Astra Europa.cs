@@ -782,7 +782,7 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 7.2
+		// Room 7.2 if statment needed if player revisits room.
 		public static void room72()
 		{
 			playerLocation = 72;
@@ -790,7 +790,9 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 
-				Console.WriteLine("ROOM DESCRIPTION 72");
+				Console.WriteLine("You step through the automatic door that struggles to open and find");
+                Console.WriteLine("sitting on a table in the corner of this dark section another ship component,");	
+                Console.WriteLine("Power Couplings and once again on the side you find more (Riddle words). You take note of this.");	
 				switch (playerInput())
 				{
 					case "":
@@ -814,7 +816,8 @@ namespace ConsoleApp1
 			while (playerLocation == 73)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 73");
+				Console.WriteLine("This room has more evidence of something horrific happening in it,");
+                Console.WriteLine("you can tell by the smell. There is another door with a red control panel."); 
 				switch (playerInput())
 				{
 					case "":
@@ -841,14 +844,15 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 7.4
+		// Room 7.4 if statement needed if player revisits
 		public static void room74()
 		{
 			playerLocation = 74;
 			while (playerLocation == 74)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 74");
+				Console.WriteLine("Within this room you discover another mangled body but this time");
+                Console.WriteLine("you find a blue key card, there must be other doors to be unlocked.");	
 				switch (playerInput())
 				{
 					case "":
