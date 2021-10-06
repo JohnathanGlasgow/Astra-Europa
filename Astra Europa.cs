@@ -875,14 +875,16 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 8
+		// Room 8 if statement needed if player revisits
 		public static void room8()
 		{
 			playerLocation = 8;
 			while (playerLocation == 8)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 8");
+				Console.WriteLine("You pass through the now unlocked door and see laying on the table in the");
+                Console.WriteLine("middle of the room a ship component, the hyperdrive, you remember how vital");
+                Console.WriteLine("repairing your ship is. On the side of the part is (Number of Riddle words), this seems important.");	
 				switch (playerInput())
 				{
 					case "":
@@ -913,14 +915,15 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 9
+		// Room 9 if statement needed if player revisits
 		public static void room9()
 		{
 			playerLocation = 9;
 			while (playerLocation == 9)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 9");
+				Console.WriteLine("You enter this section and the first thing that catches your eye is a body,");
+                Console.WriteLine("you step slowly towards it and find a red key card, this could be useful.");	
 				switch (playerInput())
 				{
 					case "":
@@ -953,7 +956,7 @@ namespace ConsoleApp1
 			while (playerLocation == 10)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 10");
+				Console.WriteLine("This is a junction room with 2 directions you can choose.");
 				switch (playerInput())
 				{
 					case "":
