@@ -264,7 +264,8 @@ namespace ConsoleApp1
 			while (playerLocation == 27)
 			{
 				Console.Clear();
-				Console.WriteLine("SHIP DESCRIPTION");
+				Console.WriteLine("You are standing in the command centre of your ship, there are electrical fires and sparks littered everywhere.");
+                Console.WriteLine("The first task is to stamp these fires out."); 
 				switch (playerInput())
 				{
 					case "":
