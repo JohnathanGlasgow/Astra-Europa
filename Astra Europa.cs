@@ -611,7 +611,7 @@ namespace ConsoleApp1
 				Console.WriteLine("You step outside into the airlock of the colony station,");
                 Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");	 
                 Console.WriteLine("remove your helmet. There are three doors before you, the one to the");	
-                Console.WriteLine(" east has a red icon on the control panel, an item is needed before entry is granted, it says.");	
+                Console.WriteLine("east has a red icon on the control panel, an item is needed before entry is granted, it says.");	
 				switch (playerInput())
 				{
 					case "":
@@ -651,7 +651,7 @@ namespace ConsoleApp1
 			while (playerLocation == 4)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 4");
+				Console.WriteLine("You walk through the automatic door; another long daunting hallway flows from this section to the next.");
 				switch (playerInput())
 				{
 					case "":
@@ -734,7 +734,7 @@ namespace ConsoleApp1
 			while (playerLocation == 7)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 7");
+				Console.WriteLine("This room has a staircase that goes up to what seems to be a second floor.");
 				switch (playerInput())
 				{
 					case "":
@@ -760,7 +760,7 @@ namespace ConsoleApp1
 			while (playerLocation == 71)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 71");
+				Console.WriteLine("You enter the first section of the second floor of the colony station.");
 				switch (playerInput())
 				{
 					case "":
