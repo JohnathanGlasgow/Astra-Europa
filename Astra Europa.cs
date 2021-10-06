@@ -330,7 +330,8 @@ namespace ConsoleApp1
 			while (playerLocation == 29)
 			{
 				Console.Clear();
-				Console.WriteLine("AIRLOCK DESCRIPTION");
+				Console.WriteLine("Now the blazes are under control its time to set off in");
+                Console.WriteLine("search of the crucial components needed for repairs.");	
 				switch (playerInput())
 				{
 					case "":
