@@ -985,7 +985,7 @@ namespace ConsoleApp1
 			while (playerLocation == 11)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 11");
+				Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
 				switch (playerInput())
 				{
 					case "":
