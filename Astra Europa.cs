@@ -294,10 +294,12 @@ namespace ConsoleApp1
 			while (playerLocation == 28)
 			{
 				Console.Clear();
-				Console.WriteLine("ESCAPE POD DESCRIPTION");
+				Console.WriteLine("You walk down the steps of the command centre to find something useful. ");
+                Console.WriteLine("You notice a shiny red object ahead of you located in the escape pod section. ");	
 				if (!inventory.Contains("Fire Extinguisher"))
 				{
-					Console.WriteLine("YOU NOTICE FIRE EXTINGUISHER");
+					Console.WriteLine("In the corridor that leads to the escape pod room you locate the red object, ");
+                    Console.WriteLine("it’s a fire extinguisher.");	
 				}
 				switch (playerInput())
 				{
@@ -305,7 +307,8 @@ namespace ConsoleApp1
 						break;
 					case "get fire extinguisher":
 					case "get extinguisher":
-						Console.WriteLine("YOU PICK UP THE FIRE EXTINGUISHER");
+						Console.WriteLine("You pick up the fire extinguisher, ");
+                        Console.WriteLine("This will be vital in saving what remains of your command centre, no time to waste.");	
 						inventory.Add("Fire Extinguisher");
 						Thread.Sleep(500);
 						break;
