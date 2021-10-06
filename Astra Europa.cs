@@ -556,7 +556,7 @@ namespace ConsoleApp1
 			while (playerLocation == 1)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 1");
+				Console.WriteLine("You enter this section seeing only one path to follow.");
 				switch (playerInput())
 				{
 					case "":
@@ -582,7 +582,7 @@ namespace ConsoleApp1
 			while (playerLocation == 2)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 2");
+				Console.WriteLine("An empty hallway that shows signs of a past struggle.");
 				switch (playerInput())
 				{
 					case "":
@@ -601,14 +601,17 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 3
+		// Room 3, if statement needed for when player revisits room 3.
 		public static void room3()
 		{
 			playerLocation = 3;
 			while (playerLocation == 3)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 3");
+				Console.WriteLine("You step outside into the airlock of the colony station,");
+                Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");	 
+                Console.WriteLine("remove your helmet. There are three doors before you, the one to the");	
+                Console.WriteLine(" east has a red icon on the control panel, an item is needed before entry is granted, it says.");	
 				switch (playerInput())
 				{
 					case "":
