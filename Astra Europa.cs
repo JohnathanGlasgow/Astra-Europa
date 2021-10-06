@@ -6,14 +6,15 @@ namespace ConsoleApp1
 {
     class Program
     {
-        public static int playerLocation;
+        public static int playerLocation, monster1Location, monster2Location;
 		// doors
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false, doorS13 = false;
 		// puzzle doors:
 		public static bool doorS21 = false, doorS22 = false, doorS23 = false, doorS24 = false, doorE25 = false;
 		// test doors
 		public static bool doorET1, doorST2;
-
+		// monster status
+		public static bool monster1 = true, monster2 = true;
 		/* - Notebook -
 		 * Add notes/clues to the clues array.
 		 * When the player finds a clue, pass the index of the clue from the array to the addNote() method.
