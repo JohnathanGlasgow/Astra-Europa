@@ -359,7 +359,9 @@ namespace ConsoleApp1
 			while (playerLocation == 30)
 			{
 				Console.Clear();
-				Console.WriteLine("WASTELAND (OUTSIDE SHIP) DESCRIPTION");
+				Console.WriteLine("You are now standing on the planet’s surface with your fragmented ship behind you,");
+                Console.WriteLine("you survey the area noticing behind the ship to the west is the impassable mountain range. ");
+                Console.WriteLine("Before you are 3 paths, choose wisely.");	
 				switch (playerInput())
 				{
 					case "":
