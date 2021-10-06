@@ -481,14 +481,18 @@ namespace ConsoleApp1
 			}
 		}
 
-		//Wasteland - South Twice from main path
+		//Wasteland - South Twice from main path and GAME OVER SECTION NEEDS TO BE ADDED
 		public static void wasteS2()
 		{
 			playerLocation = 34;
 			while (playerLocation == 34)
 			{
 				Console.Clear();
-				Console.WriteLine("WASTELAND (SOUTH2) DESCRIPTION");
+				Console.WriteLine("As you get closer and closer to this unusual rock you discover a harrowing sight,");
+                Console.WriteLine("another marooned ship but a much older class of your own ship. The surrounding area of the ship");
+                Console.WriteLine("is covered with the remains of its crew. You approach the ships airlock but before you reach the");
+                Console.WriteLine(" door handle you soon realise this is a hostile planet. You are attacked by an alien creature and");
+                Console.WriteLine(" are ripped to shreds!!!");
 				switch (playerInput())
 				{
 					case "":
