@@ -6,7 +6,7 @@ namespace ConsoleApp1
 {
     class Program
     {
-        public static int playerLocation, monster1Location, monster2Location;
+        public static int playerLocation, monster1Location = 3, monster2Location, playerHealth = 20;
 		// doors
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false, doorS13 = false;
 		// puzzle doors:
@@ -143,6 +143,118 @@ namespace ConsoleApp1
             Console.WriteLine(showInv);
 			Console.ReadLine();
         }
+
+
+
+		//COMBAT ONE
+		//public static void Combat1()
+		//{
+
+		//	int monsterHealth = 15, playerHit, creatureHit;
+		//	bool playerBlock;
+		//	Random rand = new Random();
+
+		//	Console.Clear();
+  //          Console.WriteLine("MONSTER INTRODUCTION");
+
+		//	while (playerHealth > 0 && monsterHealth > 0)
+		//	{
+		//		bool combatInput = false;
+		//		playerBlock = false;
+		//		Console.Clear();
+		//		Console.WriteLine($"Health {playerHealth}");
+		//		Console.WriteLine($"Creature health {monsterHealth}");
+		//		Console.WriteLine("hit or block?");
+
+		//		while (combatInput == false)
+		//		{
+					
+		//			switch (playerInput())
+		//			{
+		//				case "hit":
+		//					combatInput = true;
+		//					playerHit = rand.Next(7);
+		//					if (playerHit != 0)
+		//					{
+		//						Console.WriteLine($"You do {playerHit + 1} damage");
+		//						monsterHealth = monsterHealth - (playerHit + 1);
+		//						Thread.Sleep(1000);
+		//					}
+		//					else
+		//					{
+		//						Console.WriteLine("You miss your attack");
+		//					}
+		//					break;
+		//				case "block":
+		//					combatInput = true;
+		//					playerBlock = true;
+		//					Console.WriteLine("You brace for an incoming attack");
+		//					Thread.Sleep(1000);
+		//					break;
+		//				default:
+		//					Console.WriteLine("Invaild Input");
+
+		//					Thread.Sleep(1000);
+		//					break;
+		//			}
+
+		//		}
+
+		//		if (monsterHealth > 0)
+		//		{
+		//			creatureHit = rand.Next(6);
+		//			if (creatureHit != 0)
+		//			{
+		//				if (playerBlock == true)
+		//				{
+		//					creatureHit = creatureHit - 4;
+		//					if (creatureHit <= 0)
+		//					{
+		//						Console.WriteLine($"You block, the creatures attack!");
+		//						Thread.Sleep(2000);
+		//					}
+		//					else
+		//					{
+		//						playerHealth = playerHealth - (creatureHit - 4);
+		//						Console.WriteLine($"You block some of the attack, taking {creatureHit - 4} damage");
+		//					}
+
+		//				}
+		//				else
+		//				{
+
+		//					playerHealth = playerHealth - creatureHit;
+		//					Console.WriteLine($"You are hit for {creatureHit} points of damage");
+		//					Thread.Sleep(2000);
+		//				}
+
+		//			}
+		//			else
+		//			{
+		//				Console.WriteLine("The creature misses");
+		//				Thread.Sleep(1000);
+		//			}
+		//		}
+		//	}
+
+		//	if (playerHealth! >= 0 || monsterHealth! >= 0)
+		//	{
+		//		if (playerHealth > monsterHealth)
+		//		{
+		//			Console.WriteLine("You defeat the creature");
+		//			monster1 = false;
+		//			Thread.Sleep(2000);
+		//		}
+		//		else
+		//		{
+		//			Console.WriteLine("DEATH SCREEN HERE");
+		//			Thread.Sleep(2000);
+					
+		//		}
+
+		//	}
+		//}
+
 
 		// Have continued playerLocation count from Room 26 
 		// Ship --Need to add extinguishing fires
@@ -1527,6 +1639,7 @@ namespace ConsoleApp1
 
 		public static void TitleScreen()
 		{
+			Random rand = new Random();
 			/* Devon 28/09/2021
              * 
              * Credit to patorjk.com for ASCII Title Creation
@@ -1579,6 +1692,10 @@ namespace ConsoleApp1
 			switch (temp)
 			{
 				case "PLAY":
+					while (monster1Location == 3)
+					{
+						monster1Location = rand.Next(1, 11);
+					}
 					Console.Clear();
 					ship();
 					break;
