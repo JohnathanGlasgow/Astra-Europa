@@ -396,6 +396,37 @@ namespace ConsoleApp1
 			while (playerLocation == 31)
 			{
 				Console.Clear();
+				Console.WriteLine("You plant your feet with each step, trying to regain your composure.");
+                Console.WriteLine("You continue through a small canyon which is spattered with jagged rocks.");
+                Console.WriteLine("The view is concerning. No signs of life or civilisation can be seen ahead.");
+				switch (playerInput())
+				{
+					case "":
+						break;
+
+					case "north":
+						deathNorth();
+						break;
+
+					case "south":
+						wasteland();
+						break;
+
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
+		//Wasteland - North Twice from main path as well as GAME OVER section needs to be added
+		public static void wasteN2()
+		{
+			playerLocation = 32;
+			while (playerLocation == 32)
+			{
+				Console.Clear();
 				Console.WriteLine("WASTELAND (NORTH1) DESCRIPTION");
 				switch (playerInput())
 				{
@@ -421,8 +452,8 @@ namespace ConsoleApp1
 		//Wasteland - South Once from main path
 		public static void wasteS1()
 		{
-			playerLocation = 32;
-			while (playerLocation == 32)
+			playerLocation = 33;
+			while (playerLocation == 33)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (SOUTH1) DESCRIPTION");
@@ -449,8 +480,8 @@ namespace ConsoleApp1
 		//Wasteland - South Twice from main path
 		public static void wasteS2()
 		{
-			playerLocation = 33;
-			while (playerLocation == 33)
+			playerLocation = 34;
+			while (playerLocation == 34)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (SOUTH2) DESCRIPTION");
@@ -477,8 +508,8 @@ namespace ConsoleApp1
 		//Wasteland - East Once from first exiting airlock
 		public static void wasteE1()
 		{
-			playerLocation = 34;
-			while (playerLocation == 34)
+			playerLocation = 35;
+			while (playerLocation == 35)
 			{
 				Console.Clear();
 				Console.WriteLine("WASTELAND (EAST1) DESCRIPTION 'LEVER'");
