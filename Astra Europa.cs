@@ -427,7 +427,8 @@ namespace ConsoleApp1
 			while (playerLocation == 32)
 			{
 				Console.Clear();
-				Console.WriteLine("WASTELAND (NORTH1) DESCRIPTION");
+				Console.WriteLine("You’ve been walking for hours and are starting to pass in and out of consciousness due to lack of oxygen");
+                Console.WriteLine(",you’ve gone too far to turn back now this is the end of your journey.");
 				switch (playerInput())
 				{
 					case "":
