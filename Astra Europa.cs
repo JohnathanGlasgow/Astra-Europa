@@ -520,7 +520,11 @@ namespace ConsoleApp1
 			while (playerLocation == 35)
 			{
 				Console.Clear();
-				Console.WriteLine("WASTELAND (EAST1) DESCRIPTION 'LEVER'");
+				Console.WriteLine("With each breath you take your oxygen levels are gradually depleting,");
+                Console.WriteLine("you make your way down a steep slope. Once you are at the bottom you notice what seams");
+                Console.WriteLine("to be a structure of some kind. The structure begins to revel is shape more and more with");	
+                Console.WriteLine("each step you take. Finally, you reach the structure, and it is now clear to you that is");
+                Console.WriteLine("an abandoned colony station. In front of you see a door with a lever.");
 				switch (playerInput())
 				{
 					case "":
