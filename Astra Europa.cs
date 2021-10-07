@@ -1097,6 +1097,7 @@ namespace ConsoleApp1
 				Console.WriteLine("In the corner of the room lies an oxidizer, very key to survival onboard the ship...");
 				Console.WriteLine("Oxidizer has been added to your inventory");
 				inventory.Add("Oxidizer");
+				// need to add riddle to notepad
 				Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“has a mouth but never talks”)))");
 				Console.WriteLine("Seems to be some kind of riddle or something");
 				switch (playerInput())
@@ -1104,6 +1105,7 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "north":
+						Console.WriteLine("You head north back to (Room 13)");
 						room13();
 						break;
 					//case to get item
@@ -1122,15 +1124,17 @@ namespace ConsoleApp1
 			while (playerLocation == 15)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 15");
+				Console.WriteLine("Another tight room, a hallway and a door leading opposite ways.. where to go");
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "east":
+						Console.WriteLine("You walk down a corridor and enter room 20");
 						room20();
 						break;
 					case "west":
+						Console.WriteLine("You have opened the door and moved west room 10");
 						room10();
 						break;
 					default:
@@ -1148,7 +1152,8 @@ namespace ConsoleApp1
 			while (playerLocation == 16)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 16");
+				Console.WriteLine("Another door which requires a blue key.. you can choose to go east through that door");
+				Console.WriteLine("or head south through a narrow hallway");
 				switch (playerInput())
 				{
 					case "":
@@ -1156,6 +1161,7 @@ namespace ConsoleApp1
 					case "east":
 						if (doorE16 == true)
 						{
+							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 21");
 							room21();
 						}
 						else
@@ -1165,6 +1171,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "south":
+						Console.WriteLine("You head south into the cramped room 17");
 						room17();
 						break;
 					default:
