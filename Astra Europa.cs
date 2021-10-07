@@ -991,9 +991,11 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "south":
+						Console.WriteLine("You go through a door and enter Room 12");
 						room12();
 						break;
 					case "west":
+						Console.WriteLine("You head down a narrow hallway and enter Room 6");
 						room6();
 						break;
 					default:
@@ -1011,7 +1013,11 @@ namespace ConsoleApp1
 			while (playerLocation == 12)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 12");
+				Console.WriteLine("In the corner of this room lies some fins for a ship. Fins has been added to your inventory");
+				inventory.Add("Fins");
+				//unsure of how to add note to inventory at this stage 
+				Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“What can run but never walks”))))"); 
+                Console.WriteLine("who knows might come in handy later");
 				switch (playerInput())
 				{
 					case "":
