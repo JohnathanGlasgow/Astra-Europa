@@ -1540,16 +1540,27 @@ namespace ConsoleApp1
 			while (playerLocation == 26)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 26");
-				switch (playerInput())
+				Console.WriteLine("'Door slams behind you..' ");
+                Console.WriteLine("Do you wish to enter the teleport? (Yes/No)");
+				string temp = Console.ReadLine().ToLower();
+				switch (temp)
 				{
 					case "":
 						break;
 					// teleporter
-					case "teleport":
+					case "yes":
+                        Console.WriteLine("Rumbling starts. The green light is flashing. Your life flashes before you...");
+                        Console.WriteLine("You see all the good memories and the bad ones.You are now in room 3");
+						room3();
+						break;
+					case "no":
+                        Console.WriteLine("Your mind starts asking questions.. why do you wish to stay here... ");
+                        Console.WriteLine("why would you not return to your family... your body takes over.. you start the teleporter and jump in...");
+                        Console.WriteLine("You reappear with a smile one your face in room 3");
 						room3();
 						break;
 					case "west":
+                        Console.WriteLine("Door is locked");
 						room25();
 						break;
 					default:
