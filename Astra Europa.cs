@@ -1303,7 +1303,7 @@ namespace ConsoleApp1
 			while (playerLocation == 20)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 20");
+				Console.WriteLine("You notice two options in this tight room.. north through a door.. west down a hallways");
 				switch (playerInput())
 				{
 					case "":
@@ -1384,18 +1384,23 @@ namespace ConsoleApp1
 			while (playerLocation == 22)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 22");
+				Console.WriteLine("This room has the same setup...");
+                Console.WriteLine("There is a sign on the wall saying ‘no spacebars allowed’...");
+                Console.WriteLine("Enter part 2 (6 words):");
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "north":
+                        Console.WriteLine("You travel north back to room 21");
+						Console.WriteLine("Door closes behind you light is now red");
 						room21();
 						break;
 					// puzzle door
 					case "south":
 						if (doorS22 == true)
 						{
+                            Console.WriteLine("The light flashes green, you travel south into room 23");
 							room23();
 						}
 						else
