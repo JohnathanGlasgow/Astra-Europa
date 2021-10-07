@@ -1275,15 +1275,17 @@ namespace ConsoleApp1
 			while (playerLocation == 19)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 19");
+				Console.WriteLine("You turn on the light switch only to find nothing in this rooom... ");
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "north":
+						Console.WriteLine("You travel north into room 19");
 						room18();
 						break;
 					case "south":
+						Console.WriteLine("You head south down a staggered hallway and open the door, you enter room 20");
 						room20();
 						break;
 					default:
@@ -1307,6 +1309,7 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "north":
+                        Console.WriteLine("You open a door and head north down a staggered hallway, you enter room 19");
 						room19();
 						break;
 					/* case for the breach */
@@ -1322,6 +1325,7 @@ namespace ConsoleApp1
                     //	}
                     //	break;
                     case "west":
+						Console.WriteLine("You travel west through the hallway and enter room 15");
 						room15();
 						break;
 					default:
@@ -1339,7 +1343,11 @@ namespace ConsoleApp1
 			while (playerLocation == 21)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 21");
+				Console.WriteLine("There is a sign on the wall stating");
+				Console.WriteLine("'player must have all 4 notes and 5 ship parts in order to answer all questions'");
+				Console.WriteLine("A red light is flashing indicating the door is locked...");
+                Console.WriteLine("Slightly to the write of the door is a keyboard and monitor....");
+				Console.WriteLine("The screen reads enter part 1 ( 6 words ):");
 				switch (playerInput())
 				{
 					case "":
@@ -1348,6 +1356,7 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS21 == true)
 						{
+                            Console.WriteLine("The light flashes green, the door opens you travel south into room 22");
 							room22();
 						}
 						else
@@ -1357,6 +1366,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "west":
+                        Console.WriteLine("You head west back to room 16");
 						room16();
 						break;
 					default:
