@@ -1234,6 +1234,8 @@ namespace ConsoleApp1
 					case "north":
 						if (doorS17 == true)
 						{
+							Console.WriteLine("Red door requires a red key to open... you open the door with the red key and travel down a long windy hallway.");
+							Console.WriteLine("you enter room 17");
 							room17();
 						}
 						else
@@ -1243,11 +1245,13 @@ namespace ConsoleApp1
 						}
 						break;
 					case "south":
+						Console.WriteLine("You travel south and enter room 19");
 						room19();
 						break;
 					case "west":
 						if (doorE13 == true)
 						{
+                            Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 13");
 							room13();
 						}
 						else
