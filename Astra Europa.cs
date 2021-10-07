@@ -1189,19 +1189,22 @@ namespace ConsoleApp1
 			while (playerLocation == 17)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 17");
+				Console.WriteLine("This room is a perfect square.. no windows.. no nothing");
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "south":
+						Console.WriteLine("You travel south down a long windy hallway");
 						if (doorS17 == true)
 						{
+							Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 18");
 							room18();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
+							Console.WriteLine("You travel back through the hallway to room 17");
 							Thread.Sleep(500);
 						}
 						break;
