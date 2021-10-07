@@ -1424,7 +1424,9 @@ namespace ConsoleApp1
 			while (playerLocation == 23)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 23");
+				Console.WriteLine("You realise that these rooms must be leading you somewhere...");
+                Console.WriteLine("This wall has a poster stating: 'a, e, i, o, u = P'");
+                Console.WriteLine("Enter part 3 (6 words): ");
 				switch (playerInput())
 				{
 					case "":
@@ -1436,6 +1438,7 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS23 == true)
 						{
+                            Console.WriteLine("The light flashes green, the door opens and you travel south into room 24");
 							room24();
 						}
 						else
@@ -1459,7 +1462,10 @@ namespace ConsoleApp1
 			while (playerLocation == 24)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 24");
+				Console.WriteLine("This room is 4 times larger than all the others but has a similar setup to it... ");
+                Console.WriteLine("No poster to be found... although the monitor has a note stuck to it.... ");
+                Console.WriteLine("The note says: Combine the rules of the previous two rooms to open this door... ");
+                Console.WriteLine("Enter part 4 (6 words):	");
 				switch (playerInput())
 				{
 					case "":
@@ -1471,6 +1477,7 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS24 == true)
 						{
+                            Console.WriteLine("The light flashes green, the door opens and you travel south into room 25");
 							room25();
 						}
 						else
