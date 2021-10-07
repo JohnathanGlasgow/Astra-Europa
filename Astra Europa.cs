@@ -1501,7 +1501,10 @@ namespace ConsoleApp1
 			while (playerLocation == 25)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 25");
+				Console.WriteLine("As you enter you notice this room is different... ");
+                Console.WriteLine("It has a sign above the door stating 'FINAL ROOM...'");
+                Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words)");
+                Console.WriteLine("In small text below this there is a hint (“First word is made of 1 letter”) ");
 				switch (playerInput())
 				{
 					case "":
@@ -1513,6 +1516,7 @@ namespace ConsoleApp1
 					case "east":
 						if (doorE25 == true)
 						{
+                            Console.WriteLine("The light flashes green, a wee smile comes onto your face.. You head down a long hallway and enter (Room 26) ");
 							room26();
 						}
 						else
