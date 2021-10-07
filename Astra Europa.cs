@@ -1023,9 +1023,11 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "north":
+						Console.WriteLine("You head north through a door and enter room 11");					
 						room11();
 						break;
 					case "east":
+						Console.WriteLine("You head east through a hallway into a cramped room, you are now in room 17");
 						room17();
 						break;
 					//case to get item
@@ -1044,7 +1046,7 @@ namespace ConsoleApp1
 			while (playerLocation == 13)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 13");
+				Console.WriteLine("Not much going on in this room, although it does give you a feeling that you are on the right track");
 				switch (playerInput())
 				{
 					case "":
@@ -1052,6 +1054,7 @@ namespace ConsoleApp1
 					case "east":
 						if (doorE13 == true)
 						{
+                            Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 18");
 							room18();
 						}
 						else
@@ -1063,6 +1066,7 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS13 == true)
 						{
+							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 14");
 							room14();
 						}
 						else
@@ -1072,6 +1076,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "west":
+						Console.WriteLine("You open the door and head west down a long hallway, you open another door and are now in room 8");
 						room8();
 						break;
 					default:
@@ -1089,7 +1094,11 @@ namespace ConsoleApp1
 			while (playerLocation == 14)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 14");
+				Console.WriteLine("In the corner of the room lies an oxidizer, very key to survival onboard the ship...");
+				Console.WriteLine("Oxidizer has been added to your inventory");
+				inventory.Add("Oxidizer");
+				Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“has a mouth but never talks”)))");
+				Console.WriteLine("Seems to be some kind of riddle or something");
 				switch (playerInput())
 				{
 					case "":
