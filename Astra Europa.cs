@@ -1226,7 +1226,7 @@ namespace ConsoleApp1
 			while (playerLocation == 18)
 			{
 				Console.Clear();
-				Console.WriteLine("ROOM DESCRIPTION 18");
+				Console.WriteLine("Seems to be an old computer room, very dusty and seems like no one has been around for a while..");
 				switch (playerInput())
 				{
 					case "":
