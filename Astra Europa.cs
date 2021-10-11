@@ -17,6 +17,8 @@ namespace ConsoleApp1
 		public static bool monster1 = true, monster2 = true;
 		//fires
 		public static bool fireWest = true, fireNorth = true, fireEast = true;
+		//oxygen
+		public static int oxygen = 100;
 
 		/* - Notebook -
 		 * Add notes/clues to the clues array.
@@ -258,6 +260,26 @@ namespace ConsoleApp1
 		//	}
 		//}
 
+		//Oxygen on Planet Surface
+		//Need to review when saves/resets get implemented
+		public static int oxygenReturn(int oxygen)
+        {
+			if (oxygen <= 0)
+            {
+				Console.Clear();
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("You have run out of oxygen");
+				Thread.Sleep(1500);
+				Console.ForegroundColor = ConsoleColor.White;
+				genericDeath();
+            }
+            else
+            {
+				oxygen = oxygen - 15;
+            }
+			return oxygen;
+        }
+
 
 		// Have continued playerLocation count from Room 26 
 		// Ship
@@ -466,7 +488,13 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("You are now standing on the planet’s surface with your fragmented ship behind you,");
                 Console.WriteLine("you survey the area noticing behind the ship to the west is the impassable mountain range. ");
-                Console.WriteLine("Before you are 3 paths, choose wisely.");	
+                Console.WriteLine("Before you are 3 paths, choose wisely.");
+				Console.WriteLine();
+				Console.WriteLine("Your oxygen meter alerts that the surface air is Toxic");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
 				switch (playerInput())
 				{
 					case "":
@@ -504,6 +532,10 @@ namespace ConsoleApp1
 				Console.WriteLine("You plant your feet with each step, trying to regain your composure.");
                 Console.WriteLine("You continue through a small canyon which is spattered with jagged rocks.");
                 Console.WriteLine("The view is concerning. No signs of life or civilisation can be seen ahead.");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
 				switch (playerInput())
 				{
 					case "":
@@ -532,8 +564,6 @@ namespace ConsoleApp1
 			while (playerLocation == 32)
 			{
 				Console.Clear();
-				Console.WriteLine("You’ve been walking for hours and are starting to pass in and out of consciousness due to lack of oxygen");
-                Console.WriteLine(",you’ve gone too far to turn back now this is the end of your journey.");
 				switch (playerInput())
 				{
 					case "":
@@ -566,6 +596,10 @@ namespace ConsoleApp1
                 Console.WriteLine("wasteland area, you reach the end of this path where the vast openness");
                 Console.WriteLine("of the wasteland begins. This wasteland you find yourself in seems to be");
                 Console.WriteLine("an endless expanse until you notice an unusually shaped rock in the distance.");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
 				switch (playerInput())
 				{
 					case "":
@@ -595,9 +629,11 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("As you get closer and closer to this unusual rock you discover a harrowing sight,");
                 Console.WriteLine("another marooned ship but a much older class of your own ship. The surrounding area of the ship");
-                Console.WriteLine("is covered with the remains of its crew. You approach the ships airlock but before you reach the");
-                Console.WriteLine(" door handle you soon realise this is a hostile planet. You are attacked by an alien creature and");
-                Console.WriteLine(" are ripped to shreds!!!");
+                Console.WriteLine("is covered with the remains of its crew.");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
 				switch (playerInput())
 				{
 					case "":
@@ -630,6 +666,10 @@ namespace ConsoleApp1
                 Console.WriteLine("to be a structure of some kind. The structure begins to revel is shape more and more with");	
                 Console.WriteLine("each step you take. Finally, you reach the structure, and it is now clear to you that is");
                 Console.WriteLine("an abandoned colony station. In front of you see a door with a lever.");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
 				switch (playerInput())
 				{
 					case "":
@@ -2092,8 +2132,9 @@ namespace ConsoleApp1
 			Console.ForegroundColor = ConsoleColor.DarkBlue;
 			Console.Write("░░░░░░░░░░░░░░░░░░░");
 			Console.ForegroundColor = ConsoleColor.White;
-			Console.WriteLine(" 5/100");
-			Console.WriteLine("\tYou see your oxygen is almost empty, you have been walking for too long.");
+			Console.WriteLine(" 10/100");
+			Console.WriteLine("\tYou’ve been walking for hours and are starting to pass in and out of consciousness");
+            Console.WriteLine("\tdue to lack of oxygen,you’ve gone too far to turn back now this is the end of your journey.");
 			Thread.Sleep(6000);
 			Console.Clear();
 			Console.WriteLine(@"                                                              
@@ -2187,7 +2228,9 @@ namespace ConsoleApp1
                                                                                           
 ");
 			Console.WriteLine();
-			Console.WriteLine("\t\t\t\tYOU HAVE BEEN CLAWED TO DEATH");
+			Console.WriteLine("\t\tYou approach the ships airlock but before you reach the");
+            Console.WriteLine("\t\tdoor handle you soon realise this is a hostile planet. ");
+            Console.WriteLine("\t\tYou are attacked by an alien creature and are ripped to shreds!!!");
 			Thread.Sleep(5000);
 			Console.BackgroundColor = ConsoleColor.Red;
 			Console.ForegroundColor = ConsoleColor.Black;
@@ -2249,7 +2292,11 @@ namespace ConsoleApp1
 		static void Main(string[] args)
         {
 			//testRoom1();
+			
 			TitleScreen();
+
+			//Comment out Title and uncomment airlock to skip ship section for faster testing
+			//airlock();
         }
     }
 }
