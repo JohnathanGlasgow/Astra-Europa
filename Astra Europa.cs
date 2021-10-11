@@ -15,6 +15,9 @@ namespace ConsoleApp1
 		public static bool doorET1, doorST2;
 		// monster status
 		public static bool monster1 = true, monster2 = true;
+		//fires
+		public static bool fireWest = true, fireNorth = true, fireEast = true;
+
 		/* - Notebook -
 		 * Add notes/clues to the clues array.
 		 * When the player finds a clue, pass the index of the clue from the array to the addNote() method.
@@ -257,15 +260,22 @@ namespace ConsoleApp1
 
 
 		// Have continued playerLocation count from Room 26 
-		// Ship --Need to add extinguishing fires
+		// Ship
 		public static void ship()
 		{
 			playerLocation = 27;
 			while (playerLocation == 27)
 			{
 				Console.Clear();
-				Console.WriteLine("You are standing in the command centre of your ship, there are electrical fires and sparks littered everywhere.");
-                Console.WriteLine("The first task is to stamp these fires out."); 
+				if (fireEast == true)
+                {
+					Console.WriteLine("You are standing in the command centre of your ship, there are electrical fires and sparks littered everywhere.");
+					Console.WriteLine("The first task is to stamp these fires out.");
+                }
+                else
+                {
+					Console.WriteLine("You are standing in the command centre of your ship, sparks continue to flash around you but the fires are no longer an issue");
+                }
 				switch (playerInput())
 				{
 					case "":
@@ -275,7 +285,96 @@ namespace ConsoleApp1
 						break;
 
 					case "east":
-						airlock();
+						//Bit messy at the moment, may need to clean up code but still functions as needed -Devon
+						if (!inventory.Contains("Fire Extinguisher"))
+                        {
+                            Console.WriteLine("There is a raging fire blocking the way. It seems to be fueled by the other fires somehow.");
+							Thread.Sleep(2000);
+                        }
+                        else if (inventory.Contains("Fire Extinguisher") && (fireWest == true || fireNorth == true))
+                        {
+                            Console.WriteLine("There are still fires to get rid of elsewhere.");
+							Thread.Sleep(2000);
+						}
+						else if (inventory.Contains("Fire Extinguisher") && (fireEast == true && fireWest == false && fireNorth == false))
+						{
+                            Console.WriteLine("You still have a fire blocking the way but it seems smaller than before.");
+							Thread.Sleep(2000);
+						}
+                        else
+                        {
+							airlock();
+                        }
+						break;
+
+					case "extinguish east":
+						if (inventory.Contains("Fire Extinguisher") && (fireEast == true && fireWest == false && fireNorth == false))
+                        {
+							fireEast = false;
+							Console.WriteLine("You manage to get the last fire under control");
+							Thread.Sleep(1500);
+						}
+                        else 
+						{
+							Console.WriteLine("There are still fires to get rid of elsewhere.");
+							Thread.Sleep(2000);
+						}
+						break;
+
+					case "north":
+                        if (fireNorth == true)
+                        {
+							Console.WriteLine("There is a fire blocking any further access this way");
+							Thread.Sleep(1500);
+                        }
+                        else
+                        {
+							Console.WriteLine("You see that beyond the fire is an empty storage panel");
+							Console.WriteLine("Doesn’t seem to be anything useful over here.");
+							Thread.Sleep(1500);
+                        }
+						break;
+
+					case "extinguish north":
+						if (inventory.Contains("Fire Extinguisher"))
+						{
+							fireNorth = false;
+							Console.WriteLine("You manage to get the fire under control");
+							Thread.Sleep(1500);
+						}
+						else
+						{
+							Console.WriteLine("You have no way to put out this fire");
+							Thread.Sleep(1500);
+						}
+						break;
+
+					case "west":
+						if (fireWest == true)
+                        {
+							Console.WriteLine("There is a fire blocking any further access this way");
+							Thread.Sleep(1500);
+                        }
+                        else
+                        {
+							Console.WriteLine("You look out the front window to see nothing but a sheer cliff side of a monumental mountain range. ");
+							Console.WriteLine("Doesn’t seem to be anything useful over here.");
+							Thread.Sleep(1500);
+                        }
+						break;
+
+					case "extinguish west":
+						if (inventory.Contains("Fire Extinguisher"))
+						{
+							fireWest = false;
+							Console.WriteLine("You manage to get the fire under control");
+							Thread.Sleep(1500);
+						}
+						else
+						{
+							Console.WriteLine("You have no way to put out this fire");
+							Thread.Sleep(1500);
+						}
 						break;
 
 					default:
@@ -288,18 +387,24 @@ namespace ConsoleApp1
 
 		//Escape Pod
 		//Will need additional options for replacing parts
+		//
 		public static void escapePod()
 		{
 			playerLocation = 28;
 			while (playerLocation == 28)
 			{
 				Console.Clear();
-				Console.WriteLine("You walk down the steps of the command centre to find something useful. ");
-                Console.WriteLine("You notice a shiny red object ahead of you located in the escape pod section. ");	
-				if (!inventory.Contains("Fire Extinguisher"))
+				if (inventory.Contains("Fire Extinguisher"))
 				{
-					Console.WriteLine("In the corridor that leads to the escape pod room you locate the red object, ");
-                    Console.WriteLine("it’s a fire extinguisher.");	
+					Console.WriteLine("You are standing in the escape pod. There seems to be nothing of use left here.");
+				}
+				else if (!inventory.Contains("Fire Extinguisher"))
+				{
+					Console.WriteLine("You walk down the steps of the command centre to find something useful. ");
+					Console.WriteLine("You notice a shiny red object ahead of you located in the escape pod section. ");
+					Thread.Sleep(500);
+					Console.WriteLine("\nIn the corridor that leads to the escape pod room you locate the red object, ");
+					Console.WriteLine("it’s a fire extinguisher.");
 				}
 				switch (playerInput())
 				{
@@ -308,18 +413,18 @@ namespace ConsoleApp1
 					case "get fire extinguisher":
 					case "get extinguisher":
 						Console.WriteLine("You pick up the fire extinguisher, ");
-                        Console.WriteLine("This will be vital in saving what remains of your command centre, no time to waste.");	
+						Console.WriteLine("This will be vital in saving what remains of your command centre, no time to waste.");
 						inventory.Add("Fire Extinguisher");
-						Thread.Sleep(500);
+						Thread.Sleep(1500);
 						break;
 					case "north":
-                        ship();
-                        break;
-                    default:
+						ship();
+						break;
+					default:
 						Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
 						break;
-				}			
+				}
 			}
 		}
 
@@ -743,6 +848,7 @@ namespace ConsoleApp1
 						room8();
 						break;
 					case "west":
+					case "go upstairs":
 						room71();
 						break;
 					default:
@@ -772,6 +878,7 @@ namespace ConsoleApp1
 						room72();
 						break;
 					case "east":
+					case "go downstairs":
 						room7();
 						break;
 					default:
@@ -2131,6 +2238,7 @@ namespace ConsoleApp1
 															 ░                   
 ");
 			//May need to change with how save/load/resets works
+
 			Console.WriteLine("\t\t\t\t\tPress ENTER to start again");
 			Console.ReadLine();
 			Console.BackgroundColor = ConsoleColor.Black;
