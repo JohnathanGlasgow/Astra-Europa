@@ -762,7 +762,7 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "west":
-						//method for outside
+						wasteE1();
 						break;
 					case "north":
 						room2();
