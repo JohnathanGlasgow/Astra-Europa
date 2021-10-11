@@ -1450,7 +1450,8 @@ namespace ConsoleApp1
 			while (playerLocation == 20)
 			{
 				Console.Clear();
-				Console.WriteLine("You notice two options in this tight room.. north through a door.. west down a hallways");
+				Console.WriteLine("You notice three options in this tight room.. north through a door.. west down a hallway.. or south");
+				Console.WriteLine("The way south appears to be blocked by another keypad. You hear a strong wind pushing on the door");
 				switch (playerInput())
 				{
 					case "":
@@ -1459,18 +1460,22 @@ namespace ConsoleApp1
                         Console.WriteLine("You open a door and head north down a staggered hallway, you enter room 19");
 						room19();
 						break;
-					/* case for the breach */
-                    //case "south":
-                    //	if (doorS20 == true)
-                    //	{
-                    //		breach();
-                    //	}
-                    //	else
-                    //	{
-                    //		Console.WriteLine("The door is locked, looks like you need a red keycard.");
-                    //		Thread.Sleep(500);
-                    //	}
-                    //	break;
+
+                    case "south":
+						if (doorS20 == true)
+						{
+							Console.WriteLine("You scan the keycard through and push the door with all your might");
+							Console.WriteLine("A large area of the facility appears to be exposed");
+							Thread.Sleep(1500);
+                    		breach();
+						}
+						else
+						{
+                    		Console.WriteLine("The door is locked, looks like you need a red keycard.");
+                    		Thread.Sleep(500);
+						}
+						break;
+
                     case "west":
 						Console.WriteLine("You travel west through the hallway and enter room 15");
 						room15();
@@ -1716,6 +1721,37 @@ namespace ConsoleApp1
 						break;
 				}
 			}
+		}
+
+		//Breach
+		//Needs story/potential combat
+		public static void breach()
+		{
+			playerLocation = 36;
+			while (playerLocation == 36)
+			{
+				Console.Clear();
+				Console.WriteLine("YOU ARE IN A DAMAGED AREA OF THE FACILITY");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
+				switch (playerInput())
+				{
+					case "":
+						break;
+
+					case "north":
+						room20();
+						break;
+
+					default:
+						Console.WriteLine("Invalid input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+
 		}
 
 		// Test Room 1 
