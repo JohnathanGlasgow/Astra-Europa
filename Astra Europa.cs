@@ -160,23 +160,25 @@ namespace ConsoleApp1
             Random rand = new Random();
 
             Console.Clear();
-            Console.WriteLine("MONSTER INTRODUCTION");
+            Console.WriteLine("A man in a space suit runs into you");
+            Console.WriteLine("blood covers his torso, a crazed look in his eyes");
+            Console.WriteLine("your instinct kick in, its you or him!");
 
             while (playerHealth > 0 && monsterHealth > 0)
             {
                 bool combatInput = false;
                 playerBlock = false;
                 Console.Clear();
-                Console.WriteLine($"Health {playerHealth}");
-                Console.WriteLine($"Creature health {monsterHealth}");
-                Console.WriteLine("hit or block?");
+                Console.WriteLine($"Your Health {playerHealth}");
+                Console.WriteLine($"Crazed spaceman's health {monsterHealth}");
+                Console.WriteLine("attack or block?");
 
                 while (combatInput == false)
                 {
 
                     switch (playerInput())
                     {
-                        case "hit":
+                        case "attack":
                             combatInput = true;
                             playerHit = rand.Next(7);
                             if (playerHit != 0)
@@ -215,7 +217,7 @@ namespace ConsoleApp1
                             creatureHit = creatureHit - 4;
                             if (creatureHit <= 0)
                             {
-                                Console.WriteLine($"You block, the creatures attack!");
+                                Console.WriteLine($"You block, the crazed spaceman's attack!");
                                 Thread.Sleep(2000);
                             }
                             else
@@ -236,7 +238,7 @@ namespace ConsoleApp1
                     }
                     else
                     {
-                        Console.WriteLine("The creature misses");
+                        Console.WriteLine("The crazed spaceman misses");
                         Thread.Sleep(1000);
                     }
                 }
@@ -246,7 +248,7 @@ namespace ConsoleApp1
             {
                 if (playerHealth > monsterHealth)
                 {
-                    Console.WriteLine("You defeat the creature");
+                    Console.WriteLine("You defeat the crazed spaceman");
                     monster1 = false;
                     Thread.Sleep(2000);
                 }
