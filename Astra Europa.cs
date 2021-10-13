@@ -1172,7 +1172,12 @@ namespace ConsoleApp1
 			while (playerLocation == 11)
 			{
 				Console.Clear();
-				Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
+				if(!inventory.Contains("phaser"))
+				{
+					Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
+					Console.WriteLine("During a brief moment of light, you spy what looks like a phaser.");
+				}
+                else {Console.WriteLine("This section has flickering lights that are hanging from the ceiling."); }
 				switch (playerInput())
 				{
 					case "":
@@ -1184,6 +1189,10 @@ namespace ConsoleApp1
 					case "west":
 						Console.WriteLine("You head down a narrow hallway and enter Room 6");
 						room6();
+						break;
+					case "get phaser":
+                        Console.WriteLine("You pick up the phaser, looks like its good for a few shots");
+						inventory.Add("phaser");
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
