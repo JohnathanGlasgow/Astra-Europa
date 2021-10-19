@@ -1221,6 +1221,7 @@ namespace ConsoleApp1
 					inventory.Add("Fins");
 					Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“What can run but never walks”))))");
 					Console.WriteLine("who knows might come in handy later");
+					Console.WriteLine("Your options are north or east");
 				}
 				else { Console.WriteLine("This room looks like an old bedroom."); }				
 
@@ -1253,6 +1254,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("Not much going on in this room, although it does give you a feeling that you are on the right track");
+				Console.WriteLine("Your options are east, south or west");
 				switch (playerInput())
 				{
 					case "":
@@ -1308,15 +1310,19 @@ namespace ConsoleApp1
 					inventory.Add("Oxidizer");
 					Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“has a mouth but never talks”)))");
 					Console.WriteLine("Seems to be some kind of riddle or something");
+					Console.WriteLine("Your only option is to head north");
 				}
-				else { Console.WriteLine("This room has a clear roof, you get a nice view of the stars"); }			
+				else { 
+					Console.WriteLine("This room has a clear roof, you get a nice view of the stars");
+					Console.WriteLine("Your only option is to head north");
+				}			
 				// need to add riddle to notepad				
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "north":
-						Console.WriteLine("You head north back to (Room 13)");
+						Console.WriteLine("You head north back to room 13");
 						room13();
 						break;
 					//case to get item
@@ -1336,6 +1342,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("Another tight room, a hallway and a door leading opposite ways.. where to go");
+				Console.WriteLine("Your options are east or west");
 				switch (playerInput())
 				{
 					case "":
@@ -1392,7 +1399,6 @@ namespace ConsoleApp1
 				}
 			}
 		}
-
 		// Room 17
 		public static void room17()
 		{
@@ -1401,6 +1407,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("This room is a perfect square.. no windows.. no nothing");
+				Console.WriteLine("Your options are west or south");
 				switch (playerInput())
 				{
 					case "":
@@ -1420,6 +1427,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "west":
+                        Console.WriteLine("You travel west and enter room 12");
 						room12();
 						break;
 					default:
@@ -1438,6 +1446,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("Seems to be an old computer room, very dusty and seems like no one has been around for a while..");
+				Console.WriteLine("Your options are north, south or west");
 				switch (playerInput())
 				{
 					case "":
@@ -1487,6 +1496,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("You turn on the light switch only to find nothing in this rooom... ");
+				Console.WriteLine("Your options are north or south");
 				switch (playerInput())
 				{
 					case "":
@@ -1769,7 +1779,7 @@ namespace ConsoleApp1
 					case "east":
 						if (doorE25 == true)
 						{
-                            Console.WriteLine("You head down a long hallway and enter room26");
+                            Console.WriteLine("You head down a long hallway and enter room 26");
 							room26();
 						}
 						else
