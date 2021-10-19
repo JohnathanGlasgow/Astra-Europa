@@ -19,6 +19,8 @@ namespace ConsoleApp1
 		public static bool fireWest = true, fireNorth = true, fireEast = true;
 		//oxygen
 		public static int oxygen = 100;
+		//Controls Menu return value
+		public static int controlsReturn = 1;
 
 		/* - Notebook -
 		 * Add notes/clues to the clues array.
@@ -101,8 +103,9 @@ namespace ConsoleApp1
                     break;
                 case "help":
                 case "info":
-                    Console.WriteLine("How to play:");
-                    Console.ReadLine();
+					//Console.WriteLine("How to play:");
+					//Console.ReadLine();
+					Controls();
                     playerInput = "";
                     break;
                 case "options":
@@ -287,6 +290,7 @@ namespace ConsoleApp1
 		// Ship
 		public static void ship()
 		{
+			controlsReturn = 2;
 			playerLocation = 27;
 			while (playerLocation == 27)
 			{
@@ -1121,7 +1125,8 @@ namespace ConsoleApp1
 						doorE3 = true;
 						doorE13 = true;
 						doorS17 = true;
-						doorS20 = true;
+						//Breach door
+						//doorS20 = true;
 						doorE74 = true;
 						break;
 					default:
@@ -1499,8 +1504,9 @@ namespace ConsoleApp1
 			while (playerLocation == 20)
 			{
 				Console.Clear();
-				Console.WriteLine("You notice three options in this tight room.. north through a door.. west down a hallway.. or south");
-				Console.WriteLine("The way south appears to be blocked by another keypad. You hear a strong wind pushing on the door");
+				Console.WriteLine("You notice two options in this tight room.. north through a door.. west down a hallway..");
+				//Removed Breach
+				//Console.WriteLine("The way south appears to be blocked by another keypad. You hear a strong wind pushing on the door");
 				switch (playerInput())
 				{
 					case "":
@@ -1510,22 +1516,23 @@ namespace ConsoleApp1
 						room19();
 						break;
 
-                    case "south":
-						if (doorS20 == true)
-						{
-							Console.WriteLine("You scan the keycard through and push the door with all your might");
-							Console.WriteLine("A large area of the facility appears to be exposed");
-							Thread.Sleep(1500);
-                    		breach();
-						}
-						else
-						{
-                    		Console.WriteLine("The door is locked, looks like you need a red keycard.");
-                    		Thread.Sleep(500);
-						}
-						break;
+					//Removed 'Breach' Door
+					//case "south":
+					//	if (doorS20 == true)
+					//	{
+					//		Console.WriteLine("You scan the keycard through and push the door with all your might");
+					//		Console.WriteLine("A large area of the facility appears to be exposed");
+					//		Thread.Sleep(1500);
+					//		breach();
+					//	}
+					//	else
+					//	{
+					//		Console.WriteLine("The door is locked, looks like you need a red keycard.");
+					//		Thread.Sleep(500);
+					//	}
+					//	break;
 
-                    case "west":
+					case "west":
 						Console.WriteLine("You travel west through the hallway and enter room 15");
 						room15();
 						break;
@@ -1774,34 +1781,34 @@ namespace ConsoleApp1
 
 		//Breach
 		//Needs story/potential combat
-		public static void breach()
-		{
-			playerLocation = 36;
-			while (playerLocation == 36)
-			{
-				Console.Clear();
-				Console.WriteLine("YOU ARE IN A DAMAGED AREA OF THE FACILITY");
-				oxygen = oxygenReturn(oxygen);
-				Console.ForegroundColor = ConsoleColor.Cyan;
-				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
-				Console.ForegroundColor = ConsoleColor.White;
-				switch (playerInput())
-				{
-					case "":
-						break;
+		//public static void breach()
+		//{
+		//	playerLocation = 36;
+		//	while (playerLocation == 36)
+		//	{
+		//		Console.Clear();
+		//		Console.WriteLine("YOU ARE IN A DAMAGED AREA OF THE FACILITY");
+		//		oxygen = oxygenReturn(oxygen);
+		//		Console.ForegroundColor = ConsoleColor.Cyan;
+		//		Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+		//		Console.ForegroundColor = ConsoleColor.White;
+		//		switch (playerInput())
+		//		{
+		//			case "":
+		//				break;
 
-					case "north":
-						room20();
-						break;
+		//			case "north":
+		//				room20();
+		//				break;
 
-					default:
-						Console.WriteLine("Invalid input");
-						Thread.Sleep(500);
-						break;
-				}
-			}
+		//			default:
+		//				Console.WriteLine("Invalid input");
+		//				Thread.Sleep(500);
+		//				break;
+		//		}
+		//	}
 
-		}
+		//}
 
 		// Test Room 1 
 		public static void testRoom1()
@@ -2025,18 +2032,18 @@ namespace ConsoleApp1
 			Console.WriteLine("\n");
 			Console.WriteLine("      .         _  .          .          . ╔═══════════════╗   +     .          .          .      .        ");
 			Console.WriteLine("              .(_)          .            . ║               ║          .            .       :               ");
-			Console.WriteLine("              .   .      .    .     .     .║   PLAY        ║   .      .   .      . .  .  -+-        .      ");
-			Console.WriteLine("                .           .   .        . ║   or          ║         .          /         :  .             ");
-			Console.WriteLine("          . .        .  .      /.   .      ║   CONTINUE    ║.      .   .    .  /        . ' .              ");
+			Console.WriteLine("              .   .      .    .     .     .║               ║   .      .   .      . .  .  -+-        .      ");
+			Console.WriteLine("                .           .   .        . ║    PLAY       ║         .          /         :  .             ");
+			Console.WriteLine("          . .        .  .      /.   .      ║               ║.      .   .    .  /        . ' .              ");
 			Console.WriteLine("              .  +       .    /     .      ║               ║   .          .   /      .                     ");
-			Console.WriteLine("             .            .  /         .   ║               ║        .        *   .         .     .         ");
-			Console.WriteLine("            .   .      .    *     .     .  ║   CONTROLS    ║ .      .   .       .  .                       ");
+			Console.WriteLine("             .            .  /         .   ║    CONTROLS   ║        .        *   .         .     .         ");
+			Console.WriteLine("            .   .      .    *     .     .  ║               ║ .      .   .       .  .                       ");
 			Console.WriteLine("                .           .           .  ║               ║        .           .         +  .             ");
-			Console.WriteLine("        . .        .  .       .   .      . ║               ║  .     .     .    .      .   .                ");
-			Console.WriteLine("       .   +      .          ___/\\_._/~~\\_.║   CREDITS     ║.__/\\__.._._/~\\        .         .   .         ");
+			Console.WriteLine("        . .        .  .       .   .      . ║    CREDITS    ║  .     .     .    .      .   .                ");
+			Console.WriteLine("       .   +      .          ___/\\_._/~~\\_.║               ║.__/\\__.._._/~\\        .         .   .         ");
 			Console.WriteLine("             .          _.--'              ║               ║                `--./\\          .   .          ");
-			Console.WriteLine("                 / ~~\\/~\\                  ║               ║                         `-/~\\_            .     ");
-			Console.WriteLine("       .      .-'                          ║   EXIT        ║                              `-/\\_               ");
+			Console.WriteLine("                 / ~~\\/~\\                  ║    EXIT       ║                         `-/~\\_            .     ");
+			Console.WriteLine("       .      .-'                          ║               ║                              `-/\\_               ");
 			Console.WriteLine("       _ /\\.-'                             ║               ║                                 __/~\\/\\-.__        ");
 			Console.WriteLine("   .'                                      ╚═══════════════╝                                             `.       ");
 			Console.ForegroundColor = ConsoleColor.White;
@@ -2055,38 +2062,38 @@ namespace ConsoleApp1
 						monster1Location = rand.Next(1, 11);
 					}
 					Console.Clear();
-					ship();
+					introScreen();
 					break;
 
-				case "CONTINUE":
-					Console.Clear();
-					//LoadGame();
-					Console.WriteLine("This is will be LoadGame()");
-					break;
+				//case "CONTINUE":
+				//	Console.Clear();
+				//	//LoadGame();
+				//	Console.WriteLine("This is will be LoadGame()");
+				//	break;
 
 				case "CONTROLS":
 					Console.Clear();
-                    //Controls();
-                    Console.WriteLine("Press i to see intro screen tests");
-                    Console.WriteLine("Press g to see the generic death screen");
-					temp = Console.ReadLine().ToUpper();
-					switch (temp)
-                    {
-						case "I":
-							introScreen();
-							break;
+					Controls();
+					//               Console.WriteLine("Press i to see intro screen tests");
+					//               Console.WriteLine("Press g to see the generic death screen");
+					//temp = Console.ReadLine().ToUpper();
+					//switch (temp)
+					//               {
+					//	case "I":
+					//		introScreen();
+					//		break;
 
-						case "G":
-							genericDeath();
-							break;
-                    }
-					Console.WriteLine("This is will be Controls()");
+					//	case "G":
+					//		genericDeath();
+					//		break;
+					//               }
+					//Console.WriteLine("This is will be Controls()");
 					break;
 
 				case "CREDITS":
 					Console.Clear();
-					//Credits();
-					Console.WriteLine("This is will be Credits()");
+					Credits();
+					//Console.WriteLine("This is will be Credits()");
 					break;
 
 				case "EXIT":
@@ -2131,10 +2138,7 @@ namespace ConsoleApp1
 			}
 		}
 
-		/*
-		 * Added currently as a test in the "CONTROLS" option on the main menu.
-		 * Need to decide if it will go before/after menu as a group
-		 */
+		//Modified the intro to prompt use if they want to see the intro/what version
 		public static void introScreen()
 		{
 			Console.Clear();
@@ -2144,40 +2148,87 @@ namespace ConsoleApp1
 			string introText3 = "\n\nYou set off in search for any signs of civilization. But remember due to the damages sustained to your ship you have no life support and";
 			string introText4 = " only one oxygen tank ";
 			string introText5 = "so choose carefully in which direction you take because wrong turns can spell     disaster.";
+			string introText6 = "\n\nGameplay is simple, navigation is controlled by typing commands like North, South, East, and West.\nThere will be various objects that you may hold in your inventory that will aid you on your adventure.";
+			string introText7 = "\n\n(Should you get stuck, type “help” or “info” for some aiding tips).";
 
-			foreach (char i in introText1)
+			Console.WriteLine("Press ENTER to view intro");
+			Console.WriteLine("Press Q to view quick intro");
+			Console.WriteLine("Press S to skip intro");
+			string temp1 = Console.ReadLine().ToUpper();
+			if (temp1 == "Q")
 			{
-				Console.Write(i);
-				Thread.Sleep(1);
+				Console.Clear();
+				Console.Write(introText1);
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write(introText2);
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write(introText3);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.Write(introText4);
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write(introText5);
+				Console.Write(introText6);
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.Write(introText7);
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.WriteLine("\n\nPress ENTER to Proceed...");
+				Console.ReadLine();
 			}
-			//Different colour to show importance of ship parts
-			Console.ForegroundColor = ConsoleColor.Yellow;
-			foreach (char i in introText2)
+			else if (temp1 == "S")
 			{
-				Console.Write(i);
-				Thread.Sleep(1);
+				ship();
 			}
-			Console.ForegroundColor = ConsoleColor.White;
-			foreach (char i in introText3)
+			else
 			{
-				Console.Write(i);
-				Thread.Sleep(1);
+				//Long Intro
+				Console.Clear();
+				foreach (char i in introText1)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				//Different colour to show importance of ship parts
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				foreach (char i in introText2)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				Console.ForegroundColor = ConsoleColor.White;
+				foreach (char i in introText3)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				//Different colour to show importance of oxygen
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				foreach (char i in introText4)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				Console.ForegroundColor = ConsoleColor.White;
+				foreach (char i in introText5)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				foreach (char i in introText6)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				//Quick guide to help menu
+				Console.ForegroundColor = ConsoleColor.Green;
+				foreach (char i in introText7)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.WriteLine("\n\nPress ENTER to Proceed...");
+				Console.ReadLine();
 			}
-			//Different colour to show importance of oxygen
-			Console.ForegroundColor = ConsoleColor.Cyan;
-			foreach (char i in introText4)
-			{
-				Console.Write(i);
-				Thread.Sleep(1);
-			}
-			Console.ForegroundColor = ConsoleColor.White;
-			foreach (char i in introText5)
-			{
-				Console.Write(i);
-				Thread.Sleep(1);
-			}
-			Console.WriteLine("\n\nPress ENTER to Proceed...");
-			Console.ReadLine();
 			ship();
 		}
 
@@ -2372,6 +2423,162 @@ namespace ConsoleApp1
 			Console.BackgroundColor = ConsoleColor.Black;
 			Console.ForegroundColor = ConsoleColor.White;
 			TitleScreen();
+		}
+
+		//Viewed in the Menu or typing help/info ingame
+		public static void Controls()
+		{
+			Console.Clear();
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.DarkBlue;
+			Console.WriteLine("                    ██████╗ ██████╗ ███╗   ██╗████████╗██████╗  ██████╗ ██╗     ███████╗");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("                   ██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔═══██╗██║     ██╔════╝");
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("                   ██║     ██║   ██║██╔██╗ ██║   ██║   ██████╔╝██║   ██║██║     ███████╗");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("                   ██║     ██║   ██║██║╚██╗██║   ██║   ██╔══██╗██║   ██║██║     ╚════██║");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("                   ╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╔╝███████╗███████║");
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+			Console.WriteLine("                    ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝");
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.Write("Tasks".PadRight(25));
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.Write("Player Input".PadRight(35));
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.Write("Directions/Movement".PadRight(25));
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine("Player Input");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.Write("──────".PadRight(25));
+			Console.Write("────────────────".PadRight(35));
+			Console.Write("───────────────────".PadRight(25));
+			Console.WriteLine("────────────────");
+			Console.Write("Collecting Items:".PadRight(25));
+			Console.Write("'Take' or 'Get'".PadRight(35));
+			Console.Write("Moving North:".PadRight(25));
+			Console.WriteLine("'north' or 'n'");
+			Console.Write("Open Inventory:".PadRight(25));
+			Console.Write("'inventory' or 'i'".PadRight(35));
+			Console.Write("Moving East:".PadRight(25));
+			Console.WriteLine("'east'  or 'e'");
+			Console.Write("Checking the Notebook:".PadRight(25));
+			Console.Write("'notebook' or 'read notebook'".PadRight(35));
+			Console.Write("Moving South:".PadRight(25));
+			Console.WriteLine("'south' or 's'");
+			Console.Write("Controls Menu:".PadRight(25));
+			Console.Write("'help' or 'info'".PadRight(35));
+			Console.Write("Moving West:".PadRight(25));
+			Console.WriteLine("'west'  or 'w'");
+			Console.Write("Options Menu (saving):".PadRight(25));
+			Console.WriteLine("'options' or 'o'".PadRight(35));
+			Console.WriteLine("\n");
+			if (inventory.Contains("Fire Extinguisher"))
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Write("Combat".PadRight(25));
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.Write("Player Input".PadRight(35));
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Write("Fires".PadRight(25));
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.WriteLine("Player Input");
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write("────────".PadRight(25));
+				Console.Write("────────────────".PadRight(35));
+				Console.Write("────────────".PadRight(25));
+				Console.WriteLine("────────────────");
+				Console.Write("Attacking:".PadRight(25));
+				Console.Write("'attack'".PadRight(35));
+				Console.Write("Extinguishing:".PadRight(25));
+				Console.WriteLine("'Extinguish *direction*'");
+				Console.Write("Blocking:".PadRight(25));
+				Console.Write("'block'".PadRight(60));
+				Console.WriteLine("eg: 'extinguish east'");
+			}
+			else
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Write("Combat".PadRight(25));
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.WriteLine("Player Input");
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write("──────".PadRight(25));
+				Console.WriteLine("────────────────");
+				Console.Write("Attacking:".PadRight(25));
+				Console.WriteLine("'attack'");
+				Console.Write("Blocking:".PadRight(25));
+				Console.WriteLine("'block'");
+			}
+			Console.ReadLine();
+			if (controlsReturn == 1)
+			{
+				TitleScreen();
+			}
+			else if (controlsReturn == 2)
+			{
+				return;
+			}
+		}
+
+		//Seen in the Menu
+		//Could add to the end of the game upon completion
+		public static void Credits()
+		{
+			Console.Clear();
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.DarkBlue;
+			Console.WriteLine("				 ██████╗██████╗ ███████╗██████╗ ██╗████████╗███████╗");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("				██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██╔════╝");
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("				██║     ██████╔╝█████╗  ██║  ██║██║   ██║   ███████╗");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("				██║     ██╔══██╗██╔══╝  ██║  ██║██║   ██║   ╚════██║");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("				╚██████╗██║  ██║███████╗██████╔╝██║   ██║   ███████║");
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+			Console.WriteLine("				 ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝   ╚═╝   ╚══════╝");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine();
+			Console.WriteLine("					  ASTRA EUROPA TEXT ADVENTURE GAME");
+			Console.WriteLine("					     Studio One Project 'Team 3'\n");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("                                                  Bryn Chambers");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("                                      (Storyline and Additional Programming)\n");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("                                                Darryl Pentecost");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("                                          (Main Programming and Combat)\n");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("                                            Devon Partridge-Officer");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("                                     (Additional Programming and Artwork)\n");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("                                                Johnathan Glasgow");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("                                      (Main Programming and User Input/Inventory)\n");
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("                                                  Jordan Hand");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("                                       (Storyline and Additional Programming)\n");
+			Console.WriteLine("");
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine("                                    Press ENTER to return to the Title Screen");
+			Console.ForegroundColor = ConsoleColor.White;
+			string temp1 = Console.ReadLine();
+			if (temp1 == "")
+			{
+				TitleScreen();
+			}
+			else
+			{
+				Credits();
+			}
 		}
 
 		static void Main(string[] args)
