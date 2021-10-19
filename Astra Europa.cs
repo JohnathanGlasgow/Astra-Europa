@@ -1755,7 +1755,9 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "a river":
-
+						Console.WriteLine("The light flashes green, a wee smile comes onto your face..");
+                        Console.WriteLine("You can either head east into what is called the 'final room' or back north");
+						doorE25 = true;
 						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 24");
@@ -1767,7 +1769,7 @@ namespace ConsoleApp1
 					case "east":
 						if (doorE25 == true)
 						{
-                            Console.WriteLine("The light flashes green, a wee smile comes onto your face.. You head down a long hallway and enter (Room 26) ");
+                            Console.WriteLine("You head down a long hallway and enter room26");
 							room26();
 						}
 						else
