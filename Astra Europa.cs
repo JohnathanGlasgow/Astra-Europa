@@ -1609,7 +1609,7 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("This room has the same setup...");
                 Console.WriteLine("There is a sign on the wall saying ‘no spacebars allowed’...");
-                Console.WriteLine("Enter part 2 (6 words):");
+                Console.Write("Enter part 2 (6 words):	");
 				switch (playerInput())
 				{
 					case "":
@@ -1655,13 +1655,16 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("You realise that these rooms must be leading you somewhere...");
                 Console.WriteLine("This wall has a poster stating: 'a, e, i, o, u = p'");
-                Console.WriteLine("Enter part 3 (6 words): ");
+                Console.Write("Enter part 3 (6 words):  ");
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "hps p hppd bpt npvpr wppps":
-
+						Console.WriteLine("The light flashes green, the door opens");
+						Console.WriteLine("Your options are back north or carry on south..");
+						doorS23 = true;
+						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 22");
 						Console.WriteLine("Door closes behind you light is now red");
@@ -1699,11 +1702,12 @@ namespace ConsoleApp1
 				Console.WriteLine("This room is 4 times larger than all the others but has a similar setup to it... ");
                 Console.WriteLine("No poster to be found... although the monitor has a note stuck to it.... ");
                 Console.WriteLine("The note says: Combine the rules of the previous two rooms to open this door... ");
-                Console.WriteLine("Enter part 4 (6 words):	");
+                Console.Write("Enter part 4 (6 words):	");
 				switch (playerInput())
 				{
 					case "":
 						break;
+					case ""
 					case "north":
 						room23();
 						break;
