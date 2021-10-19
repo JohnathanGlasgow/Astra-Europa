@@ -1614,16 +1614,22 @@ namespace ConsoleApp1
 				{
 					case "":
 						break;
+					case "hasamouthbutnevertalks":
+						doorS22 = true;
+						Console.WriteLine("The light flashes green and the door opens");
+						Console.WriteLine("Your options are north where you come from or south through the freshly unlocked door");
+						break;
 					case "north":
                         Console.WriteLine("You travel north back to room 21");
 						Console.WriteLine("Door closes behind you light is now red");
+						doorS21 = false;
 						room21();
 						break;
 					// puzzle door
 					case "south":
 						if (doorS22 == true)
 						{
-                            Console.WriteLine("The light flashes green, you travel south into room 23");
+                            Console.WriteLine("You travel south into room 23");
 							room23();
 						}
 						else
@@ -1648,13 +1654,18 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("You realise that these rooms must be leading you somewhere...");
-                Console.WriteLine("This wall has a poster stating: 'a, e, i, o, u = P'");
+                Console.WriteLine("This wall has a poster stating: 'a, e, i, o, u = p'");
                 Console.WriteLine("Enter part 3 (6 words): ");
 				switch (playerInput())
 				{
 					case "":
 						break;
+					case "hps p hppd bpt npvpr wppps":
+
 					case "north":
+						Console.WriteLine("You travel north back to room 22");
+						Console.WriteLine("Door closes behind you light is now red");
+						doorS22 = false;
 						room22();
 						break;
 					// puzzle door
