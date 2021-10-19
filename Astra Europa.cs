@@ -1675,7 +1675,7 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS23 == true)
 						{
-                            Console.WriteLine("The light flashes green, the door opens and you travel south into room 24");
+                            Console.WriteLine("You travel south into room 24");
 							room24();
 						}
 						else
@@ -1707,15 +1707,22 @@ namespace ConsoleApp1
 				{
 					case "":
 						break;
-					case ""
+					case "hpspbpdbptnpvprslppps":
+						Console.WriteLine("The light flashes green, the door opens");
+                        Console.WriteLine("You can either carry on south or return north");
+						doorS24 = true;
+						break;
 					case "north":
+						Console.WriteLine("You travel north back to room 22");
+						Console.WriteLine("Door closes behind you light is now red");
+						doorS23 = false;
 						room23();
 						break;
 					// puzzle door
 					case "south":
 						if (doorS24 == true)
 						{
-                            Console.WriteLine("The light flashes green, the door opens and you travel south into room 25");
+                            Console.WriteLine("You travel south into room 25");
 							room25();
 						}
 						else
@@ -1741,13 +1748,19 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("As you enter you notice this room is different... ");
                 Console.WriteLine("It has a sign above the door stating 'FINAL ROOM...'");
-                Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words)");
-                Console.WriteLine("In small text below this there is a hint (“First word is made of 1 letter”) ");
+                Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words, lower case)");
+                Console.Write("In small text below this there is a hint (“First word is made of 1 letter”):	 ");
 				switch (playerInput())
 				{
 					case "":
 						break;
+					case "a river":
+
+						break;
 					case "north":
+						Console.WriteLine("You travel north back to room 24");
+						Console.WriteLine("Door closes behind you light is now red");
+						doorS24 = false;
 						room24();
 						break;
 					// puzzle door
