@@ -1575,7 +1575,7 @@ namespace ConsoleApp1
 				Console.WriteLine("'player must have all 4 notes and 4 ship parts in order to answer all questions'");
 				Console.WriteLine("A red light is flashing indicating the door is locked...");
                 Console.WriteLine("Slightly to the write of the door is a keyboard and monitor....");
-				Console.Write("The screen reads enter part 1 ( 6 words ):	");
+				Console.WriteLine("The screen reads enter part 1 ( 6 words )");
 				switch (playerInput())
 				{
 					case "":
@@ -1619,7 +1619,7 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("This room has the same setup...");
                 Console.WriteLine("There is a sign on the wall saying ‘no spacebars allowed’...");
-                Console.Write("Enter part 2 (6 words):	");
+                Console.WriteLine("Enter part 2 (6 words)");
 				switch (playerInput())
 				{
 					case "":
@@ -1665,7 +1665,7 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("You realise that these rooms must be leading you somewhere...");
                 Console.WriteLine("This wall has a poster stating: 'a, e, i, o, u = p'");
-                Console.Write("Enter part 3 (6 words):  ");
+                Console.WriteLine("Enter part 3 (6 words)");
 				switch (playerInput())
 				{
 					case "":
@@ -1712,7 +1712,7 @@ namespace ConsoleApp1
 				Console.WriteLine("This room is 4 times larger than all the others but has a similar setup to it... ");
                 Console.WriteLine("No poster to be found... although the monitor has a note stuck to it.... ");
                 Console.WriteLine("The note says: Combine the rules of the previous two rooms to open this door... ");
-                Console.Write("Enter part 4 (6 words):	");
+                Console.WriteLine("Enter part 4 (6 words)");
 				switch (playerInput())
 				{
 					case "":
@@ -1759,7 +1759,7 @@ namespace ConsoleApp1
 				Console.WriteLine("As you enter you notice this room is different... ");
                 Console.WriteLine("It has a sign above the door stating 'FINAL ROOM...'");
                 Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words, lower case)");
-                Console.Write("In small text below this there is a hint (“First word is made of 1 letter”):	 ");
+                Console.WriteLine("In small text below this there is a hint (“First word is made of 1 letter”)");
 				switch (playerInput())
 				{
 					case "":
