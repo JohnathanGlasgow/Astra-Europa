@@ -1214,11 +1214,16 @@ namespace ConsoleApp1
 			while (playerLocation == 12)
 			{
 				Console.Clear();
-				Console.WriteLine("In the corner of this room lies some fins for a ship. Fins has been added to your inventory");
-				inventory.Add("Fins");
-				//unsure of how to add note to inventory at this stage 
-				Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“What can run but never walks”))))"); 
-                Console.WriteLine("who knows might come in handy later");
+				if (!inventory.Contains("Fins"))
+				{
+					Console.WriteLine("This room looks like an old bedroom.");
+					Console.WriteLine("In the corner of this room lies some fins for a ship. Fins has been added to your inventory");
+					inventory.Add("Fins");
+					Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“What can run but never walks”))))");
+					Console.WriteLine("who knows might come in handy later");
+				}
+				else { Console.WriteLine("This room looks like an old bedroom."); }				
+
 				switch (playerInput())
 				{
 					case "":
@@ -1295,12 +1300,17 @@ namespace ConsoleApp1
 			while (playerLocation == 14)
 			{
 				Console.Clear();
-				Console.WriteLine("In the corner of the room lies an oxidizer, very key to survival onboard the ship...");
-				Console.WriteLine("Oxidizer has been added to your inventory");
-				inventory.Add("Oxidizer");
-				// need to add riddle to notepad
-				Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“has a mouth but never talks”)))");
-				Console.WriteLine("Seems to be some kind of riddle or something");
+				if (!inventory.Contains("Fins"))
+				{
+					Console.WriteLine("This room has a clear roof, you get a nice view of the stars");
+					Console.WriteLine("In the corner of the room lies an oxidizer, very key to survival onboard the ship...");
+					Console.WriteLine("Oxidizer has been added to your inventory");
+					inventory.Add("Oxidizer");
+					Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“has a mouth but never talks”)))");
+					Console.WriteLine("Seems to be some kind of riddle or something");
+				}
+				else { Console.WriteLine("This room has a clear roof, you get a nice view of the stars"); }			
+				// need to add riddle to notepad				
 				switch (playerInput())
 				{
 					case "":
@@ -1552,19 +1562,24 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("There is a sign on the wall stating");
-				Console.WriteLine("'player must have all 4 notes and 5 ship parts in order to answer all questions'");
+				Console.WriteLine("'player must have all 4 notes and 4 ship parts in order to answer all questions'");
 				Console.WriteLine("A red light is flashing indicating the door is locked...");
                 Console.WriteLine("Slightly to the write of the door is a keyboard and monitor....");
-				Console.WriteLine("The screen reads enter part 1 ( 6 words ):");
+				Console.Write("The screen reads enter part 1 ( 6 words ):	");
 				switch (playerInput())
 				{
 					case "":
+						break;
+					case "What can run but never walks":
+						doorS21 = true;
+						Console.WriteLine("The light flashes green, and the door opens..");
+						Console.WriteLine("You can either travel south to the next room or head back west where you come from");
 						break;
 					// puzzle door
 					case "south":
 						if (doorS21 == true)
 						{
-                            Console.WriteLine("The light flashes green, the door opens you travel south into room 22");
+                            Console.WriteLine("You travel south into the next room");
 							room22();
 						}
 						else
@@ -1764,7 +1779,7 @@ namespace ConsoleApp1
 					case "no":
                         Console.WriteLine("Your mind starts asking questions.. why do you wish to stay here... ");
                         Console.WriteLine("why would you not return to your family... your body takes over.. you start the teleporter and jump in...");
-                        Console.WriteLine("You reappear with a smile one your face in room 3");
+                        Console.WriteLine("you reappear with a smile one your face in room 3");
 						room3();
 						break;
 					case "west":
