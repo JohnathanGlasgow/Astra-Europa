@@ -6,7 +6,7 @@ namespace ConsoleApp1
 {
     class Program
     {
-        public static int playerLocation, monster1Location = 3, monster2Location, playerHealth = 20;
+        public static int playerLocation, monster1Location = 3, monster2Location, playerHealth = 20, phaserAmmo = 5;
 		// doors
 		public static bool doorE3 = false, doorE13 = false, doorE16 = false, doorS17 = false, doorN14 = false, doorS20 = false, doorE74 = false, doorS13 = false;
 		// puzzle doors:
@@ -165,18 +165,29 @@ namespace ConsoleApp1
             Console.Clear();
             Console.WriteLine("A man in a space suit runs into you");
             Console.WriteLine("blood covers his torso, a crazed look in his eyes");
-            Console.WriteLine("your instinct kick in, its you or him!");
+            Console.WriteLine("your instincts kick in, its you or him!");
+			Thread.Sleep(2000);
 
             while (playerHealth > 0 && monsterHealth > 0)
             {
                 bool combatInput = false;
                 playerBlock = false;
                 Console.Clear();
-                Console.WriteLine($"Your Health {playerHealth}");
-                Console.WriteLine($"Crazed spaceman's health {monsterHealth}");
-                Console.WriteLine("attack or block?");
+				if (inventory.Contains("phaser"))
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Crazed Spaceman's Health {monsterHealth}");
+					Console.WriteLine($"{phaserAmmo} phaser ammo");
+					Console.WriteLine("attack, block, shoot");
+				}
+				else
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Crazed Spaceman's Health {monsterHealth}");
+					Console.WriteLine("attack, block");
+				}
 
-                while (combatInput == false)
+				while (combatInput == false)
                 {
 
                     switch (playerInput())
@@ -186,13 +197,14 @@ namespace ConsoleApp1
                             playerHit = rand.Next(7);
                             if (playerHit != 0)
                             {
-                                Console.WriteLine($"You do {playerHit + 1} damage");
+                                Console.WriteLine($"You do {playerHit + 1} points of damage");
                                 monsterHealth = monsterHealth - (playerHit + 1);
                                 Thread.Sleep(1000);
                             }
                             else
                             {
                                 Console.WriteLine("You miss your attack");
+								Thread.Sleep(1000);
                             }
                             break;
                         case "block":
@@ -201,9 +213,44 @@ namespace ConsoleApp1
                             Console.WriteLine("You brace for an incoming attack");
                             Thread.Sleep(1000);
                             break;
-                        default:
-                            Console.WriteLine("Invaild Input");
+						case "shoot":
+							if (inventory.Contains("phaser"))
+							{
+								if (phaserAmmo == 0)
+								{
+									Console.WriteLine("Out of ammo!");
+									Thread.Sleep(1000);
+									combatInput = false;
+								}
+								else
+								{
+									combatInput = true;
+									phaserAmmo--;
+									playerHit = rand.Next(12);
+									if (playerHit > 2)
+									{
+										Console.WriteLine($"You do {playerHit + 5} points of damage");
+										monsterHealth = monsterHealth - (playerHit + 5);
+										Thread.Sleep(1000);
+									}
+									else
+									{
+										Console.WriteLine("You miss your shot");
+										Thread.Sleep(1000);
+									}
+								}
 
+							}
+							else
+							{
+								Console.WriteLine("Invaild Input");
+								Thread.Sleep(1000);
+								combatInput = false;
+							}
+							break;
+
+						default:
+                            Console.WriteLine("Invaild Input");
                             Thread.Sleep(1000);
                             break;
                     }
@@ -227,7 +274,8 @@ namespace ConsoleApp1
                             {
                                 playerHealth = playerHealth - (creatureHit - 4);
                                 Console.WriteLine($"You block some of the attack, taking {creatureHit - 4} damage");
-                            }
+								Thread.Sleep(1000);
+							}
 
                         }
                         else
@@ -257,10 +305,11 @@ namespace ConsoleApp1
                 }
                 else
                 {
-                    Console.WriteLine("DEATH SCREEN HERE");
+                    Console.WriteLine("You are over powered and defeated");
                     Thread.Sleep(2000);
+					genericDeath();
 
-                }
+				}
 
             }
         }
@@ -1208,22 +1257,30 @@ namespace ConsoleApp1
 				{
 					Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
 					Console.WriteLine("During a brief moment of light, you spy what looks like a phaser.");
+					Thread.Sleep(2000);
 				}
-                else {Console.WriteLine("This section has flickering lights that are hanging from the ceiling."); }
+                else 
+				{
+					Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
+					Thread.Sleep(2000);
+				}
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "south":
 						Console.WriteLine("You go through a door and enter Room 12.");
+						Thread.Sleep(1000);
 						room12();
 						break;
 					case "west":
 						Console.WriteLine("You head down a narrow hallway and enter Room 6.");
+						Thread.Sleep(1000);
 						room6();
 						break;
 					case "get phaser":
-                        Console.WriteLine("You pick up the phaser, looks like its good for a few shots.");
+                        Console.WriteLine("You pick up the phaser, looks like its good for five shots.");
+						Thread.Sleep(2000);
 						inventory.Add("phaser");
 						break;
 					default:
