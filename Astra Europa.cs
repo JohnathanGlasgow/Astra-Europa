@@ -563,7 +563,7 @@ namespace ConsoleApp1
 			}
 		}
 
-		//Wasteland - North Twice from main path as well as GAME OVER section needs to be added
+		//Wasteland - North Twice from main path 
 		public static void wasteN2()
 		{
 			playerLocation = 32;
@@ -631,7 +631,7 @@ namespace ConsoleApp1
 			}
 		}
 
-		//Wasteland - South Twice from main path and GAME OVER SECTION NEEDS TO BE ADDED
+		//Wasteland - South Twice from main path
 		public static void wasteS2()
 		{
 			playerLocation = 34;
@@ -717,7 +717,7 @@ namespace ConsoleApp1
 			while (playerLocation == 1)
 			{
 				Console.Clear();
-				Console.WriteLine("You enter this section seeing only one path to follow.");
+				Console.WriteLine("You enter this section seeing two paths south or east.");
 				switch (playerInput())
 				{
 					case "":
@@ -747,7 +747,7 @@ namespace ConsoleApp1
 			while (playerLocation == 2)
 			{
 				Console.Clear();
-				Console.WriteLine("An empty hallway that shows signs of a past struggle.");
+				Console.WriteLine("An empty hallway that shows signs of a past struggle. Your options are south or north.");
 				switch (playerInput())
 				{
 					case "":
@@ -774,10 +774,15 @@ namespace ConsoleApp1
 			while (playerLocation == 3)
 			{
 				Console.Clear();
-				Console.WriteLine("You step outside into the airlock of the colony station,");
-                Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");	 
-                Console.WriteLine("remove your helmet. There are three doors before you, the one to the");	
-                Console.WriteLine("east has a red icon on the control panel, an item is needed before entry is granted, it says.");	
+				if(!inventory.Contains("red keycard"))
+                {
+					Console.WriteLine("You step outside into the airlock of the colony station,");
+					Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");
+					Console.WriteLine("remove your helmet. There are three doors before you, the one to the");
+					Console.WriteLine("east has a red icon on the control panel, an item is needed before entry is granted, it says.");
+
+				}
+                else { Console.WriteLine("You have entered the first section of the colony station where the airlock to the surface is located."); }
 				switch (playerInput())
 				{
 					case "":
@@ -821,7 +826,7 @@ namespace ConsoleApp1
 			while (playerLocation == 4)
 			{
 				Console.Clear();
-				Console.WriteLine("You walk through the automatic door; another long daunting hallway flows from this section to the next.");
+				Console.WriteLine("You walk through the automatic door; another long daunting hallway flows from this section to the next. Your options are north or south.");
 				switch (playerInput())
 				{
 					case "":
@@ -853,7 +858,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("You see some damage has been inflicted to the walls of this section, looks like deep slashes.");
-				Console.WriteLine("Faint pools of blood stain the floor but no bodies.");
+				Console.WriteLine("Faint pools of blood stain the floor but no bodies. Your options are east or north.");
 
 				switch (playerInput())
 				{
@@ -885,7 +890,7 @@ namespace ConsoleApp1
 			while (playerLocation == 6)
 			{
 				Console.Clear();
-				Console.WriteLine("This section of the station has a window with the view of the barren surface of this harsh planet");
+				Console.WriteLine("This section of the station has a window with the view of the barren surface of this harsh planet. Your options are east or west.");
 				switch (playerInput())
 				{
 					case "":
@@ -916,7 +921,7 @@ namespace ConsoleApp1
 			while (playerLocation == 7)
 			{
 				Console.Clear();
-				Console.WriteLine("This room has a staircase that goes up to what seems to be a second floor.");
+				Console.WriteLine("This room has a staircase that goes up to what seems to be a second floor. Your options are south or west.");
 				switch (playerInput())
 				{
 					case "":
@@ -943,7 +948,7 @@ namespace ConsoleApp1
 			while (playerLocation == 71)
 			{
 				Console.Clear();
-				Console.WriteLine("You enter the first section of the second floor of the colony station.");
+				Console.WriteLine("You enter the first section of the second floor of the colony station. Your options are north, east and west");
 				switch (playerInput())
 				{
 					case "":
@@ -973,10 +978,13 @@ namespace ConsoleApp1
 			while (playerLocation == 72)
 			{
 				Console.Clear();
-
-				Console.WriteLine("You step through the automatic door that struggles to open and find");
-                Console.WriteLine("sitting on a table in the corner of this dark section another ship component,");	
-                Console.WriteLine("Power Couplings and once again on the side you find more (Riddle words). You take note of this.");	
+				if(!inventory.Contains("power couplings"))
+                {
+					Console.WriteLine("You step through the automatic door that struggles to open and find");
+					Console.WriteLine("sitting on a table in the corner of this dark section another ship component,");
+					Console.WriteLine("Power Couplings and once again on the side you find more (What can run but never walks,). You take note of this.");
+				}
+                else { Console.WriteLine("You are back in the room where you found the Power Couplings"); }
 				switch (playerInput())
 				{
 					case "":
@@ -1001,7 +1009,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("This room has more evidence of something horrific happening in it,");
-                Console.WriteLine("you can tell by the smell. There is another door with a red control panel."); 
+                Console.WriteLine("you can tell by the smell. There is another door with a red control panel. Your options are south and west."); 
 				switch (playerInput())
 				{
 					case "":
@@ -1035,8 +1043,13 @@ namespace ConsoleApp1
 			while (playerLocation == 74)
 			{
 				Console.Clear();
-				Console.WriteLine("Within this room you discover another mangled body but this time");
-                Console.WriteLine("you find a blue key card, there must be other doors to be unlocked.");	
+				if(!inventory.Contains("blue keycard"))
+                {
+					Console.WriteLine("Within this room you discover another mangled body but this time");
+					Console.WriteLine("you find a blue key card, there must be other doors to be unlocked.");
+				}
+                else { Console.WriteLine("You are back in the room where you found the blue key card on the mangled body."); }
+					
 				switch (playerInput())
 				{
 					case "":
@@ -1070,9 +1083,13 @@ namespace ConsoleApp1
 			while (playerLocation == 8)
 			{
 				Console.Clear();
-				Console.WriteLine("You pass through the now unlocked door and see laying on the table in the");
-                Console.WriteLine("middle of the room a ship component, the hyperdrive, you remember how vital");
-                Console.WriteLine("repairing your ship is. On the side of the part is (Number of Riddle words), this seems important.");	
+				if(!inventory.Contains("hyperdrive"))
+                {
+					Console.WriteLine("You pass through the now unlocked door and see laying on the table in the");
+					Console.WriteLine("middle of the room a ship component, the hyperdrive, you remember how vital");
+					Console.WriteLine("repairing your ship is. On the side of the part is (has a mouth but never talks), this seems important.");
+                }
+                else { Console.WriteLine("You are passing back through the room where you found the Hyperdrive with the clue."); }
 				switch (playerInput())
 				{
 					case "":
@@ -1114,8 +1131,13 @@ namespace ConsoleApp1
 			while (playerLocation == 9)
 			{
 				Console.Clear();
-				Console.WriteLine("You enter this section and the first thing that catches your eye is a body,");
-                Console.WriteLine("you step slowly towards it and find a red key card, this could be useful.");	
+				if(!inventory.Contains("red keycard"))
+                {
+					Console.WriteLine("You enter this section and the first thing that catches your eye is a body,");
+					Console.WriteLine("you step slowly towards it and find a red key card, this could be useful.");
+				}
+                else { Console.WriteLine("You are back in the room where you found the red key card on the body"); }
+					
 				switch (playerInput())
 				{
 					case "":
@@ -1153,7 +1175,7 @@ namespace ConsoleApp1
 			while (playerLocation == 10)
 			{
 				Console.Clear();
-				Console.WriteLine("This is a junction room with 2 directions you can choose.");
+				Console.WriteLine("This is a junction room with 2 directions you can choose north and east.");
 				switch (playerInput())
 				{
 					case "":
@@ -1193,15 +1215,15 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "south":
-						Console.WriteLine("You go through a door and enter Room 12");
+						Console.WriteLine("You go through a door and enter Room 12.");
 						room12();
 						break;
 					case "west":
-						Console.WriteLine("You head down a narrow hallway and enter Room 6");
+						Console.WriteLine("You head down a narrow hallway and enter Room 6.");
 						room6();
 						break;
 					case "get phaser":
-                        Console.WriteLine("You pick up the phaser, looks like its good for a few shots");
+                        Console.WriteLine("You pick up the phaser, looks like its good for a few shots.");
 						inventory.Add("phaser");
 						break;
 					default:
@@ -1224,9 +1246,9 @@ namespace ConsoleApp1
 					Console.WriteLine("This room looks like an old bedroom.");
 					Console.WriteLine("In the corner of this room lies some fins for a ship. Fins has been added to your inventory");
 					inventory.Add("Fins");
-					Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“What can run but never walks”))))");
-					Console.WriteLine("who knows might come in handy later");
-					Console.WriteLine("Your options are north or east");
+					Console.WriteLine("A note attached to your ship part has also been added to your inventory (has a head but never weeps)");
+					Console.WriteLine("who knows might come in handy later.");
+					Console.WriteLine("Your options are north or east.");
 				}
 				else { Console.WriteLine("This room looks like an old bedroom."); }				
 
@@ -1235,11 +1257,11 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "north":
-						Console.WriteLine("You head north through a door and enter room 11");					
+						Console.WriteLine("You head north through a door and enter room 11.");					
 						room11();
 						break;
 					case "east":
-						Console.WriteLine("You head east through a hallway into a cramped room, you are now in room 17");
+						Console.WriteLine("You head east through a hallway into a cramped room, you are now in room 17.");
 						room17();
 						break;
 					//case to get item
@@ -1258,8 +1280,8 @@ namespace ConsoleApp1
 			while (playerLocation == 13)
 			{
 				Console.Clear();
-				Console.WriteLine("Not much going on in this room, although it does give you a feeling that you are on the right track");
-				Console.WriteLine("Your options are east, south or west");
+				Console.WriteLine("Not much going on in this room, although it does give you a feeling that you are on the right track.");
+				Console.WriteLine("Your options are east, south or west.");
 				switch (playerInput())
 				{
 					case "":
@@ -1279,7 +1301,7 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS13 == true)
 						{
-							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 14");
+							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 14.");
 							room14();
 						}
 						else
@@ -1289,7 +1311,7 @@ namespace ConsoleApp1
 						}
 						break;
 					case "west":
-						Console.WriteLine("You open the door and head west down a long hallway, you open another door and are now in room 8");
+						Console.WriteLine("You open the door and head west down a long hallway, you open another door and are now in room 8.");
 						room8();
 						break;
 					default:
@@ -1313,8 +1335,8 @@ namespace ConsoleApp1
 					Console.WriteLine("In the corner of the room lies an oxidizer, very key to survival onboard the ship...");
 					Console.WriteLine("Oxidizer has been added to your inventory");
 					inventory.Add("Oxidizer");
-					Console.WriteLine("A note attached to your ship part has also been added to your inventory ((((“has a mouth but never talks”)))");
-					Console.WriteLine("Seems to be some kind of riddle or something");
+					Console.WriteLine("A note attached to your ship part has also been added to your inventory (has a bed but never sleeps?)");
+					Console.WriteLine("Seems to be some kind of riddle or something.");
 					Console.WriteLine("Your only option is to head north");
 				}
 				else { 
