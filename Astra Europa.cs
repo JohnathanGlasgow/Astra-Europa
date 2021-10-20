@@ -314,9 +314,159 @@ namespace ConsoleApp1
             }
         }
 
-        //Oxygen on Planet Surface
-        //Need to review when saves/resets get implemented
-        public static int oxygenReturn(int oxygen)
+		//COMBAT TWO
+		public static void Combat2()
+		{
+			int monsterHealth = 40, playerHit, creatureHit;
+			bool playerBlock;
+			Random rand = new Random();
+
+			Console.Clear();
+			Console.WriteLine("Fear takes you as you a giant rabid grizzly bear");
+			Console.WriteLine("faces you down, some sort of twisted experiment gone wrong");
+			Console.WriteLine("what were they doing here?");
+			Thread.Sleep(2000);
+			while (playerHealth > 0 && monsterHealth > 0)
+			{
+				bool combatInput = false;
+				playerBlock = false;
+				Console.Clear();
+				if (inventory.Contains("phaser"))
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Bears Health {monsterHealth}");
+					Console.WriteLine($"{phaserAmmo} phaser ammo");
+					Console.WriteLine("attack, block, shoot");
+				}
+				else
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Bears Health {monsterHealth}");
+					Console.WriteLine("attack, block");
+				}
+				while (combatInput == false)
+				{
+
+					switch (playerInput())
+					{
+						case "attack":
+							combatInput = true;
+							playerHit = rand.Next(7);
+							if (playerHit != 0)
+							{
+								Console.WriteLine($"You do {playerHit + 1} points of damage");
+								monsterHealth = monsterHealth - (playerHit + 1);
+								Thread.Sleep(1000);
+							}
+							else
+							{
+								Console.WriteLine("You miss your attack");
+								Thread.Sleep(1000);
+							}
+							break;
+						case "block":
+							combatInput = true;
+							playerBlock = true;
+							Console.WriteLine("You brace for an incoming attack");
+							Thread.Sleep(1000);
+							break;
+						case "shoot":
+							if (inventory.Contains("phaser"))
+							{
+								if (phaserAmmo == 0)
+								{
+									Console.WriteLine("Out of ammo!");
+									Thread.Sleep(1000);
+									combatInput = false;
+								}
+								else
+								{
+									combatInput = true;
+									phaserAmmo--;
+									playerHit = rand.Next(12);
+									if (playerHit > 2)
+									{
+										Console.WriteLine($"You do {playerHit + 5} points of damage");
+										monsterHealth = monsterHealth - (playerHit + 5);
+										Thread.Sleep(1000);
+									}
+									else
+									{
+										Console.WriteLine("You miss your shot");
+										Thread.Sleep(1000);
+									}
+								}
+
+							}
+							else
+							{
+								Console.WriteLine("Invaild Input");
+								Thread.Sleep(1000);
+								combatInput = false;
+							}
+							break;
+						default:
+							Console.WriteLine("Invaild Input");
+							Thread.Sleep(1000);
+							break;
+					}
+				}
+
+				if (monsterHealth > 0)
+				{
+					creatureHit = rand.Next(11);
+					if (creatureHit != 0)
+					{
+						if (playerBlock == true)
+						{
+							creatureHit = creatureHit - 4;
+							if (creatureHit <= 0)
+							{
+								Console.WriteLine($"You block, the bears attack!");
+								Thread.Sleep(2000);
+							}
+							else
+							{
+								playerHealth = playerHealth - (creatureHit - 4);
+								Console.WriteLine($"You block some of the attack, taking {creatureHit - 4} damage");
+							}
+						}
+						else
+						{
+							playerHealth = playerHealth - creatureHit;
+							Console.WriteLine($"You are hit for {creatureHit} points of damage");
+							Thread.Sleep(2000);
+						}
+					}
+					else
+					{
+						Console.WriteLine("The bear roars with madness!");
+						Thread.Sleep(1000);
+					}
+				}
+			}
+
+			if (playerHealth! >= 0 || monsterHealth! >= 0)
+			{
+				if (playerHealth > monsterHealth)
+				{
+					Console.WriteLine("The bear slumps over, finally free of its torment");
+					monster2 = false;
+					Thread.Sleep(2000);
+				}
+				else
+				{
+                    Console.WriteLine("You are easily overpowerd by the monsterous bear, this is going to hurt");
+					Thread.Sleep(2000);
+					genericDeath();
+
+				}
+			}
+		}
+
+		//Oxygen on Planet Surface
+		//Need to review when saves/resets get implemented
+		public static int oxygenReturn(int oxygen)
         {
 			if (oxygen <= 0)
             {
