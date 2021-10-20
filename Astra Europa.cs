@@ -86,7 +86,7 @@ namespace ConsoleApp1
 		public static string playerInput()
         {
             Console.Write("What next? ");
-            string playerInput = Console.ReadLine();
+            string playerInput = Console.ReadLine().ToLower();
             playerInput = playerInput.Replace("pick up", "get");
 			playerInput = playerInput.Replace("take", "get");
 			switch (playerInput)
@@ -570,8 +570,7 @@ namespace ConsoleApp1
 			while (playerLocation == 32)
 			{
 				Console.Clear();
-				Console.WriteLine("You’ve been walking for hours and are starting to pass in and out of consciousness");
-				Console.WriteLine("due to lack of oxygen, you’ve gone too far to turn back now this is the end of your journey.");
+                Console.WriteLine("Your oxygen levels are getting low, your next decision is vital.");
 				oxygen = oxygenReturn(oxygen);
 				Console.ForegroundColor = ConsoleColor.Cyan;
 				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
@@ -1586,7 +1585,7 @@ namespace ConsoleApp1
 				{
 					case "":
 						break;
-					case "What can run but never walks":
+					case "what can run but never walks":
 						doorS21 = true;
 						Console.WriteLine("The light flashes green, and the door opens..");
 						Console.WriteLine("You can either travel south to the next room or head back west where you come from");
@@ -1762,17 +1761,25 @@ namespace ConsoleApp1
 			while (playerLocation == 25)
 			{
 				Console.Clear();
-				Console.WriteLine("As you enter you notice this room is different... ");
-                Console.WriteLine("It has a sign above the door stating 'FINAL ROOM...'");
-                Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words, lower case)");
-                Console.WriteLine("In small text below this there is a hint (“First word is made of 1 letter”)");
+				if (doorE25 == false)
+                {
+					Console.WriteLine("As you enter you notice this room is different... ");
+					Console.WriteLine("It has a sign above the door stating 'FINAL ROOM...'");
+					Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words, lower case)");
+					Console.WriteLine("In small text below this there is a hint (“First word is made of 1 letter”)");
+				}
+                else
+                {
+					Console.WriteLine("The light flashes green, a wee smile comes onto your face..");
+					EndScreen();
+					//Console.WriteLine("You can either head east into what is called the 'final room' or back north");
+				}
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "a river":
-						Console.WriteLine("The light flashes green, a wee smile comes onto your face..");
-                        Console.WriteLine("You can either head east into what is called the 'final room' or back north");
+						Thread.Sleep(1000);
 						doorE25 = true;
 						break;
 					case "north":
@@ -1786,7 +1793,7 @@ namespace ConsoleApp1
 						if (doorE25 == true)
 						{
                             Console.WriteLine("You head down a long hallway and enter room 26");
-							room26();
+							EndScreen();
 						}
 						else
 						{
@@ -1802,43 +1809,43 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 26
-		public static void room26()
-		{
-			playerLocation = 26;
-			while (playerLocation == 26)
-			{
-				Console.Clear();
-				Console.WriteLine("'Door slams behind you..' ");
-                Console.WriteLine("Do you wish to enter the teleport? (Yes/No)");
-				string temp = Console.ReadLine().ToLower();
-				switch (temp)
-				{
-					case "":
-						break;
-					// teleporter
-					case "yes":
-                        Console.WriteLine("Rumbling starts. The green light is flashing. Your life flashes before you...");
-                        Console.WriteLine("You see all the good memories and the bad ones.You are now in room 3");
-						room3();
-						break;
-					case "no":
-                        Console.WriteLine("Your mind starts asking questions.. why do you wish to stay here... ");
-                        Console.WriteLine("why would you not return to your family... your body takes over.. you start the teleporter and jump in...");
-                        Console.WriteLine("you reappear with a smile one your face in room 3");
-						room3();
-						break;
-					case "west":
-                        Console.WriteLine("Door is locked");
-						room25();
-						break;
-					default:
-						Console.WriteLine("Invalid Input");
-						Thread.Sleep(500);
-						break;
-				}
-			}
-		}
+		//// Room 26
+		//public static void room26()
+		//{
+		//	playerLocation = 26;
+		//	while (playerLocation == 26)
+		//	{
+		//		Console.Clear();
+		//		Console.WriteLine("'Door slams behind you..' ");
+  //              Console.WriteLine("Do you wish to enter the teleport? (Yes/No)");
+		//		string temp = Console.ReadLine().ToLower();
+		//		switch (temp)
+		//		{
+		//			case "":
+		//				break;
+		//			// teleporter
+		//			case "yes":
+  //                      Console.WriteLine("Rumbling starts. The green light is flashing. Your life flashes before you...");
+  //                      Console.WriteLine("You see all the good memories and the bad ones.You are now in room 3");
+		//				room3();
+		//				break;
+		//			case "no":
+  //                      Console.WriteLine("Your mind starts asking questions.. why do you wish to stay here... ");
+  //                      Console.WriteLine("why would you not return to your family... your body takes over.. you start the teleporter and jump in...");
+  //                      Console.WriteLine("you reappear with a smile one your face in room 3");
+		//				room3();
+		//				break;
+		//			case "west":
+  //                      Console.WriteLine("Door is locked");
+		//				room25();
+		//				break;
+		//			default:
+		//				Console.WriteLine("Invalid Input");
+		//				Thread.Sleep(500);
+		//				break;
+		//		}
+		//	}
+		//}
 
 		//Breach
 		//Needs story/potential combat
@@ -2205,7 +2212,7 @@ namespace ConsoleApp1
 			Console.Clear();
 			Console.ForegroundColor = ConsoleColor.White;
 			string introText1 = "The year is 2221, \n\nYou are an intrepid explorer navigating the vast emptiness of space on a mission of discovery and adventure. \n\nYou have set course on your lengthy pursuit for the outer reaches of an uncharted star system but during this arduous   journey you encounter an electrical storm that fries many electrical components and damages your ship, \nThe Astra Europa. \n\nThe solar winds are too forceful for your already damaged ship, and you are shunted off course. \n\nWhen you awake after the ordeal you find yourself crash landed on a mysterious yet almost familiar planet.";
-			string introText2 = "\n\nYour ship is in desperate need of 5 new components and repairs if you ever wish to leave this unruly planet.";
+			string introText2 = "\n\nYour ship is in desperate need of 4 new components and repairs if you ever wish to leave this unruly planet.";
 			string introText3 = "\n\nYou set off in search for any signs of civilization. But remember due to the damages sustained to your ship you have no life support and";
 			string introText4 = " only one oxygen tank ";
 			string introText5 = "so choose carefully in which direction you take because wrong turns can spell     disaster.";
@@ -2293,11 +2300,64 @@ namespace ConsoleApp1
 			ship();
 		}
 
-		//Scripted Death 1 - North before entering main building
-		public static void deathNorth()
+		public static void EndScreen()
 		{
 			Console.Clear();
-			Console.WriteLine(@"                                                              
+			Console.ForegroundColor = ConsoleColor.White;
+			string endText1 = "You step through the final door after completing the riddle and what stands before you is a teleporter pad where you\ncan input your ships coordinates.";
+			string endText2 = "You stand on the pad and press the initiate button. A countdown begins 5…4…3…2…1\nand before you know it you are sent back to your ships command centre. You put the components you found to good use\nand begin repairing your damaged ship.";
+			string endText3 = "It takes you only a few hours to complete the repairs, you ignite your ships\nthrusters and you are to be off that forsaken planet and plot a course towards the nearest space station for resupply.\nYou hope that will be the only detour you take on your expedition but only time will tell… ";
+
+			Console.WriteLine("Press ENTER to view ending");
+			Console.WriteLine("Press Q to view quick ending");
+			Console.WriteLine("Press S to skip ending");
+			string temp1 = Console.ReadLine().ToUpper();
+			if (temp1 == "Q")
+			{
+				Console.Clear();
+                Console.Write(endText1);
+				Console.Write(endText2);
+				Console.Write(endText3);
+				Console.WriteLine("\n\nPress ENTER to Proceed...");
+				Console.ReadLine();
+			}
+			else if (temp1 == "S")
+			{
+				TitleScreen();
+			}
+			else
+			{
+				//Long Intro
+				Console.Clear();
+				foreach (char i in endText1)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				
+				foreach (char i in endText2)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				
+				foreach (char i in endText3)
+				{
+					Console.Write(i);
+					Thread.Sleep(1);
+				}
+				Console.WriteLine("\n\nPress ENTER to Proceed...");
+				Console.ReadLine();
+			}
+			TitleScreen();
+		}
+	
+			
+			//Scripted Death 1 - North before entering main building
+			public static void deathNorth()
+
+			{		Console.Clear();
+					Console.WriteLine(@"                                                              
                                   :-=+*############*+=-:.                                 
                             .=+###+=-:.            .:-=+*##*=:                            
                         .=*%*=:.                           :=*%#=.                        
