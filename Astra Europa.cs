@@ -570,6 +570,12 @@ namespace ConsoleApp1
 			while (playerLocation == 32)
 			{
 				Console.Clear();
+				Console.WriteLine("You’ve been walking for hours and are starting to pass in and out of consciousness");
+				Console.WriteLine("due to lack of oxygen, you’ve gone too far to turn back now this is the end of your journey.");
+				oxygen = oxygenReturn(oxygen);
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine($"\nOxygen Supply at {oxygen}% capacity\n");
+				Console.ForegroundColor = ConsoleColor.White;
 				switch (playerInput())
 				{
 					case "":
