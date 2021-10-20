@@ -323,7 +323,7 @@ namespace ConsoleApp1
 
 			Console.Clear();
 			Console.WriteLine("Fear takes you as you a giant rabid grizzly bear");
-			Console.WriteLine("faces you down, some sort of twisted experiment gone wrong");
+			Console.WriteLine("faces you, some sort of twisted experiment gone wrong");
 			Console.WriteLine("what were they doing here?");
 			Thread.Sleep(2000);
 			while (playerHealth > 0 && monsterHealth > 0)
@@ -429,6 +429,7 @@ namespace ConsoleApp1
 							{
 								playerHealth = playerHealth - (creatureHit - 4);
 								Console.WriteLine($"You block some of the attack, taking {creatureHit - 4} damage");
+								Thread.Sleep(2000);
 							}
 						}
 						else
@@ -1601,6 +1602,10 @@ namespace ConsoleApp1
 		public static void room16()
 		{
 			playerLocation = 16;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 16)
 			{
 				Console.Clear();
@@ -1637,6 +1642,10 @@ namespace ConsoleApp1
 		public static void room17()
 		{
 			playerLocation = 17;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 17)
 			{
 				Console.Clear();
@@ -1676,6 +1685,10 @@ namespace ConsoleApp1
 		public static void room18()
         {
 			playerLocation = 18;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 18)
 			{
 				Console.Clear();
@@ -1726,6 +1739,10 @@ namespace ConsoleApp1
 		public static void room19()
 		{
 			playerLocation = 19;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 19)
 			{
 				Console.Clear();
@@ -1755,6 +1772,10 @@ namespace ConsoleApp1
 		public static void room20()
 		{
 			playerLocation = 20;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 20)
 			{
 				Console.Clear();
@@ -1802,6 +1823,10 @@ namespace ConsoleApp1
 		public static void room21()
 		{
 			playerLocation = 21;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 21)
 			{
 				Console.Clear();
@@ -1848,6 +1873,10 @@ namespace ConsoleApp1
 		public static void room22()
 		{
 			playerLocation = 22;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 22)
 			{
 				Console.Clear();
@@ -1894,6 +1923,10 @@ namespace ConsoleApp1
 		public static void room23()
 		{
 			playerLocation = 23;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 23)
 			{
 				Console.Clear();
@@ -1940,6 +1973,10 @@ namespace ConsoleApp1
 		public static void room24()
 		{
 			playerLocation = 24;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 24)
 			{
 				Console.Clear();
@@ -1987,6 +2024,10 @@ namespace ConsoleApp1
 		public static void room25()
 		{
 			playerLocation = 25;
+			if (playerLocation == monster2Location && monster2 == true)
+			{
+				Combat2();
+			}
 			while (playerLocation == 25)
 			{
 				Console.Clear();
@@ -2357,6 +2398,7 @@ namespace ConsoleApp1
 					while (monster1Location == 3)
 					{
 						monster1Location = rand.Next(1, 11);
+						monster2Location = rand.Next(16, 25);
 					}
 					Console.Clear();
 					introScreen();
