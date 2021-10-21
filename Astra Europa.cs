@@ -24,7 +24,7 @@ namespace ConsoleApp1
 
 		/* - Notebook -
 		 * Add notes/clues to the clues array.
-		 * When the player finds a clue, pass the index of the clue from the array to the addNote() method.
+		 * When the player finds a clue, pass the index of the clue from the clues array to the addNote() method.
 		 * This will record the note and update the cluesFound array.
 		 * To check if the player has found a clue, use: if (cluesFound[clues Index]), see comments above cluesFound[] for more detail
 		 * See the test rooms for examples
@@ -35,9 +35,10 @@ namespace ConsoleApp1
 		// Notes/clues go here, pass the index of the note to the addNote() method to record the note in the notebook
 		public static string[] clues = new string[]
 		{
-			"This is a clue to riddle",
-			"This is another clue",
-			"Information about solving a riddle"
+			"Written on the side of the Power Couplings, I found this message: \"What can run but never walks\"",
+			"I found this engraved into the Hyperdrive: \"has a mouth but never talks\".",
+			"A note attached to the Fins read, \"has a head but never weeps\"",
+			"I found a note on the Oxidizer which read, \"has a bed but never sleeps?\""
 		};
 		// This array, cluesFound, contains an equal number of false (default value for bool) values to the clues array.
 		// When a note/clue is added to the notebook, the index in cluesFound that corresponds to to the clue added is changed to true,
@@ -46,8 +47,7 @@ namespace ConsoleApp1
 		// We can check if the note is added by: if (cluesFound[1])
 		public static bool[] cluesFound = new bool [clues.Length];
 		// the shipParts array is used to check against the player inventory
-		// the part names I have used here are just placeholders
-		public static string[] shipParts = new string[] { "Windscreen", "Engine", "Exhaust Pipe", "Warp Drive", "Flux Capacitor" };
+		public static string[] shipParts = new string[] { "Power Couplings", "Hyperdrive", "Fins", "Oxidizer" };
 
 		// This method add notes/clues to the notebook string and updates the cluesFound array
 		public static void addNote(int clueInd)
@@ -61,16 +61,16 @@ namespace ConsoleApp1
 		// This method formats and displays the notebook
 		public static void readNotebook()
         {
-            Console.WriteLine("\n- Page 1 -\nShip parts:");
+            Console.WriteLine("\n- Page 1 -\n\nShip parts:");
 			foreach (string s in shipParts)
 			{
 				if (inventory.Contains(s))
 				{
-                    Console.WriteLine("FOUND: " + s);
+                    Console.WriteLine("FOUND - " + s);
 				}
                 else
                 {
-					Console.WriteLine("MISSING: " + s);
+					Console.WriteLine("MISSING - " + s);
 				}
 			}
             Console.WriteLine(notebook);
@@ -134,8 +134,8 @@ namespace ConsoleApp1
                     break;
 
             }
-            Console.WriteLine(playerInput);
-			Console.ReadKey();
+            //Console.WriteLine(playerInput);
+			//Console.ReadKey();
             return playerInput;
         }
 
@@ -143,7 +143,7 @@ namespace ConsoleApp1
 		 * To add items to inventory use inventory.Add("Item Name")
 		 * To check if an item is in the inventory use inventory.Contains("Item Name") - this returns a bool
 		 * */
-        public static List<string> inventory = new List<string> { "Notebook", "Pencil", "Radio" };
+        public static List<string> inventory = new List<string> { "Notebook" };
 		// This method formats a string that contains the inventory items
 		public static void showInventory()
         {
@@ -1203,6 +1203,8 @@ namespace ConsoleApp1
 						room73();
 						break;
 					case "west":
+						Console.WriteLine("You step through the automatic door that struggles to open.");
+						Thread.Sleep(1500);
 						room72();
 						break;
 					case "east":
@@ -1224,13 +1226,12 @@ namespace ConsoleApp1
 			while (playerLocation == 72)
 			{
 				Console.Clear();
-				if(!inventory.Contains("power couplings"))
+                Console.WriteLine("You are in a dimly lit room.");
+				if (!inventory.Contains("Power Couplings"))
                 {
-					Console.WriteLine("You step through the automatic door that struggles to open and find");
-					Console.WriteLine("sitting on a table in the corner of this dark section another ship component,");
-					Console.WriteLine("Power Couplings and once again on the side you find more (What can run but never walks,). You take note of this.");
+					Console.WriteLine("Sitting on a table in the corner of this dark section is another ship component, the Power Couplings");
 				}
-                else { Console.WriteLine("You are back in the room where you found the Power Couplings"); }
+                else { Console.WriteLine("In the corner is the table where you found the Power Couplings."); }
 				switch (playerInput())
 				{
 					case "":
@@ -1238,7 +1239,13 @@ namespace ConsoleApp1
 					case "east":
 						room71();
 						break;
-					//case to get item
+					case "get couplings":
+					case "get power couplings":
+						Console.WriteLine("You take the Power Couplings. On the side is scrawled \"What can run but never walks\". You record it in your notebook.");
+						Thread.Sleep(4000);
+						inventory.Add("Power Couplings");
+						addNote(0);
+						break;
 					default:
 						Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
@@ -1304,6 +1311,7 @@ namespace ConsoleApp1
 						room73();
 						break;
 					case "get blue keycard":
+					case "get keycard":
 						Console.WriteLine("You pick up the blue keycard.");
 						inventory.Add("Blue Keycard");
 						Thread.Sleep(500);
@@ -1329,13 +1337,14 @@ namespace ConsoleApp1
 			while (playerLocation == 8)
 			{
 				Console.Clear();
-				if(!inventory.Contains("hyperdrive"))
+				Console.WriteLine("You are in a plain dining room. This is probably where the regular crew ate their meals.");
+                Console.WriteLine("There are doors to your north, east, and west.");
+				if (!inventory.Contains("Hyperdrive"))
                 {
-					Console.WriteLine("You pass through the now unlocked door and see laying on the table in the");
-					Console.WriteLine("middle of the room a ship component, the hyperdrive, you remember how vital");
-					Console.WriteLine("repairing your ship is. On the side of the part is (has a mouth but never talks), this seems important.");
+                    Console.WriteLine("Laying on the table in the middle of the room is a ship component, the Hyperdrive.");
+					Console.WriteLine("You remember how vital repairing your ship is.");
                 }
-                else { Console.WriteLine("You are passing back through the room where you found the Hyperdrive with the clue."); }
+                //else { Console.WriteLine("You are passing back through the room where you found the Hyperdrive with the clue."); }
 				switch (playerInput())
 				{
 					case "":
@@ -1357,7 +1366,13 @@ namespace ConsoleApp1
 					case "north":
 						room7();
 						break;
-					//case to get item
+					case "get hyperdrive":
+                        Console.WriteLine("You pick up the Hyperdrive. A message has been etched into its surface: \"has a mouth but never talks\".");
+                        Console.WriteLine("This seems important so you record it in your notebook.");
+						inventory.Add("Hyperdrive");
+						addNote(1);
+						Thread.Sleep(4000);
+						break;
 					default:
 						Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
@@ -1392,6 +1407,7 @@ namespace ConsoleApp1
 						room10();
 						break;
 					case "get red keycard":
+					case "get keycard":
 						Console.WriteLine("You pick up the red keycard.");
 						inventory.Add("Red Keycard");
 						Thread.Sleep(500);
@@ -1495,16 +1511,12 @@ namespace ConsoleApp1
 			while (playerLocation == 12)
 			{
 				Console.Clear();
+				Console.WriteLine("This room looks like an old bedroom.");
+				Console.WriteLine("Your options are north or east.");
 				if (!inventory.Contains("Fins"))
-				{
-					Console.WriteLine("This room looks like an old bedroom.");
-					Console.WriteLine("In the corner of this room lies some fins for a ship. Fins has been added to your inventory");
-					inventory.Add("Fins");
-					Console.WriteLine("A note attached to your ship part has also been added to your inventory (has a head but never weeps)");
-					Console.WriteLine("who knows might come in handy later.");
-					Console.WriteLine("Your options are north or east.");
-				}
-				else { Console.WriteLine("This room looks like an old bedroom."); }				
+				{				
+					Console.WriteLine("In the corner of this room lies some fins for a ship.");
+				}		
 
 				switch (playerInput())
 				{
@@ -1518,7 +1530,13 @@ namespace ConsoleApp1
 						Console.WriteLine("You head east through a hallway into a cramped room, you are now in room 17.");
 						room17();
 						break;
-					//case to get item
+					case "get fins":
+						Console.WriteLine("A note is attached to the Fins. It reads, \"has a head but never weeps\".");
+						Console.WriteLine("Who knows, might come in handy later. You jot it down in your notebook");
+						inventory.Add("Fins");
+						addNote(2);
+						Thread.Sleep(4000);
+						break;
 					default:
 						Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
@@ -1583,21 +1601,13 @@ namespace ConsoleApp1
 			while (playerLocation == 14)
 			{
 				Console.Clear();
-				if (!inventory.Contains("Fins"))
+				Console.WriteLine("This room has a clear roof, you get a nice view of the stars");
+				Console.WriteLine("Your only option is to head north");
+				if (!inventory.Contains("Oxidizer"))
 				{
-					Console.WriteLine("This room has a clear roof, you get a nice view of the stars");
-					Console.WriteLine("In the corner of the room lies an oxidizer, very key to survival onboard the ship...");
-					Console.WriteLine("Oxidizer has been added to your inventory");
-					inventory.Add("Oxidizer");
-					Console.WriteLine("A note attached to your ship part has also been added to your inventory (has a bed but never sleeps?)");
-					Console.WriteLine("Seems to be some kind of riddle or something.");
-					Console.WriteLine("Your only option is to head north");
-				}
-				else { 
-					Console.WriteLine("This room has a clear roof, you get a nice view of the stars");
-					Console.WriteLine("Your only option is to head north");
-				}			
-				// need to add riddle to notepad				
+					Console.WriteLine("In the corner of the room lies an Oxidizer, very key to survival onboard the ship...");	
+					Console.WriteLine("Your only option is to head north.");
+				}					
 				switch (playerInput())
 				{
 					case "":
@@ -1606,7 +1616,15 @@ namespace ConsoleApp1
 						Console.WriteLine("You head north back to room 13");
 						room13();
 						break;
-					//case to get item
+					case "get oxidizer":
+						Console.WriteLine("You pick up the oxidizer and notice a note is attached.");
+						Console.WriteLine("The note reads, \"has a bed but never sleeps?\"");
+						Console.WriteLine("Seems to be some kind of riddle or something.");
+                        Console.WriteLine("You record it in your notebook.");
+						inventory.Add("Oxidizer");
+						addNote(3);
+						Thread.Sleep(3000);
+						break;
 					default:
                         Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
@@ -3027,6 +3045,7 @@ namespace ConsoleApp1
 
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 			//airlock();
+			//room14();
         }
     }
 }
