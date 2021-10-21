@@ -160,10 +160,38 @@ namespace ConsoleApp1
 			Console.ReadLine();
         }
 
+		public static void Reset()
+        {
+			// player 
+			playerHealth = 20;
+			phaserAmmo = 5;
+			// doors
+			doorE3 = false; doorE13 = false; doorE16 = false; doorS17 = false; doorN14 = false; doorS20 = false; doorE74 = false; doorS13 = false;
+			// puzzle doors:
+			doorS21 = false; doorS22 = false; doorS23 = false; doorS24 = false; doorE25 = false;
+			// test doors
+			doorET1 = false; doorST2 = false;
+			// combat
+			monster1 = true; monster2 = true;
+			monster1Location = 3;
+			phaserAmmo = 5;
+			//fires
+			fireWest = true; fireNorth = true; fireEast = true;
+			//oxygen
+			oxygen = 100;
+			//Controls Menu return value
+			controlsReturn = 1;
+			// notebook
+			notebook = "";
+			cluesFound = new bool[clues.Length];
+			pageNo = 2;
+			//inventory
+			inventory = new List<string> { "Notebook" };
+	}
 
 
-        //COMBAT ONE
-        public static void Combat1()
+		//COMBAT ONE
+		public static void Combat1()
         {
 
             int monsterHealth = 15, playerHit, creatureHit;
@@ -2546,6 +2574,7 @@ namespace ConsoleApp1
 			switch (temp)
 			{
 				case "PLAY":
+					Reset();
 					while (monster1Location == 3)
 					{
 						monster1Location = rand.Next(1, 11);
@@ -3138,7 +3167,7 @@ namespace ConsoleApp1
 		 GRIZZLY BEAR IS OP, needs nerf and/or there should be medkits/health potions to mitigate damage
 		The dialog was sometimes too fast to read, it might be best to use Console.ReadLine() after longer passages.
 		I have commented above the rooms where room numbers are used in dialog, this should be changed eventually.
-		Also we need a method to reset all the values in the game, because currently after you die and restart the inventory/doors/etc remain the same.
+		Also we need a method to reset all the values in the game, because currently after you die and restart the inventory/doors/etc remain the same. done Jg
 		Otherwise it is all looking good
 		-JG
 		*/
