@@ -181,7 +181,7 @@ namespace ConsoleApp1
                 bool combatInput = false;
                 playerBlock = false;
                 Console.Clear();
-				if (inventory.Contains("phaser"))
+				if (inventory.Contains("Phaser"))
 				{
 					Console.WriteLine($"Your Health {playerHealth}");
 					Console.WriteLine($"Crazed Spaceman's Health {monsterHealth}");
@@ -222,7 +222,7 @@ namespace ConsoleApp1
                             Thread.Sleep(1000);
                             break;
 						case "shoot":
-							if (inventory.Contains("phaser"))
+							if (inventory.Contains("Phaser"))
 							{
 								if (phaserAmmo == 0)
 								{
@@ -251,14 +251,14 @@ namespace ConsoleApp1
 							}
 							else
 							{
-								Console.WriteLine("Invaild Input");
+								Console.WriteLine("Invalid Input");
 								Thread.Sleep(1000);
 								combatInput = false;
 							}
 							break;
 
 						default:
-                            Console.WriteLine("Invaild Input");
+                            Console.WriteLine("Invalid Input");
                             Thread.Sleep(1000);
                             break;
                     }
@@ -339,7 +339,7 @@ namespace ConsoleApp1
 				bool combatInput = false;
 				playerBlock = false;
 				Console.Clear();
-				if (inventory.Contains("phaser"))
+				if (inventory.Contains("Phaser"))
 				{
 					Console.WriteLine($"Your Health {playerHealth}");
 					Console.WriteLine($"Bears Health {monsterHealth}");
@@ -379,7 +379,7 @@ namespace ConsoleApp1
 							Thread.Sleep(1000);
 							break;
 						case "shoot":
-							if (inventory.Contains("phaser"))
+							if (inventory.Contains("Phaser"))
 							{
 								if (phaserAmmo == 0)
 								{
@@ -408,13 +408,13 @@ namespace ConsoleApp1
 							}
 							else
 							{
-								Console.WriteLine("Invaild Input");
+								Console.WriteLine("Invalid Input");
 								Thread.Sleep(1000);
 								combatInput = false;
 							}
 							break;
 						default:
-							Console.WriteLine("Invaild Input");
+							Console.WriteLine("Invalid Input");
 							Thread.Sleep(1000);
 							break;
 					}
@@ -459,13 +459,13 @@ namespace ConsoleApp1
 			{
 				if (playerHealth > monsterHealth)
 				{
-					Console.WriteLine("The bear slumps over, finally free of its torment");
+					Console.WriteLine("The bear slumps over, finally free of it's torment");
 					monster2 = false;
 					Thread.Sleep(2000);
 				}
 				else
 				{
-                    Console.WriteLine("You are easily overpowerd by the monsterous bear, this is going to hurt");
+                    Console.WriteLine("You are easily overpowered by the monsterous bear, this is going to hurt");
 					Thread.Sleep(2000);
 					genericDeath();
 
@@ -703,14 +703,17 @@ namespace ConsoleApp1
 		}
 
 		//Airlock
+		// I've added a little to the description -JG
 		public static void airlock()
 		{
 			playerLocation = 29;
 			while (playerLocation == 29)
 			{
 				Console.Clear();
+                Console.WriteLine("You are in the airlock of your ship.");
 				Console.WriteLine("Now the blazes are under control its time to set off in");
-                Console.WriteLine("search of the crucial components needed for repairs.");	
+                Console.WriteLine("search of the crucial components needed for repairs.");
+                Console.WriteLine("To your east is the alien terrain.");
 				switch (playerInput())
 				{
 					case "":
@@ -720,6 +723,10 @@ namespace ConsoleApp1
 						break;
 
 					case "east":
+                        Console.WriteLine("You brace yourself as the airlock cycles.");
+                        Console.WriteLine("The external door slowly creaks open and an unforgiving desert emerges.");
+                        Console.WriteLine("You take a deep breath and proceed into the barren wasteland.");
+						Thread.Sleep(4000);
 						wasteland();
 						break;
 
@@ -1024,7 +1031,7 @@ namespace ConsoleApp1
 			while (playerLocation == 3)
 			{
 				Console.Clear();
-				Console.WriteLine("There are three doors before you, the one to the east has a red icon on the control panel.");
+				Console.WriteLine("There are three doors before you, north, east, and south. \nThe one to the east has a red icon on the control panel.");
                 Console.WriteLine("To the west is the airlock to the surface.");
 				// I have added this description after the lever in the wasteland because of possibility player goes north initially and returns without keycard -JG
 				//if(!inventory.Contains("red keycard"))
@@ -1179,7 +1186,8 @@ namespace ConsoleApp1
 			while (playerLocation == 7)
 			{
 				Console.Clear();
-				Console.WriteLine("This room has a staircase that goes up to what seems to be a second floor. Your options are south or west.");
+				Console.WriteLine("To the west is a staircase that goes up to what seems to be a second floor.");
+                Console.WriteLine("South leads back to the dining room.");
 				switch (playerInput())
 				{
 					case "":
@@ -1208,7 +1216,9 @@ namespace ConsoleApp1
 			while (playerLocation == 71)
 			{
 				Console.Clear();
-				Console.WriteLine("You enter the first section of the second floor of the colony station. Your options are north, east and west");
+				Console.WriteLine("You enter the first section of the second floor of the colony station.");
+                Console.WriteLine("There is a door to the west and a passage to the north.");
+                Console.WriteLine("To the east stairs descend down to the first floor.");
 				switch (playerInput())
 				{
 					case "":
@@ -1249,6 +1259,7 @@ namespace ConsoleApp1
 					Console.WriteLine("Sitting on a table in the corner of this dark section is another ship component, the Power Couplings");
 				}
                 else { Console.WriteLine("In the corner is the table where you found the Power Couplings."); }
+                Console.WriteLine("To the east a door leads back to from whence you came.");
 				switch (playerInput())
 				{
 					case "":
@@ -1315,7 +1326,8 @@ namespace ConsoleApp1
 			while (playerLocation == 74)
 			{
 				Console.Clear();
-				if(!inventory.Contains("blue keycard"))
+				Console.WriteLine("You are in the security room. A mangled body, probably the guard, lays on the ground.");
+				if (!inventory.Contains("Blue Keycard"))
                 {
 					Console.WriteLine("Around the neck of the corpse hangs a blue keycard.");
 				}
@@ -1356,7 +1368,7 @@ namespace ConsoleApp1
 			while (playerLocation == 8)
 			{
 				Console.Clear();
-				Console.WriteLine("You are in a plain dining room. This is probably where the regular crew ate their meals.");
+				Console.WriteLine("This is a plain dining room, probably where the regular crew ate their meals.");
                 Console.WriteLine("There are doors to your north, east, and west.");
 				if (!inventory.Contains("Hyperdrive"))
                 {
@@ -1401,10 +1413,10 @@ namespace ConsoleApp1
 		}
 
 		// Room 9 if statement needed if player revisits
-		// I've changed this because we already had a keycard on a body -JG
+		// I've changed this room because we already had a keycard on a body -JG
 		public static void room9()
 		{
-            Console.WriteLine("You are in an office of some kind. It has been totally ransacked. Smashed furniture is scattered across the floor.");
+            
 			playerLocation = 9;
 			if (playerLocation == monster1Location && monster1 == true)
 			{
@@ -1419,10 +1431,12 @@ namespace ConsoleApp1
 				//	Console.WriteLine("you step slowly towards it and find a red key card, this could be useful.");
 				//}
 				//            else { Console.WriteLine("You are back in the room where you found the red key card on the body"); }
-				if (!inventory.Contains("red keycard"))
+				Console.WriteLine("You are in an office of some kind. It has been totally ransacked. Smashed furniture is scattered across the floor.");
+				if (!inventory.Contains("Red Keycard"))
                 {
                     Console.WriteLine("Amongst the debris you spot what appears to be a red keycard.");
                 }
+                Console.WriteLine("The junction room is to the south.");
 					switch (playerInput())
 				{
 					case "":
@@ -1494,7 +1508,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
-				if (!inventory.Contains("phaser"))
+				if (!inventory.Contains("Phaser"))
 				{
 					Console.WriteLine("During a brief moment of light, you spy what looks like a phaser.");
 				}
@@ -1739,6 +1753,7 @@ namespace ConsoleApp1
 		}
 		// Room 17
 		// consider not using room numbers in descriptions -JG
+		// I've added a case for north to room 16 and changed the description accordingly
 		public static void room17()
 		{
 			playerLocation = 17;
@@ -1750,7 +1765,7 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("This room is a perfect square.. no windows.. no nothing");
-				Console.WriteLine("Your options are west or south");
+				Console.WriteLine("Your options are north, west, or south");
 				switch (playerInput())
 				{
 					case "":
@@ -1774,6 +1789,11 @@ namespace ConsoleApp1
                         Console.WriteLine("You travel west and enter room 12");
 						Thread.Sleep(1000);
 						room12();
+						break;
+					case "north":
+						Console.WriteLine("You travel north and enter room 16");
+						Thread.Sleep(1000);
+						room16();
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
@@ -1944,9 +1964,9 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("There is a sign on the wall stating");
-				Console.WriteLine("'player must have all 4 notes and 4 ship parts in order to answer all questions'");
+				Console.WriteLine("'player must have all 4 clues and 4 ship parts in order to answer all questions'");
 				Console.WriteLine("A red light is flashing indicating the door is locked...");
-                Console.WriteLine("Slightly to the write of the door is a keyboard and monitor....");
+                Console.WriteLine("Slightly to the right of the door is a keyboard and monitor....");
 				Console.WriteLine("The screen reads enter part 1 ( 6 words )");
 				switch (playerInput())
 				{
@@ -1956,6 +1976,7 @@ namespace ConsoleApp1
 						doorS21 = true;
 						Console.WriteLine("The light flashes green, and the door opens..");
 						Console.WriteLine("You can either travel south to the next room or head back west where you come from");
+						Thread.Sleep(2000);
 						break;
 					// puzzle door
 					case "south":
@@ -3108,10 +3129,18 @@ namespace ConsoleApp1
 			//testRoom1();
 			
 			TitleScreen();
-
+			//room24();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 			//airlock();
 			//room14();
         }
+		/* Thoughts after playtesting:
+		 GRIZZLY BEAR IS OP, needs nerf and/or there should be medkits/health potions to mitigate damage
+		The dialog was sometimes too fast to read, it might be best to use Console.ReadLine() after longer passages.
+		I have commented above the rooms where room numbers are used in dialog, this should be changed eventually.
+		Also we need a method to reset all the values in the game, because currently after you die and restart the inventory/doors/etc remain the same.
+		Otherwise it is all looking good
+		-JG
+		*/
     }
 }
