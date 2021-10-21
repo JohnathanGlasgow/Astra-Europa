@@ -353,7 +353,7 @@ namespace ConsoleApp1
 		//COMBAT TWO
 		public static void Combat2()
 		{
-			int monsterHealth = 40, playerHit, creatureHit;
+			int monsterHealth = 35, playerHit, creatureHit;
 			bool playerBlock;
 			Random rand = new Random();
 
@@ -419,8 +419,8 @@ namespace ConsoleApp1
 								{
 									combatInput = true;
 									phaserAmmo--;
-									playerHit = rand.Next(12);
-									if (playerHit > 2)
+									playerHit = rand.Next(14);
+									if (playerHit > 1)
 									{
 										Console.WriteLine($"You do {playerHit + 5} points of damage");
 										monsterHealth = monsterHealth - (playerHit + 5);
@@ -450,7 +450,7 @@ namespace ConsoleApp1
 
 				if (monsterHealth > 0)
 				{
-					creatureHit = rand.Next(11);
+					creatureHit = rand.Next(9);
 					if (creatureHit != 0)
 					{
 						if (playerBlock == true)
