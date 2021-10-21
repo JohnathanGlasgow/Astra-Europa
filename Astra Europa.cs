@@ -89,6 +89,12 @@ namespace ConsoleApp1
             string playerInput = Console.ReadLine().ToLower();
             playerInput = playerInput.Replace("pick up", "get");
 			playerInput = playerInput.Replace("take", "get");
+			if (playerInput.Contains("ex"))
+			{
+				playerInput = playerInput.Replace("extinguisher", "ex");
+				playerInput = playerInput.Replace("extinguish", "ex");
+				playerInput = playerInput.Replace("fire ex", "ex");
+			}
 			switch (playerInput)
             {
                 case "inventory":
@@ -114,20 +120,22 @@ namespace ConsoleApp1
                     Console.ReadLine();
                     playerInput = "";
                     break;
-				case "n":
-					playerInput = "north";
-					break;
-				case "e":
-					playerInput = "east";
-					break;
-				case "s":
-					playerInput = "south";
-					break;
-				case "w":
-					playerInput = "west";
-					break;
-					
-			}
+                case "n":
+                    playerInput = "north";
+                    break;
+                case "e":
+                    playerInput = "east";
+                    break;
+                case "s":
+                    playerInput = "south";
+                    break;
+                case "w":
+                    playerInput = "west";
+                    break;
+
+            }
+            Console.WriteLine(playerInput);
+			Console.ReadKey();
             return playerInput;
         }
 
@@ -535,7 +543,9 @@ namespace ConsoleApp1
                         }
 						break;
 
-					case "extinguish east":
+					case "ex east":
+					case "ex e":
+					case "ex fire to east":
 						if (inventory.Contains("Fire Extinguisher") && (fireEast == true && fireWest == false && fireNorth == false))
                         {
 							fireEast = false;
@@ -563,7 +573,9 @@ namespace ConsoleApp1
                         }
 						break;
 
-					case "extinguish north":
+					case "ex north":
+					case "ex n":
+					case "ex fire to north":
 						if (inventory.Contains("Fire Extinguisher"))
 						{
 							fireNorth = false;
@@ -591,7 +603,9 @@ namespace ConsoleApp1
                         }
 						break;
 
-					case "extinguish west":
+					case "ex west":
+					case "ex w":
+					case "ex fire to west":
 						if (inventory.Contains("Fire Extinguisher"))
 						{
 							fireWest = false;
@@ -604,6 +618,38 @@ namespace ConsoleApp1
 							Thread.Sleep(1500);
 						}
 						break;
+
+					case "use ex":
+					case "ex fire":
+					case "ex":
+						if (fireEast)
+                        {
+                            Console.WriteLine("You need to point the extinguisher in the direction of a fire.");
+							if (fireNorth && fireWest)
+                            {
+                                Console.WriteLine("There are fires to your north, east, and west.");
+                            }
+							else if (fireNorth && !fireWest)
+							{
+								Console.WriteLine("There are fires to your north and east.");
+							}
+							else if (!fireNorth && fireWest)
+							{
+								Console.WriteLine("There are fires to your east and west.");
+							}
+							else
+                            {
+                                Console.WriteLine("A fire remains to your east.");
+                            }
+							Thread.Sleep(3000);
+						}
+						else
+                        {
+                            Console.WriteLine("You have already put out the fires.");
+							Thread.Sleep(1500);
+						}
+						break;
+					
 
 					default:
 						Console.WriteLine("Invalid Input");
@@ -638,8 +684,8 @@ namespace ConsoleApp1
 				{
 					case "":
 						break;
-					case "get fire extinguisher":
-					case "get extinguisher":
+					case "get fire ex":
+					case "get ex":
 						Console.WriteLine("You pick up the fire extinguisher, ");
 						Console.WriteLine("This will be vital in saving what remains of your command centre, no time to waste.");
 						inventory.Add("Fire Extinguisher");
