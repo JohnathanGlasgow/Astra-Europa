@@ -920,7 +920,7 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("With each breath you take your oxygen levels are gradually depleting,");
                 Console.WriteLine("you make your way down a steep slope. Once you are at the bottom you notice what seams");
-                Console.WriteLine("to be a structure of some kind. The structure begins to revel is shape more and more with");	
+                Console.WriteLine("to be a structure of some kind. The structure begins to reveal its shape more and more with");	
                 Console.WriteLine("each step you take. Finally, you reach the structure, and it is now clear to you that is");
                 Console.WriteLine("an abandoned colony station. In front of you see a door with a lever.");
 				oxygen = oxygenReturn(oxygen);
@@ -934,8 +934,11 @@ namespace ConsoleApp1
 
 					case "use lever":
 					case "pull lever":
-                        Console.WriteLine("YOU PULL THE LEVER AND ENTER");
-						Thread.Sleep(500);
+                        Console.WriteLine("You pull the lever and the door opens.");
+						Console.WriteLine("You step into the airlock of the colony station,");
+						Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");
+						Console.WriteLine("remove your helmet and move ahead.");
+						Thread.Sleep(4000);
 						room3();
 						break;
 
@@ -1012,7 +1015,8 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 3, if statement needed for when player revisits room 3.
+		// Room 3, if statement needed for when player revisits room 3
+		// Consider blocking off wasteland after player enters colony -JG
 		public static void room3()
 		{
 			playerLocation = 3;
@@ -1020,15 +1024,19 @@ namespace ConsoleApp1
 			while (playerLocation == 3)
 			{
 				Console.Clear();
-				if(!inventory.Contains("red keycard"))
-                {
-					Console.WriteLine("You step outside into the airlock of the colony station,");
-					Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");
-					Console.WriteLine("remove your helmet. There are three doors before you, the one to the");
-					Console.WriteLine("east has a red icon on the control panel, an item is needed before entry is granted, it says.");
+				Console.WriteLine("There are three doors before you, the one to the east has a red icon on the control panel.");
+                Console.WriteLine("To the west is the airlock to the surface.");
+				// I have added this description after the lever in the wasteland because of possibility player goes north initially and returns without keycard -JG
+				//if(!inventory.Contains("red keycard"))
+				//            {
+				//					Console.WriteLine("You step into the airlock of the colony station,");
+				//					Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");
+				//					Console.WriteLine("remove your helmet and move ahead.");
+				//					Console.WriteLine( "There are three doors before you, the one to the") ;
+				//					Console.WriteLine("east has a red icon on the control panel, an item is needed before entry is granted, it says.");
 
-				}
-                else { Console.WriteLine("You have entered the first section of the colony station where the airlock to the surface is located."); }
+				//}
+				//            else { Console.WriteLine("You have entered the first section of the colony station where the airlock to the surface is located."); }
 				switch (playerInput())
 				{
 					case "":
@@ -1051,6 +1059,8 @@ namespace ConsoleApp1
 						}
 						break;
 					case "south":
+                        Console.WriteLine("You walk through the automatic door.");
+						Thread.Sleep(1000);
 						room4();
 						break;
 					default:
@@ -1072,7 +1082,9 @@ namespace ConsoleApp1
 			while (playerLocation == 4)
 			{
 				Console.Clear();
-				Console.WriteLine("You walk through the automatic door; another long daunting hallway flows from this section to the next. Your options are north or south.");
+				// I moved the traversal description to after "south" in room 3 -JG
+                Console.WriteLine("A long daunting hallway flows before you. Your options are north or south.");
+				//Console.WriteLine("You walk through the automatic door; another long daunting hallway flows from this section to the next. Your options are north or south.");
 				switch (playerInput())
 				{
 					case "":
@@ -1177,6 +1189,8 @@ namespace ConsoleApp1
 						break;
 					case "west":
 					case "go upstairs":
+                        Console.WriteLine("You head up the stairs.");
+						Thread.Sleep(1000);
 						room71();
 						break;
 					default:
@@ -1204,11 +1218,13 @@ namespace ConsoleApp1
 						break;
 					case "west":
 						Console.WriteLine("You step through the automatic door that struggles to open.");
-						Thread.Sleep(1500);
+						Thread.Sleep(1000);
 						room72();
 						break;
 					case "east":
 					case "go downstairs":
+						Console.WriteLine("You go back down the stairs.");
+						Thread.Sleep(1000);
 						room7();
 						break;
 					default:
@@ -1220,6 +1236,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 7.2 if statment needed if player revisits room.
+		// i changed a few things here to make getting the item work with the description -JG
 		public static void room72()
 		{
 			playerLocation = 72;
@@ -1290,18 +1307,19 @@ namespace ConsoleApp1
 		}
 
 		// Room 7.4 if statement needed if player revisits
+		// I've changed this a bit to make getting the keycard work better with the description -JG
 		public static void room74()
 		{
+            Console.WriteLine("You are in the security room. A mangled body, probably the guard, lays on the ground.");
 			playerLocation = 74;
 			while (playerLocation == 74)
 			{
 				Console.Clear();
 				if(!inventory.Contains("blue keycard"))
                 {
-					Console.WriteLine("Within this room you discover another mangled body but this time");
-					Console.WriteLine("you find a blue key card, there must be other doors to be unlocked.");
+					Console.WriteLine("Around the neck of the corpse hangs a blue keycard.");
 				}
-                else { Console.WriteLine("You are back in the room where you found the blue key card on the mangled body."); }
+                //else { Console.WriteLine("You are back in the room where you found the blue key card on the mangled body."); }
 					
 				switch (playerInput())
 				{
@@ -1312,9 +1330,9 @@ namespace ConsoleApp1
 						break;
 					case "get blue keycard":
 					case "get keycard":
-						Console.WriteLine("You pick up the blue keycard.");
+						Console.WriteLine("You remove the keycard from the body.");
 						inventory.Add("Blue Keycard");
-						Thread.Sleep(500);
+						Thread.Sleep(1000);
 						doorE16 = true;
 						doorS13 = true;
 						break;
@@ -1327,6 +1345,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 8 if statement needed if player revisits
+		// I've changed this a bit to make getting the item work better with the description -JG
 		public static void room8()
 		{
 			playerLocation = 8;
@@ -1382,8 +1401,10 @@ namespace ConsoleApp1
 		}
 
 		// Room 9 if statement needed if player revisits
+		// I've changed this because we already had a keycard on a body -JG
 		public static void room9()
 		{
+            Console.WriteLine("You are in an office of some kind. It has been totally ransacked. Smashed furniture is scattered across the floor.");
 			playerLocation = 9;
 			if (playerLocation == monster1Location && monster1 == true)
 			{
@@ -1392,14 +1413,17 @@ namespace ConsoleApp1
 			while (playerLocation == 9)
 			{
 				Console.Clear();
-				if(!inventory.Contains("red keycard"))
+				//if(!inventory.Contains("red keycard"))
+				//            {
+				//	Console.WriteLine("You enter this section and the first thing that catches your eye is a body,");
+				//	Console.WriteLine("you step slowly towards it and find a red key card, this could be useful.");
+				//}
+				//            else { Console.WriteLine("You are back in the room where you found the red key card on the body"); }
+				if (!inventory.Contains("red keycard"))
                 {
-					Console.WriteLine("You enter this section and the first thing that catches your eye is a body,");
-					Console.WriteLine("you step slowly towards it and find a red key card, this could be useful.");
-				}
-                else { Console.WriteLine("You are back in the room where you found the red key card on the body"); }
-					
-				switch (playerInput())
+                    Console.WriteLine("Amongst the debris you spot what appears to be a red keycard.");
+                }
+					switch (playerInput())
 				{
 					case "":
 						break;
@@ -1437,7 +1461,9 @@ namespace ConsoleApp1
 			while (playerLocation == 10)
 			{
 				Console.Clear();
-				Console.WriteLine("This is a junction room with 2 directions you can choose north and east.");
+				// The original description would be confusing if you had entered the room from the north or east so I've changed it -JG
+				Console.WriteLine("This is a junction room with 3 directions you can choose, north, west, and east.");
+				//Console.WriteLine("This is a junction room with 2 directions you can choose, north and east.");
 				switch (playerInput())
 				{
 					case "":
@@ -1460,22 +1486,17 @@ namespace ConsoleApp1
 		}
 
 		// Room 11
+		// consider not using room numbers in descriptions -JG
 		public static void room11()
 		{
 			playerLocation = 11;
 			while (playerLocation == 11)
 			{
 				Console.Clear();
-				if(!inventory.Contains("phaser"))
+				Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
+				if (!inventory.Contains("phaser"))
 				{
-					Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
 					Console.WriteLine("During a brief moment of light, you spy what looks like a phaser.");
-					Thread.Sleep(2000);
-				}
-                else 
-				{
-					Console.WriteLine("This section has flickering lights that are hanging from the ceiling.");
-					Thread.Sleep(2000);
 				}
 				switch (playerInput())
 				{
@@ -1492,9 +1513,9 @@ namespace ConsoleApp1
 						room6();
 						break;
 					case "get phaser":
-                        Console.WriteLine("You pick up the phaser, looks like its good for five shots.");
+                        Console.WriteLine("You pick up the phaser, looks like it's good for five shots.");
 						Thread.Sleep(2000);
-						inventory.Add("phaser");
+						inventory.Add("Phaser");
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
@@ -1505,6 +1526,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 12
+		// consider not using room numbers in descriptions -JG
 		public static void room12()
 		{
 			playerLocation = 12;
@@ -1523,11 +1545,13 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "north":
-						Console.WriteLine("You head north through a door and enter room 11.");					
+						Console.WriteLine("You head north through a door and enter room 11.");
+						Thread.Sleep(1000);
 						room11();
 						break;
 					case "east":
 						Console.WriteLine("You head east through a hallway into a cramped room, you are now in room 17.");
+						Thread.Sleep(1000);
 						room17();
 						break;
 					case "get fins":
@@ -1546,6 +1570,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 13
+		// consider not using room numbers in descriptions -JG
 		public static void room13()
 		{
 			playerLocation = 13;
@@ -1562,6 +1587,7 @@ namespace ConsoleApp1
 						if (doorE13 == true)
 						{
                             Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 18");
+							Thread.Sleep(1000);
 							room18();
 						}
 						else
@@ -1574,6 +1600,7 @@ namespace ConsoleApp1
 						if (doorS13 == true)
 						{
 							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 14.");
+							Thread.Sleep(1000);
 							room14();
 						}
 						else
@@ -1584,6 +1611,7 @@ namespace ConsoleApp1
 						break;
 					case "west":
 						Console.WriteLine("You open the door and head west down a long hallway, you open another door and are now in room 8.");
+						Thread.Sleep(1000);
 						room8();
 						break;
 					default:
@@ -1595,6 +1623,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 14
+		// consider not using room numbers in descriptions -JG
 		public static void room14()
 		{
 			playerLocation = 14;
@@ -1606,7 +1635,6 @@ namespace ConsoleApp1
 				if (!inventory.Contains("Oxidizer"))
 				{
 					Console.WriteLine("In the corner of the room lies an Oxidizer, very key to survival onboard the ship...");	
-					Console.WriteLine("Your only option is to head north.");
 				}					
 				switch (playerInput())
 				{
@@ -1614,6 +1642,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You head north back to room 13");
+						Thread.Sleep(1000);
 						room13();
 						break;
 					case "get oxidizer":
@@ -1623,7 +1652,7 @@ namespace ConsoleApp1
                         Console.WriteLine("You record it in your notebook.");
 						inventory.Add("Oxidizer");
 						addNote(3);
-						Thread.Sleep(3000);
+						Thread.Sleep(4000);
 						break;
 					default:
                         Console.WriteLine("Invalid Input");
@@ -1633,14 +1662,15 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 15 
+		// Room 15
+		// consider not using room numbers in descriptions -JG
 		public static void room15()
 		{
 			playerLocation = 15;
 			while (playerLocation == 15)
 			{
 				Console.Clear();
-				Console.WriteLine("Another tight room, a hallway and a door leading opposite ways.. where to go");
+				Console.WriteLine("Another tight room, a hallway and a door leading opposite ways... where to go");
 				Console.WriteLine("Your options are east or west");
 				switch (playerInput())
 				{
@@ -1648,10 +1678,12 @@ namespace ConsoleApp1
 						break;
 					case "east":
 						Console.WriteLine("You walk down a corridor and enter room 20");
+						Thread.Sleep(1000);
 						room20();
 						break;
 					case "west":
-						Console.WriteLine("You have opened the door and moved west room 10");
+						Console.WriteLine("You have opened the door and moved west to room 10");
+						Thread.Sleep(1000);
 						room10();
 						break;
 					default:
@@ -1663,6 +1695,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 16
+		// consider not using room numbers in descriptions -JG
 		public static void room16()
 		{
 			playerLocation = 16;
@@ -1673,7 +1706,7 @@ namespace ConsoleApp1
 			while (playerLocation == 16)
 			{
 				Console.Clear();
-				Console.WriteLine("Another door which requires a blue key.. you can choose to go east through that door");
+				Console.WriteLine("Another door which requires a blue key... You can choose to go east through that door");
 				Console.WriteLine("or head south through a narrow hallway");
 				switch (playerInput())
 				{
@@ -1683,6 +1716,7 @@ namespace ConsoleApp1
 						if (doorE16 == true)
 						{
 							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 21");
+							Thread.Sleep(1000);
 							room21();
 						}
 						else
@@ -1693,6 +1727,7 @@ namespace ConsoleApp1
 						break;
 					case "south":
 						Console.WriteLine("You head south into the cramped room 17");
+						Thread.Sleep(1000);
 						room17();
 						break;
 					default:
@@ -1703,6 +1738,7 @@ namespace ConsoleApp1
 			}
 		}
 		// Room 17
+		// consider not using room numbers in descriptions -JG
 		public static void room17()
 		{
 			playerLocation = 17;
@@ -1724,17 +1760,19 @@ namespace ConsoleApp1
 						if (doorS17 == true)
 						{
 							Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 18");
+							Thread.Sleep(1000);
 							room18();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
 							Console.WriteLine("You travel back through the hallway to room 17");
-							Thread.Sleep(500);
+							Thread.Sleep(2000);
 						}
 						break;
 					case "west":
                         Console.WriteLine("You travel west and enter room 12");
+						Thread.Sleep(1000);
 						room12();
 						break;
 					default:
@@ -1746,6 +1784,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 18
+		// consider not using room numbers in descriptions -JG
 		public static void room18()
         {
 			playerLocation = 18;
@@ -1756,7 +1795,7 @@ namespace ConsoleApp1
 			while (playerLocation == 18)
 			{
 				Console.Clear();
-				Console.WriteLine("Seems to be an old computer room, very dusty and seems like no one has been around for a while..");
+				Console.WriteLine("Seems to be an old computer room, very dusty and seems like no one has been around for a while...");
 				Console.WriteLine("Your options are north, south or west");
 				switch (playerInput())
 				{
@@ -1767,6 +1806,7 @@ namespace ConsoleApp1
 						{
 							Console.WriteLine("Red door requires a red key to open... you open the door with the red key and travel down a long windy hallway.");
 							Console.WriteLine("you enter room 17");
+							Thread.Sleep(2000);
 							room17();
 						}
 						else
@@ -1777,12 +1817,14 @@ namespace ConsoleApp1
 						break;
 					case "south":
 						Console.WriteLine("You travel south and enter room 19");
+						Thread.Sleep(1000);
 						room19();
 						break;
 					case "west":
 						if (doorE13 == true)
 						{
                             Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 13");
+							Thread.Sleep(2000);
 							room13();
 						}
 						else
@@ -1800,6 +1842,7 @@ namespace ConsoleApp1
 		}
 
 		// Room 19
+		// consider not using room numbers in descriptions -JG
 		public static void room19()
 		{
 			playerLocation = 19;
@@ -1810,7 +1853,7 @@ namespace ConsoleApp1
 			while (playerLocation == 19)
 			{
 				Console.Clear();
-				Console.WriteLine("You turn on the light switch only to find nothing in this rooom... ");
+				Console.WriteLine("You turn on the light switch only to find nothing in this room... ");
 				Console.WriteLine("Your options are north or south");
 				switch (playerInput())
 				{
@@ -1818,10 +1861,12 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You travel north into room 19");
+						Thread.Sleep(1000);
 						room18();
 						break;
 					case "south":
 						Console.WriteLine("You head south down a staggered hallway and open the door, you enter room 20");
+						Thread.Sleep(2000);
 						room20();
 						break;
 					default:
@@ -1833,6 +1878,7 @@ namespace ConsoleApp1
         }
 
 		// Room 20
+		// consider not using room numbers in descriptions -JG
 		public static void room20()
 		{
 			playerLocation = 20;
@@ -1852,6 +1898,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
                         Console.WriteLine("You open a door and head north down a staggered hallway, you enter room 19");
+						Thread.Sleep(2000);
 						room19();
 						break;
 
@@ -1873,6 +1920,7 @@ namespace ConsoleApp1
 
 					case "west":
 						Console.WriteLine("You travel west through the hallway and enter room 15");
+						Thread.Sleep(2000);
 						room15();
 						break;
 					default:
@@ -1883,7 +1931,8 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 21 
+		// Room 21
+		// consider not using room numbers in descriptions -JG
 		public static void room21()
 		{
 			playerLocation = 21;
@@ -1913,6 +1962,7 @@ namespace ConsoleApp1
 						if (doorS21 == true)
 						{
                             Console.WriteLine("You travel south into the next room");
+							Thread.Sleep(2000);
 							room22();
 						}
 						else
@@ -1923,6 +1973,7 @@ namespace ConsoleApp1
 						break;
 					case "west":
                         Console.WriteLine("You head west back to room 16");
+						Thread.Sleep(2000);
 						room16();
 						break;
 					default:
@@ -1933,7 +1984,8 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 22 
+		// Room 22
+		// consider not using room numbers in descriptions -JG
 		public static void room22()
 		{
 			playerLocation = 22;
@@ -1955,10 +2007,12 @@ namespace ConsoleApp1
 						doorS22 = true;
 						Console.WriteLine("The light flashes green and the door opens");
 						Console.WriteLine("Your options are north where you come from or south through the freshly unlocked door");
+						Thread.Sleep(2000);
 						break;
 					case "north":
                         Console.WriteLine("You travel north back to room 21");
 						Console.WriteLine("Door closes behind you light is now red");
+						Thread.Sleep(2000);
 						doorS21 = false;
 						room21();
 						break;
@@ -1967,12 +2021,13 @@ namespace ConsoleApp1
 						if (doorS22 == true)
 						{
                             Console.WriteLine("You travel south into room 23");
+							Thread.Sleep(2000);
 							room23();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(500);
+							Thread.Sleep(1000);
 						}
 						break;
 					default:
@@ -1983,7 +2038,8 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 23 
+		// Room 23
+		// consider not using room numbers in descriptions -JG
 		public static void room23()
 		{
 			playerLocation = 23;
@@ -2004,12 +2060,14 @@ namespace ConsoleApp1
 					case "hps p hppd bpt npvpr wppps":
 						Console.WriteLine("The light flashes green, the door opens");
 						Console.WriteLine("Your options are back north or carry on south..");
+						Thread.Sleep(2000);
 						doorS23 = true;
 						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 22");
 						Console.WriteLine("Door closes behind you light is now red");
 						doorS22 = false;
+						Thread.Sleep(2000);
 						room22();
 						break;
 					// puzzle door
@@ -2017,12 +2075,13 @@ namespace ConsoleApp1
 						if (doorS23 == true)
 						{
                             Console.WriteLine("You travel south into room 24");
+							Thread.Sleep(1000);
 							room24();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(500);
+							Thread.Sleep(1000);
 						}
 						break;
 					default:
@@ -2033,7 +2092,8 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 24 
+		// Room 24
+		// consider not using room numbers in descriptions -JG
 		public static void room24()
 		{
 			playerLocation = 24;
@@ -2055,11 +2115,13 @@ namespace ConsoleApp1
 					case "hpspbpdbptnpvprslppps":
 						Console.WriteLine("The light flashes green, the door opens");
                         Console.WriteLine("You can either carry on south or return north");
+						Thread.Sleep(2000);
 						doorS24 = true;
 						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 22");
 						Console.WriteLine("Door closes behind you light is now red");
+						Thread.Sleep(2000);
 						doorS23 = false;
 						room23();
 						break;
@@ -2068,12 +2130,13 @@ namespace ConsoleApp1
 						if (doorS24 == true)
 						{
                             Console.WriteLine("You travel south into room 25");
+							Thread.Sleep(1000);
 							room25();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(500);
+							Thread.Sleep(1000);
 						}
 						break;
 					default:
@@ -2084,7 +2147,8 @@ namespace ConsoleApp1
 			}
 		}
 
-		// Room 25 
+		// Room 25
+		// consider not using room numbers in descriptions -JG
 		public static void room25()
 		{
 			playerLocation = 25;
@@ -2105,6 +2169,7 @@ namespace ConsoleApp1
                 else
                 {
 					Console.WriteLine("The light flashes green, a wee smile comes onto your face..");
+					Thread.Sleep(2000);
 					EndScreen();
 					//Console.WriteLine("You can either head east into what is called the 'final room' or back north");
 				}
@@ -2119,22 +2184,23 @@ namespace ConsoleApp1
 					case "north":
 						Console.WriteLine("You travel north back to room 24");
 						Console.WriteLine("Door closes behind you light is now red");
+						Thread.Sleep(2000);
 						doorS24 = false;
 						room24();
 						break;
 					// puzzle door
-					case "east":
-						if (doorE25 == true)
-						{
-                            Console.WriteLine("You head down a long hallway and enter room 26");
-							EndScreen();
-						}
-						else
-						{
-							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(500);
-						}
-						break;
+					//case "east":
+					//	if (doorE25 == true)
+					//	{
+     //                       Console.WriteLine("You head down a long hallway and enter room 26");
+					//		EndScreen();
+					//	}
+					//	else
+					//	{
+					//		Console.WriteLine("The door is locked, you need to answer a question.");
+					//		Thread.Sleep(500);
+					//	}
+					//	break;
 					default:
 						Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
