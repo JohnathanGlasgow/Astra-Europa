@@ -650,34 +650,42 @@ namespace ConsoleApp1
 					case "use ex":
 					case "ex fire":
 					case "ex":
-						if (fireEast)
-                        {
-                            Console.WriteLine("You need to point the extinguisher in the direction of a fire.");
-							if (fireNorth && fireWest)
-                            {
-                                Console.WriteLine("There are fires to your north, east, and west.");
-                            }
-							else if (fireNorth && !fireWest)
+						if (inventory.Contains("Fire Extinguisher"))
+						{
+							if (fireEast)
 							{
-								Console.WriteLine("There are fires to your north and east.");
-							}
-							else if (!fireNorth && fireWest)
-							{
-								Console.WriteLine("There are fires to your east and west.");
+								Console.WriteLine("You need to point the extinguisher in the direction of a fire.");
+								if (fireNorth && fireWest)
+								{
+									Console.WriteLine("There are fires to your north, east, and west.");
+								}
+								else if (fireNorth && !fireWest)
+								{
+									Console.WriteLine("There are fires to your north and east.");
+								}
+								else if (!fireNorth && fireWest)
+								{
+									Console.WriteLine("There are fires to your east and west.");
+								}
+								else
+								{
+									Console.WriteLine("A fire remains to your east.");
+								}
+								Thread.Sleep(3000);
 							}
 							else
-                            {
-                                Console.WriteLine("A fire remains to your east.");
-                            }
-							Thread.Sleep(3000);
+							{
+								Console.WriteLine("You have already put out the fires.");
+								Thread.Sleep(1500);
+							}
+							
 						}
 						else
                         {
-                            Console.WriteLine("You have already put out the fires.");
+                            Console.WriteLine("You lack the means to extinguish the fire.");
 							Thread.Sleep(1500);
 						}
 						break;
-					
 
 					default:
 						Console.WriteLine("Invalid Input");
@@ -1991,11 +1999,13 @@ namespace ConsoleApp1
 			while (playerLocation == 21)
 			{
 				Console.Clear();
-				Console.WriteLine("There is a sign on the wall stating");
-				Console.WriteLine("'player must have all 4 clues and 4 ship parts in order to answer all questions'");
-				Console.WriteLine("A red light is flashing indicating the door is locked...");
-                Console.WriteLine("Slightly to the right of the door is a keyboard and monitor....");
-				Console.WriteLine("The screen reads enter part 1 ( 6 words )");
+				Console.WriteLine("This room would be bare if not for a sign, a door to the south, and a computer console.");
+				Console.WriteLine("The sign states:");
+                //Console.WriteLine("'player must have all 4 clues and 4 ship parts in order to answer all questions'");
+                Console.WriteLine("\n\"Four parts and four clues. The order of the riddle... 'What can' be true?\"\n");
+				Console.WriteLine("A red light is flashing, indicating the door to the south is locked...");
+                Console.WriteLine("Slightly to the right of the door is the console....");
+				Console.WriteLine("The screen reads: \"Enter the first line of the riddle...\"");
 				switch (playerInput())
 				{
 					case "":
@@ -2045,9 +2055,11 @@ namespace ConsoleApp1
 			while (playerLocation == 22)
 			{
 				Console.Clear();
-				Console.WriteLine("This room has the same setup...");
-                Console.WriteLine("There is a sign on the wall saying ‘no spacebars allowed’...");
-                Console.WriteLine("Enter part 2 (6 words)");
+				Console.WriteLine("Like the previous room, this room contains little but");
+                Console.WriteLine("a door to the south alongside a keyboard and a monitor.");
+                Console.WriteLine("The northern door will return you to the previous room.");
+                Console.WriteLine("There is a sign on the wall saying: \n\n\"No spacebars allowed...");
+                Console.WriteLine("Although a mouth may never speak, it is the second line I seek...\"\n");
 				switch (playerInput())
 				{
 					case "":
@@ -2055,12 +2067,12 @@ namespace ConsoleApp1
 					case "hasamouthbutnevertalks":
 						doorS22 = true;
 						Console.WriteLine("The light flashes green and the door opens");
-						Console.WriteLine("Your options are north where you come from or south through the freshly unlocked door");
+						Console.WriteLine("Your options are north where you came from or south through the freshly unlocked door");
 						Thread.Sleep(2000);
 						break;
 					case "north":
                         Console.WriteLine("You travel north back to room 21");
-						Console.WriteLine("Door closes behind you light is now red");
+						Console.WriteLine("The door closes behind you. The light is now red.");
 						Thread.Sleep(2000);
 						doorS21 = false;
 						room21();
@@ -2100,8 +2112,13 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("You realise that these rooms must be leading you somewhere...");
-                Console.WriteLine("This wall has a poster stating: 'a, e, i, o, u = p'");
-                Console.WriteLine("Enter part 3 (6 words)");
+                Console.WriteLine("If you can unlock the next door you may progress further south.");
+                Console.WriteLine("Otherwise you may go north to return to the previous room.");
+				Console.WriteLine("You see a poster on the wall that reads:");
+				Console.WriteLine("\n\"If only you had a head, then surely you would see,");
+                Console.WriteLine("That all the boring vowels are just the same as P.");
+                Console.WriteLine("Thp thprd lpnp ps rpqpprpd...\"\n");
+                Console.WriteLine("The keyboard and monitor await your input...");
 				switch (playerInput())
 				{
 					case "":
@@ -2114,7 +2131,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 22");
-						Console.WriteLine("Door closes behind you light is now red");
+						Console.WriteLine("The door closes behind you. The light is now red.");
 						doorS22 = false;
 						Thread.Sleep(2000);
 						room22();
@@ -2153,10 +2170,11 @@ namespace ConsoleApp1
 			while (playerLocation == 24)
 			{
 				Console.Clear();
-				Console.WriteLine("This room is 4 times larger than all the others but has a similar setup to it... ");
-                Console.WriteLine("No poster to be found... although the monitor has a note stuck to it.... ");
-                Console.WriteLine("The note says: Combine the rules of the previous two rooms to open this door... ");
-                Console.WriteLine("Enter part 4 (6 words)");
+				Console.WriteLine("This room is four times larger than all the others but has a similar setup to it... ");
+                Console.WriteLine("Yet again you are faced with a locked door to the south. The door to the north leads back to the previous room.");
+                Console.WriteLine("No posters adorn the walls... Although the monitor has a note stuck to it.... ");
+                Console.WriteLine("The note says: \n\"Combine the previous two rules to further your quest... ");
+                Console.WriteLine("The last line has a crib but does not rest.\"\n");
 				switch (playerInput())
 				{
 					case "":
@@ -2169,7 +2187,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 22");
-						Console.WriteLine("Door closes behind you light is now red");
+						Console.WriteLine("The door closes behind you. The light is now red.");
 						Thread.Sleep(2000);
 						doorS23 = false;
 						room23();
@@ -2212,8 +2230,9 @@ namespace ConsoleApp1
                 {
 					Console.WriteLine("As you enter you notice this room is different... ");
 					Console.WriteLine("It has a sign above the door stating 'FINAL ROOM...'");
-					Console.WriteLine("The monitor reads... enter the answer to the riddle (2 words, lower case)");
-					Console.WriteLine("In small text below this there is a hint (“First word is made of 1 letter”)");
+					Console.WriteLine("The monitor reads...");
+                    Console.WriteLine("\n\"Although your quest may not have been nice,");
+                    Console.WriteLine("In the answer to the riddle, you can never step twice.\"\n");
 				}
                 else
                 {
@@ -2227,12 +2246,13 @@ namespace ConsoleApp1
 					case "":
 						break;
 					case "a river":
+					case "river":
 						Thread.Sleep(1000);
 						doorE25 = true;
 						break;
 					case "north":
 						Console.WriteLine("You travel north back to room 24");
-						Console.WriteLine("Door closes behind you light is now red");
+						Console.WriteLine("The door closes behind you. The light is now red.");
 						Thread.Sleep(2000);
 						doorS24 = false;
 						room24();
@@ -3157,8 +3177,8 @@ namespace ConsoleApp1
         {
 			//testRoom1();
 			
-			TitleScreen();
-			//room24();
+			//TitleScreen();
+			room23();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 			//airlock();
 			//room14();
