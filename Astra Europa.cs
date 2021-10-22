@@ -3193,8 +3193,8 @@ namespace ConsoleApp1
         {
 			//testRoom1();
 			
-			//TitleScreen();
-			room24();
+			TitleScreen();
+			//room24();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 			//airlock();
 			//room14();
