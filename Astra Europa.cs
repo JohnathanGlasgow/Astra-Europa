@@ -1756,8 +1756,11 @@ namespace ConsoleApp1
 			while (playerLocation == 16)
 			{
 				Console.Clear();
-				Console.WriteLine("Another door which requires a blue key... You can choose to go east through that door");
-				Console.WriteLine("or head south through a narrow hallway");
+                Console.WriteLine("A ping pong table is smashed upon the floor...");
+                Console.WriteLine("This would of have been a place of respite for the colonists...");
+				Console.WriteLine("But nothing is of use here now.");
+                Console.WriteLine("A door to the east is coloured blue,");
+				Console.WriteLine("or you can head south through a narrow hallway");
 				switch (playerInput())
 				{
 					case "":
@@ -1999,24 +2002,28 @@ namespace ConsoleApp1
 			while (playerLocation == 21)
 			{
 				Console.Clear();
-				Console.WriteLine("This room would be bare if not for a sign, a door to the south, and a computer console.");
+				Console.WriteLine("This room would be bare if not for a sign, a door to the west");
+                 Console.WriteLine("and a door to the south with a computer console alongside it.");
 				Console.WriteLine("The sign states:");
                 //Console.WriteLine("'player must have all 4 clues and 4 ship parts in order to answer all questions'");
                 Console.WriteLine("\n\"Four parts and four clues. The order of the riddle... 'What can' be true?\"\n");
-				Console.WriteLine("A red light is flashing, indicating the door to the south is locked...");
-                Console.WriteLine("Slightly to the right of the door is the console....");
-				Console.WriteLine("The screen reads: \"Enter the first line of the riddle...\"");
+				if (!doorS21)
+				{
+					Console.WriteLine("A red light is flashing, indicating the door to the south is locked...");
+					Console.WriteLine("Slightly to the right of the door is the console....");
+					Console.WriteLine("The screen reads: \"Enter the first line of the riddle...\"");
+				}
+				else
+                {
+                    Console.WriteLine("A green light flashes above the southern door indicating it is unlocked.");
+                }
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "what can run but never walks":
 						doorS21 = true;
-						Console.WriteLine("The light flashes green, and the door opens..");
-						Console.WriteLine("You can either travel south to the next room or head back west where you come from");
-						Thread.Sleep(2000);
 						break;
-					// puzzle door
 					case "south":
 						if (doorS21 == true)
 						{
@@ -2026,12 +2033,12 @@ namespace ConsoleApp1
 						}
 						else
 						{
-							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(500);
+							Console.WriteLine("The door will not budge, you need to unlock it somehow.");
+							Thread.Sleep(2000);
 						}
 						break;
 					case "west":
-                        Console.WriteLine("You head west back to room 16");
+                        Console.WriteLine("You head west back to the rec room.");
 						Thread.Sleep(2000);
 						room16();
 						break;
@@ -2044,7 +2051,6 @@ namespace ConsoleApp1
 		}
 
 		// Room 22
-		// consider not using room numbers in descriptions -JG
 		public static void room22()
 		{
 			playerLocation = 22;
@@ -2056,38 +2062,41 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("Like the previous room, this room contains little but");
-                Console.WriteLine("a door to the south alongside a keyboard and a monitor.");
-                Console.WriteLine("The northern door will return you to the previous room.");
+				Console.WriteLine("a door to the north and a door to the south.");
                 Console.WriteLine("There is a sign on the wall saying: \n\n\"No spacebars allowed...");
-                Console.WriteLine("Although a mouth may never speak, it is the second line I seek...\"\n");
+                Console.WriteLine("A mouth may never speak, but it is the second line I seek...\"\n");
+                Console.WriteLine("A computer console sits upon a desk to the south.");
+				if (!doorS22)
+				{
+					Console.WriteLine("The cursor blinks, awaiting some input...");
+				}
+                else
+                {
+                    Console.WriteLine("The light above the southern door flashes green.");
+                }
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "hasamouthbutnevertalks":
 						doorS22 = true;
-						Console.WriteLine("The light flashes green and the door opens");
-						Console.WriteLine("Your options are north where you came from or south through the freshly unlocked door");
-						Thread.Sleep(2000);
 						break;
 					case "north":
-                        Console.WriteLine("You travel north back to room 21");
-						Console.WriteLine("The door closes behind you. The light is now red.");
-						Thread.Sleep(2000);
-						doorS21 = false;
+                        Console.WriteLine("You head north.");
+						Thread.Sleep(1000);
 						room21();
 						break;
-					// puzzle door
 					case "south":
 						if (doorS22 == true)
 						{
-                            Console.WriteLine("You travel south into room 23");
-							Thread.Sleep(2000);
+                            Console.WriteLine("You make your way south.");
+							Thread.Sleep(1000);
 							room23();
 						}
 						else
 						{
-							Console.WriteLine("The door is locked, you need to answer a question.");
+							Console.WriteLine("You throw your shoulder against the door,");
+                            Console.WriteLine("but it does not give, you need to unlock it somehow.");
 							Thread.Sleep(1000);
 						}
 						break;
@@ -2111,28 +2120,33 @@ namespace ConsoleApp1
 			while (playerLocation == 23)
 			{
 				Console.Clear();
-				Console.WriteLine("You realise that these rooms must be leading you somewhere...");
-                Console.WriteLine("If you can unlock the next door you may progress further south.");
-                Console.WriteLine("Otherwise you may go north to return to the previous room.");
 				Console.WriteLine("You see a poster on the wall that reads:");
 				Console.WriteLine("\n\"If only you had a head, then surely you would see,");
-                Console.WriteLine("That all the boring vowels are just the same as P.");
-                Console.WriteLine("Thp thprd lpnp ps rpqpprpd...\"\n");
-                Console.WriteLine("The keyboard and monitor await your input...");
+				Console.WriteLine("That all the boring vowels are just the same as P.");
+				Console.WriteLine("Thp thprd lpnp ps rpqpprpd...\"\n");
+				if (!doorS23)
+				{
+					Console.WriteLine("The keyboard and monitor await your input...");
+					Console.WriteLine("You realise that these rooms must be leading you somewhere...");
+					Console.WriteLine("If you can unlock the next door you may progress further south.");
+					Console.WriteLine("Otherwise you may go north to return to the previous room.");
+				}
+				else
+                {
+                    Console.WriteLine("The light above the southern door flashes green.");
+                    Console.WriteLine("The northern door remains unlocked.");
+                }
+
+
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "hps p hppd bpt npvpr wppps":
-						Console.WriteLine("The light flashes green, the door opens");
-						Console.WriteLine("Your options are back north or carry on south..");
-						Thread.Sleep(2000);
 						doorS23 = true;
 						break;
 					case "north":
-						Console.WriteLine("You travel north back to room 22");
-						Console.WriteLine("The door closes behind you. The light is now red.");
-						doorS22 = false;
+						Console.WriteLine("You head northward...");
 						Thread.Sleep(2000);
 						room22();
 						break;
@@ -2140,14 +2154,14 @@ namespace ConsoleApp1
 					case "south":
 						if (doorS23 == true)
 						{
-                            Console.WriteLine("You travel south into room 24");
-							Thread.Sleep(1000);
+                            Console.WriteLine("You proceed further south.");
+							Thread.Sleep(2000);
 							room24();
 						}
 						else
 						{
-							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(1000);
+							Console.WriteLine("The door is shut tight. You curse these damned riddles");
+							Thread.Sleep(2000);
 						}
 						break;
 					default:
@@ -2159,7 +2173,6 @@ namespace ConsoleApp1
 		}
 
 		// Room 24
-		// consider not using room numbers in descriptions -JG
 		public static void room24()
 		{
 			playerLocation = 24;
@@ -2171,51 +2184,55 @@ namespace ConsoleApp1
 			{
 				Console.Clear();
 				Console.WriteLine("This room is four times larger than all the others but has a similar setup to it... ");
-                Console.WriteLine("Yet again you are faced with a locked door to the south. The door to the north leads back to the previous room.");
-                Console.WriteLine("No posters adorn the walls... Although the monitor has a note stuck to it.... ");
-                Console.WriteLine("The note says: \n\"Combine the previous two rules to further your quest... ");
-                Console.WriteLine("The last line has a crib but does not rest.\"\n");
-				switch (playerInput())
+
+				Console.WriteLine("No posters adorn the walls, though the console has a note stuck to it.");
+				Console.WriteLine("The note reads: \n\n\"Combine the previous two rules to further your quest, ");
+				Console.WriteLine("The last line has a crib but does not rest.\"\n");
+				if (!doorS24)
 				{
-					case "":
-						break;
-					case "hpspbpdbptnpvprslppps":
-						Console.WriteLine("The light flashes green, the door opens");
-                        Console.WriteLine("You can either carry on south or return north");
-						Thread.Sleep(2000);
-						doorS24 = true;
-						break;
-					case "north":
-						Console.WriteLine("You travel north back to room 22");
-						Console.WriteLine("The door closes behind you. The light is now red.");
-						Thread.Sleep(2000);
-						doorS23 = false;
-						room23();
-						break;
-					// puzzle door
-					case "south":
-						if (doorS24 == true)
-						{
-                            Console.WriteLine("You travel south into room 25");
-							Thread.Sleep(1000);
-							room25();
-						}
-						else
-						{
-							Console.WriteLine("The door is locked, you need to answer a question.");
-							Thread.Sleep(1000);
-						}
-						break;
-					default:
-						Console.WriteLine("Invalid Input");
-						Thread.Sleep(500);
-						break;
+					Console.WriteLine("A light atop the southern door flashes red, or you can head back north.");
 				}
+				else
+				{
+					Console.WriteLine("The light to the south blinks green. The door to the north remains unlocked.");
+				}
+
+					switch (playerInput())
+					{
+						case "":
+							break;
+						case "hpspbpdbptnpvprslppps":
+							doorS24 = true;
+							break;
+						case "north":
+							Console.WriteLine("You travel north.");
+							Thread.Sleep(2000);
+							room23();
+							break;
+						// puzzle door
+						case "south":
+							if (doorS24 == true)
+							{
+								Console.WriteLine("You travel south.");
+								Thread.Sleep(2000);
+								room25();
+							}
+							else
+							{
+								Console.WriteLine("The door is locked... Will these tests never end?");
+								Thread.Sleep(2000);
+							}
+							break;
+						default:
+							Console.WriteLine("Invalid Input");
+							Thread.Sleep(500);
+							break;
+					}
+				
 			}
 		}
 
 		// Room 25
-		// consider not using room numbers in descriptions -JG
 		public static void room25()
 		{
 			playerLocation = 25;
@@ -2233,6 +2250,7 @@ namespace ConsoleApp1
 					Console.WriteLine("The monitor reads...");
                     Console.WriteLine("\n\"Although your quest may not have been nice,");
                     Console.WriteLine("In the answer to the riddle, you can never step twice.\"\n");
+                    Console.WriteLine("A red light blinks above the southern door, or you may go back north...");
 				}
                 else
                 {
@@ -2251,10 +2269,8 @@ namespace ConsoleApp1
 						doorE25 = true;
 						break;
 					case "north":
-						Console.WriteLine("You travel north back to room 24");
-						Console.WriteLine("The door closes behind you. The light is now red.");
+						Console.WriteLine("You travel north.");
 						Thread.Sleep(2000);
-						doorS24 = false;
 						room24();
 						break;
 					// puzzle door
@@ -3178,7 +3194,7 @@ namespace ConsoleApp1
 			//testRoom1();
 			
 			//TitleScreen();
-			room23();
+			room24();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 			//airlock();
 			//room14();
