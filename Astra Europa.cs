@@ -21,6 +21,8 @@ namespace ConsoleApp1
 		public static int oxygen = 100;
 		//Controls Menu return value
 		public static int controlsReturn = 1;
+		// variables for wait time
+		public static int pauseM = 2000, pauseS = 1500;
 
 		/* - Notebook -
 		 * Add notes/clues to the clues array.
@@ -137,6 +139,14 @@ namespace ConsoleApp1
             //Console.WriteLine(playerInput);
 			//Console.ReadKey();
             return playerInput;
+        }
+
+		// This methods pauses while a message is displayed then prompts the user to continue
+		public static void wait()
+        {
+			Thread.Sleep(3000);
+            Console.WriteLine("Press enter to continue...");
+			Console.ReadLine();
         }
 
         /* -Inventory-
@@ -553,17 +563,17 @@ namespace ConsoleApp1
 						if (!inventory.Contains("Fire Extinguisher"))
                         {
                             Console.WriteLine("There is a raging fire blocking the way. It seems to be fueled by the other fires somehow.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseM);
                         }
                         else if (inventory.Contains("Fire Extinguisher") && (fireWest == true || fireNorth == true))
                         {
                             Console.WriteLine("There are still fires to get rid of elsewhere.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseS);
 						}
 						else if (inventory.Contains("Fire Extinguisher") && (fireEast == true && fireWest == false && fireNorth == false))
 						{
                             Console.WriteLine("You still have a fire blocking the way but it seems smaller than before.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseM);
 						}
                         else
                         {
@@ -578,12 +588,12 @@ namespace ConsoleApp1
                         {
 							fireEast = false;
 							Console.WriteLine("You manage to get the last fire under control");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
 						}
                         else 
 						{
 							Console.WriteLine("There are still fires to get rid of elsewhere.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseS);
 						}
 						break;
 
@@ -591,13 +601,13 @@ namespace ConsoleApp1
                         if (fireNorth == true)
                         {
 							Console.WriteLine("There is a fire blocking any further access this way");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
                         }
                         else
                         {
 							Console.WriteLine("You see that beyond the fire is an empty storage panel");
 							Console.WriteLine("Doesn’t seem to be anything useful over here.");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseM);
                         }
 						break;
 
@@ -608,12 +618,12 @@ namespace ConsoleApp1
 						{
 							fireNorth = false;
 							Console.WriteLine("You manage to get the fire under control");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
 						}
 						else
 						{
 							Console.WriteLine("You have no way to put out this fire");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 
@@ -621,13 +631,13 @@ namespace ConsoleApp1
 						if (fireWest == true)
                         {
 							Console.WriteLine("There is a fire blocking any further access this way");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
                         }
                         else
                         {
 							Console.WriteLine("You look out the front window to see nothing but a sheer cliff side of a monumental mountain range. ");
 							Console.WriteLine("Doesn’t seem to be anything useful over here.");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseM);
                         }
 						break;
 
@@ -638,12 +648,12 @@ namespace ConsoleApp1
 						{
 							fireWest = false;
 							Console.WriteLine("You manage to get the fire under control");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
 						}
 						else
 						{
 							Console.WriteLine("You have no way to put out this fire");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 
@@ -671,19 +681,19 @@ namespace ConsoleApp1
 								{
 									Console.WriteLine("A fire remains to your east.");
 								}
-								Thread.Sleep(3000);
+								wait();
 							}
 							else
 							{
 								Console.WriteLine("You have already put out the fires.");
-								Thread.Sleep(1500);
+								Thread.Sleep(pauseS);
 							}
 							
 						}
 						else
                         {
                             Console.WriteLine("You lack the means to extinguish the fire.");
-							Thread.Sleep(1500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 
@@ -725,7 +735,7 @@ namespace ConsoleApp1
 						Console.WriteLine("You pick up the fire extinguisher, ");
 						Console.WriteLine("This will be vital in saving what remains of your command centre, no time to waste.");
 						inventory.Add("Fire Extinguisher");
-						Thread.Sleep(1500);
+						wait();
 						break;
 					case "north":
 						ship();
@@ -762,7 +772,7 @@ namespace ConsoleApp1
                         Console.WriteLine("You brace yourself as the airlock cycles.");
                         Console.WriteLine("The external door slowly creaks open and an unforgiving desert emerges.");
                         Console.WriteLine("You take a deep breath and proceed into the barren wasteland.");
-						Thread.Sleep(4000);
+						wait();
 						wasteland();
 						break;
 
@@ -981,7 +991,7 @@ namespace ConsoleApp1
 						Console.WriteLine("You step into the airlock of the colony station,");
 						Console.WriteLine("waiting patiently for the air to return. The second door opens, and you");
 						Console.WriteLine("remove your helmet and move ahead.");
-						Thread.Sleep(4000);
+						wait();
 						room3();
 						break;
 
@@ -1098,12 +1108,12 @@ namespace ConsoleApp1
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "south":
                         Console.WriteLine("You walk through the automatic door.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room4();
 						break;
 					default:
@@ -1234,7 +1244,7 @@ namespace ConsoleApp1
 					case "west":
 					case "go upstairs":
                         Console.WriteLine("You head up the stairs.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room71();
 						break;
 					default:
@@ -1264,13 +1274,13 @@ namespace ConsoleApp1
 						break;
 					case "west":
 						Console.WriteLine("You step through the automatic door that struggles to open.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseM);
 						room72();
 						break;
 					case "east":
 					case "go downstairs":
 						Console.WriteLine("You go back down the stairs.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room7();
 						break;
 					default:
@@ -1306,7 +1316,7 @@ namespace ConsoleApp1
 					case "get couplings":
 					case "get power couplings":
 						Console.WriteLine("You take the Power Couplings. On the side is scrawled \"What can run but never walks\". You record it in your notebook.");
-						Thread.Sleep(4000);
+						wait();
 						inventory.Add("Power Couplings");
 						addNote(0);
 						break;
@@ -1343,7 +1353,7 @@ namespace ConsoleApp1
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					default:
@@ -1380,7 +1390,7 @@ namespace ConsoleApp1
 					case "get keycard":
 						Console.WriteLine("You remove the keycard from the body.");
 						inventory.Add("Blue Keycard");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						doorE16 = true;
 						doorS13 = true;
 						break;
@@ -1424,7 +1434,7 @@ namespace ConsoleApp1
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "east":
@@ -1438,7 +1448,7 @@ namespace ConsoleApp1
                         Console.WriteLine("This seems important so you record it in your notebook.");
 						inventory.Add("Hyperdrive");
 						addNote(1);
-						Thread.Sleep(4000);
+						wait();
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
@@ -1484,7 +1494,7 @@ namespace ConsoleApp1
 					case "get keycard":
 						Console.WriteLine("You pick up the red keycard.");
 						inventory.Add("Red Keycard");
-						Thread.Sleep(500);
+						Thread.Sleep(pauseS);
 						doorE3 = true;
 						doorE13 = true;
 						doorS17 = true;
@@ -1548,23 +1558,25 @@ namespace ConsoleApp1
 				{
 					Console.WriteLine("During a brief moment of light, you spy what looks like a phaser.");
 				}
+                Console.WriteLine("An automatic door to the south is stuck halfway open, you can probably squeeze through.");
+                Console.WriteLine("A hallway to the west leads to the observation room.");
 				switch (playerInput())
 				{
 					case "":
 						break;
 					case "south":
-						Console.WriteLine("You go through a door and enter Room 12.");
-						Thread.Sleep(1000);
+						Console.WriteLine("You slide through the door into the next room.");
+						Thread.Sleep(pauseS);
 						room12();
 						break;
 					case "west":
-						Console.WriteLine("You head down a narrow hallway and enter Room 6.");
-						Thread.Sleep(1000);
+						Console.WriteLine("You head down the narrow hallway and enter the observation room.");
+						Thread.Sleep(pauseM);
 						room6();
 						break;
 					case "get phaser":
                         Console.WriteLine("You pick up the phaser, looks like it's good for five shots.");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseM);
 						inventory.Add("Phaser");
 						break;
 					default:
@@ -1596,20 +1608,20 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You head north through a door and enter room 11.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room11();
 						break;
 					case "east":
 						Console.WriteLine("You head east through a hallway into a cramped room, you are now in room 17.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseM);
 						room17();
 						break;
 					case "get fins":
-						Console.WriteLine("A note is attached to the Fins. It reads, \"has a head but never weeps\".");
+						Console.WriteLine("A note is attached to the fins. It reads, \"has a head but never weeps\".");
 						Console.WriteLine("Who knows, might come in handy later. You jot it down in your notebook");
 						inventory.Add("Fins");
 						addNote(2);
-						Thread.Sleep(4000);
+						wait();
 						break;
 					default:
 						Console.WriteLine("Invalid Input");
@@ -1637,31 +1649,31 @@ namespace ConsoleApp1
 						if (doorE13 == true)
 						{
                             Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 18");
-							Thread.Sleep(1000);
+							Thread.Sleep(pauseM);
 							room18();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "south":
 						if (doorS13 == true)
 						{
 							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 14.");
-							Thread.Sleep(1000);
+							Thread.Sleep(pauseM);
 							room14();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a blue keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "west":
 						Console.WriteLine("You open the door and head west down a long hallway, you open another door and are now in room 8.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseM);
 						room8();
 						break;
 					default:
@@ -1692,7 +1704,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You head north back to room 13");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room13();
 						break;
 					case "get oxidizer":
@@ -1702,7 +1714,7 @@ namespace ConsoleApp1
                         Console.WriteLine("You record it in your notebook.");
 						inventory.Add("Oxidizer");
 						addNote(3);
-						Thread.Sleep(4000);
+						wait();
 						break;
 					default:
                         Console.WriteLine("Invalid Input");
@@ -1728,12 +1740,12 @@ namespace ConsoleApp1
 						break;
 					case "east":
 						Console.WriteLine("You walk down a corridor and enter room 20");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room20();
 						break;
 					case "west":
 						Console.WriteLine("You have opened the door and moved west to room 10");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseM);
 						room10();
 						break;
 					default:
@@ -1769,18 +1781,18 @@ namespace ConsoleApp1
 						if (doorE16 == true)
 						{
 							Console.WriteLine("Blue door requires a blue key to open... you open the door with the blue key and enter room 21");
-							Thread.Sleep(1000);
+							Thread.Sleep(pauseM);
 							room21();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a blue keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "south":
 						Console.WriteLine("You head south into the cramped room 17");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room17();
 						break;
 					default:
@@ -1814,24 +1826,23 @@ namespace ConsoleApp1
 						if (doorS17 == true)
 						{
 							Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 18");
-							Thread.Sleep(1000);
+							Thread.Sleep(pauseM);
 							room18();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Console.WriteLine("You travel back through the hallway to room 17");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "west":
                         Console.WriteLine("You travel west and enter room 12");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room12();
 						break;
 					case "north":
 						Console.WriteLine("You travel north and enter room 16");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room16();
 						break;
 					default:
@@ -1864,32 +1875,31 @@ namespace ConsoleApp1
 						if (doorS17 == true)
 						{
 							Console.WriteLine("Red door requires a red key to open... you open the door with the red key and travel down a long windy hallway.");
-							Console.WriteLine("you enter room 17");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseM);
 							room17();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					case "south":
 						Console.WriteLine("You travel south and enter room 19");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room19();
 						break;
 					case "west":
 						if (doorE13 == true)
 						{
                             Console.WriteLine("Red door requires a red key to open... you open the door with the red key and enter room 13");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseM);
 							room13();
 						}
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-							Thread.Sleep(500);
+							Thread.Sleep(pauseS);
 						}
 						break;
 					default:
@@ -1920,12 +1930,12 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You travel north into room 19");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room18();
 						break;
 					case "south":
 						Console.WriteLine("You head south down a staggered hallway and open the door, you enter room 20");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseM);
 						room20();
 						break;
 					default:
@@ -1957,7 +1967,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
                         Console.WriteLine("You open a door and head north down a staggered hallway, you enter room 19");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseM);
 						room19();
 						break;
 
@@ -1979,7 +1989,7 @@ namespace ConsoleApp1
 
 					case "west":
 						Console.WriteLine("You travel west through the hallway and enter room 15");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseM);
 						room15();
 						break;
 					default:
@@ -2028,18 +2038,18 @@ namespace ConsoleApp1
 						if (doorS21 == true)
 						{
                             Console.WriteLine("You travel south into the next room");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseS);
 							room22();
 						}
 						else
 						{
 							Console.WriteLine("The door will not budge, you need to unlock it somehow.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseM);
 						}
 						break;
 					case "west":
                         Console.WriteLine("You head west back to the rec room.");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseS);
 						room16();
 						break;
 					default:
@@ -2063,8 +2073,10 @@ namespace ConsoleApp1
 				Console.Clear();
 				Console.WriteLine("Like the previous room, this room contains little but");
 				Console.WriteLine("a door to the north and a door to the south.");
-                Console.WriteLine("There is a sign on the wall saying: \n\n\"No spacebars allowed...");
-                Console.WriteLine("A mouth may never speak, but it is the second line I seek...\"\n");
+                Console.WriteLine("There is a sign on the wall saying: \n");
+				Console.WriteLine("\"A mouth may never speak, 'It is the second line I seek...'");
+				Console.WriteLine("But the spacebar you won't need, let the words together squeeze...\"\n");
+                
                 Console.WriteLine("A computer console sits upon a desk to the south.");
 				if (!doorS22)
 				{
@@ -2083,21 +2095,21 @@ namespace ConsoleApp1
 						break;
 					case "north":
                         Console.WriteLine("You head north.");
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						room21();
 						break;
 					case "south":
 						if (doorS22 == true)
 						{
                             Console.WriteLine("You make your way south.");
-							Thread.Sleep(1000);
+							Thread.Sleep(pauseS);
 							room23();
 						}
 						else
 						{
 							Console.WriteLine("You throw your shoulder against the door,");
                             Console.WriteLine("but it does not give, you need to unlock it somehow.");
-							Thread.Sleep(1000);
+							Thread.Sleep(pauseM);
 						}
 						break;
 					default:
@@ -2123,7 +2135,8 @@ namespace ConsoleApp1
 				Console.WriteLine("You see a poster on the wall that reads:");
 				Console.WriteLine("\n\"If only you had a head, then surely you would see,");
 				Console.WriteLine("That all the boring vowels are just the same as P.");
-				Console.WriteLine("Thp thprd lpnp ps rpqpprpd...\"\n");
+				//Console.WriteLine("Thp thprd lpnp ps rpqpprpd...\"\n");
+				Console.WriteLine("The third line is required...\"\n");
 				if (!doorS23)
 				{
 					Console.WriteLine("The keyboard and monitor await your input...");
@@ -2147,7 +2160,7 @@ namespace ConsoleApp1
 						break;
 					case "north":
 						Console.WriteLine("You head northward...");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseS);
 						room22();
 						break;
 					// puzzle door
@@ -2155,13 +2168,13 @@ namespace ConsoleApp1
 						if (doorS23 == true)
 						{
                             Console.WriteLine("You proceed further south.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseS);
 							room24();
 						}
 						else
 						{
 							Console.WriteLine("The door is shut tight. You curse these damned riddles");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseM);
 						}
 						break;
 					default:
@@ -2206,7 +2219,7 @@ namespace ConsoleApp1
 							break;
 						case "north":
 							Console.WriteLine("You travel north.");
-							Thread.Sleep(2000);
+							Thread.Sleep(pauseS);
 							room23();
 							break;
 						// puzzle door
@@ -2214,13 +2227,13 @@ namespace ConsoleApp1
 							if (doorS24 == true)
 							{
 								Console.WriteLine("You travel south.");
-								Thread.Sleep(2000);
+								Thread.Sleep(pauseS);
 								room25();
 							}
 							else
 							{
 								Console.WriteLine("The door is locked... Will these tests never end?");
-								Thread.Sleep(2000);
+								Thread.Sleep(pauseM);
 							}
 							break;
 						default:
@@ -2255,7 +2268,7 @@ namespace ConsoleApp1
                 else
                 {
 					Console.WriteLine("The light flashes green, a wee smile comes onto your face..");
-					Thread.Sleep(2000);
+					Thread.Sleep(pauseM);
 					EndScreen();
 					//Console.WriteLine("You can either head east into what is called the 'final room' or back north");
 				}
@@ -2265,12 +2278,12 @@ namespace ConsoleApp1
 						break;
 					case "a river":
 					case "river":
-						Thread.Sleep(1000);
+						Thread.Sleep(pauseS);
 						doorE25 = true;
 						break;
 					case "north":
 						Console.WriteLine("You travel north.");
-						Thread.Sleep(2000);
+						Thread.Sleep(pauseS);
 						room24();
 						break;
 					// puzzle door
@@ -2795,25 +2808,25 @@ namespace ConsoleApp1
 			string endText2 = "You stand on the pad and press the initiate button. A countdown begins 5…4…3…2…1\nand before you know it you are sent back to your ships command centre. You put the components you found to good use\nand begin repairing your damaged ship.";
 			string endText3 = "It takes you only a few hours to complete the repairs, you ignite your ships\nthrusters and you are to be off that forsaken planet and plot a course towards the nearest space station for resupply.\nYou hope that will be the only detour you take on your expedition but only time will tell… ";
 
-			Console.WriteLine("Press ENTER to view ending");
-			Console.WriteLine("Press Q to view quick ending");
-			Console.WriteLine("Press S to skip ending");
-			string temp1 = Console.ReadLine().ToUpper();
-			if (temp1 == "Q")
-			{
-				Console.Clear();
-                Console.Write(endText1);
-				Console.Write(endText2);
-				Console.Write(endText3);
-				Console.WriteLine("\n\nPress ENTER to Proceed...");
-				Console.ReadLine();
-			}
-			else if (temp1 == "S")
-			{
-				TitleScreen();
-			}
-			else
-			{
+			//Console.WriteLine("Press ENTER to view ending");
+			//Console.WriteLine("Press Q to view quick ending");
+			//Console.WriteLine("Press S to skip ending");
+			//string temp1 = Console.ReadLine().ToUpper();
+			//if (temp1 == "Q")
+			//{
+			//	Console.Clear();
+   //             Console.Write(endText1);
+			//	Console.Write(endText2);
+			//	Console.Write(endText3);
+			//	Console.WriteLine("\n\nPress ENTER to Proceed...");
+			//	Console.ReadLine();
+			//}
+			//else if (temp1 == "S")
+			//{
+			//	TitleScreen();
+			//}
+			//else
+			//{
 				//Long Intro
 				Console.Clear();
 				foreach (char i in endText1)
@@ -2835,7 +2848,7 @@ namespace ConsoleApp1
 				}
 				Console.WriteLine("\n\nPress ENTER to Proceed...");
 				Console.ReadLine();
-			}
+		//	}
 			TitleScreen();
 		}
 	
