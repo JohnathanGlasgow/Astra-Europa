@@ -748,12 +748,13 @@ After a brief rest, your condition has improved considerably.");
 				if (inventory.Contains("Fire Extinguisher"))
 				{
 					Console.WriteLine("You are standing in the escape pod. There seems to be nothing of use left here.");
+                    Console.WriteLine("Up the steps to the north is the command centre.");
 				}
 				else if (!inventory.Contains("Fire Extinguisher"))
 				{
 					Console.WriteLine("You walk down the steps of the command centre to find something useful. ");
 					Console.WriteLine("You notice a shiny red object ahead of you located in the escape pod section. ");
-					Thread.Sleep(500);
+					Thread.Sleep(pauseM);
 					Console.WriteLine("\nIn the corridor that leads to the escape pod room you locate the red object, ");
 					Console.WriteLine("it’s a fire extinguisher.");
 				}
@@ -768,6 +769,7 @@ After a brief rest, your condition has improved considerably.");
 						inventory.Add("Fire Extinguisher");
 						wait();
 						break;
+					case "go up steps":
 					case "north":
 						ship();
 						break;
@@ -788,8 +790,7 @@ After a brief rest, your condition has improved considerably.");
 			{
 				Console.Clear();
                 Console.WriteLine("You are in the airlock of your ship.");
-				Console.WriteLine("Now the blazes are under control its time to set off in");
-                Console.WriteLine("search of the crucial components needed for repairs.");
+				Console.WriteLine("Now the blazes are under control its time to set off in search of the crucial components needed for repairs.");
                 Console.WriteLine("To your east is the alien terrain.");
 				switch (playerInput())
 				{
@@ -1152,7 +1153,8 @@ After a brief rest, your condition has improved considerably.");
 						if (doorE3 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
-                            Console.WriteLine("The door opens automatically and you proceed through.");
+							Thread.Sleep(pauseS);
+							Console.WriteLine("The door opens automatically and you proceed through.");
 							Thread.Sleep(pauseM);
 							room8();
 						}
@@ -1230,9 +1232,13 @@ After a brief rest, your condition has improved considerably.");
 					case "":
 						break;
 					case "east":
+                        Console.WriteLine("You head through the corridor to the east.");
+						Thread.Sleep(pauseM);
 						room10();
 						break;
 					case "north":
+						Console.WriteLine("You head north up the corridor.");
+						Thread.Sleep(pauseM);
 						room4();
 						break;
 					default:
@@ -1272,6 +1278,8 @@ After a brief rest, your condition has improved considerably.");
 					case "sit on couch":
 					case "sit down":
 					case "sit down on couch":
+					case "sit":
+					case "couch":
 						Console.WriteLine(@"You clear the dust from one of the couches and settle in.
 As you think of the colonists who once sat here gazing at this unforgiving terrain,
 your eyes grow heavy and you nearly doze off. You snap yourself back to the present and stand up,
@@ -1403,8 +1411,8 @@ You record it in your notebook.");
 			while (playerLocation == 73)
 			{
 				Console.Clear();
-				Console.WriteLine("This room has more evidence of something horrific happening in it,");
-                Console.WriteLine("you can tell by the smell. There is another door with a red control panel. Your options are south and west."); 
+				Console.WriteLine("This room has more evidence of something horrific happening in it, you can tell by the smell. ");
+                Console.WriteLine("To the west is another door with a red control panel. A passage to the south leads back to the stairs."); 
 				switch (playerInput())
 				{
 					case "":
@@ -1417,6 +1425,7 @@ You record it in your notebook.");
 						if (doorE74 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The door stutters open and you proceed through.");
 							Thread.Sleep(pauseM);
 							room74();
@@ -1438,7 +1447,6 @@ You record it in your notebook.");
 		// I've changed this a bit to make getting the keycard work better with the description -JG
 		public static void room74()
 		{
-            Console.WriteLine("You are in the security room. A mangled body, probably the guard, lays on the ground.");
 			playerLocation = 74;
 			while (playerLocation == 74)
 			{
@@ -1448,6 +1456,10 @@ You record it in your notebook.");
                 {
 					Console.WriteLine("Around the neck of the corpse hangs a blue keycard.");
 				}
+				else
+                {
+                    Console.WriteLine("The previous room is through the door to the east.");
+                }
                 //else { Console.WriteLine("You are back in the room where you found the blue key card on the mangled body."); }
 					
 				switch (playerInput())
@@ -1501,6 +1513,7 @@ You record it in your notebook.");
 						if (doorE3 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The door opens automatically and you proceed through.");
 							Thread.Sleep(pauseM);
 							room3();
@@ -1513,8 +1526,9 @@ You record it in your notebook.");
 						break;
 					case "east":
 						Console.WriteLine("You open the door and head west down a long hallway which leads to another door.");
-						Console.WriteLine("You open it and pass through.");
 						Thread.Sleep(pauseM);
+						Console.WriteLine("You open it and pass through.");
+						Thread.Sleep(pauseS);
 						room13();
 						break;
 					case "north":
@@ -1652,7 +1666,8 @@ You record it in your notebook.");
 						break;
 					case "south":
                         Console.WriteLine("The door is stuck but you are able to pull it open.");
-                        Console.WriteLine("It closes after you pass through.");
+						Thread.Sleep(pauseS);
+						Console.WriteLine("It closes after you pass through.");
 						Thread.Sleep(pauseM);
 						room12();
 						break;
@@ -1695,6 +1710,7 @@ You record it in your notebook.");
 						break;
 					case "north":
 						Console.WriteLine("The door is stuck but you are able pull it open.");
+						Thread.Sleep(pauseS);
 						Console.WriteLine("It closes after you pass through.");
 						Thread.Sleep(pauseM);
 						room11();
@@ -1713,6 +1729,8 @@ You record it in your notebook.");
 						break;
 					case "use bed":
 					case "use bunkbed":
+					case "get in bed":
+					case "get in bunkbed":
 					case "sleep":
 					case "sleep in bed":
 					case "sleep in bunkbed":
@@ -1724,7 +1742,8 @@ You record it in your notebook.");
 					case "rest on bed":
 					case "rest on bunkbed":
 						Console.WriteLine("This is no time for dozing.");
-                        Console.WriteLine("Besides, who knows what horrors lurk beneath those sheets.");
+						Thread.Sleep(pauseS);
+						Console.WriteLine("Besides, who knows what horrors lurk beneath those sheets.");
 						Thread.Sleep(pauseM);
 						break;
 					default:
@@ -1752,6 +1771,7 @@ You record it in your notebook.");
 						if (doorE13 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The door whirs opens and you proceed through.");
 							Thread.Sleep(pauseM);
 							room18();
@@ -1766,6 +1786,7 @@ You record it in your notebook.");
 						if (doorS13 == true)
 						{
 							Console.WriteLine("You hold up the blue keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The magnetic lock disengages allowing you to pull it open and pass through.");
 							Thread.Sleep(pauseM);
 							room14();
@@ -1778,8 +1799,9 @@ You record it in your notebook.");
 						break;
 					case "west":
 						Console.WriteLine("You open the door and head west down a long hallway which leads to another door.");
-                        Console.WriteLine("You open it and pass through.");
 						Thread.Sleep(pauseM);
+						Console.WriteLine("You open it and pass through.");
+						Thread.Sleep(pauseS);
 						room8();
 						break;
 					default:
@@ -1798,11 +1820,15 @@ You record it in your notebook.");
 			{
 				Console.Clear();
 				Console.WriteLine("This room has a clear roof, you get a nice view of the stars");
-				Console.WriteLine("Your only option is to head north");
+				
 				if (!inventory.Contains("Oxidizer"))
 				{
 					Console.WriteLine("In the corner of the room lies an Oxidizer, very key to survival onboard the ship...");	
-				}					
+				}
+                else
+                {
+					Console.WriteLine("Your only option is to head north");
+				}
 				switch (playerInput())
 				{
 					case "":
@@ -1899,6 +1925,7 @@ You record it in your notebook.");
 						if (doorE16 == true)
 						{
 							Console.WriteLine("You hold up the blue keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The magnetic lock disengages allowing you to pull it open and pass through.");
 							Thread.Sleep(pauseM);
 							room21();
@@ -1945,6 +1972,7 @@ You record it in your notebook.");
 						if (doorS17 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The door slides opens and you proceed through.");
 							Thread.Sleep(pauseM);
 							room18();
@@ -1952,7 +1980,8 @@ You record it in your notebook.");
 						else
 						{
 							Console.WriteLine("The door is locked, looks like you need a red keycard.");
-                            Console.WriteLine("Disappointed, you make the long walk back to the square room.");
+							Thread.Sleep(pauseS);
+							Console.WriteLine("Disappointed, you make the long walk back to the square room.");
 							Thread.Sleep(pauseM);
 						}
 						break;
@@ -1986,7 +2015,8 @@ You record it in your notebook.");
 			{
 				Console.Clear();
 				Console.WriteLine("Seems to be an old computer room, very dusty, as though no one has been around for a while...");
-				Console.WriteLine("Your options are north, south or west");
+				Console.WriteLine("There are doors to the north and west painted red.");
+                Console.WriteLine("A sign pointing south reads: MEDICAL BAY");
 				switch (playerInput())
 				{
 					case "":
@@ -1995,6 +2025,7 @@ You record it in your notebook.");
 						if (doorS17 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The door slides open you travel down a long windy hallway.");
 							Thread.Sleep(pauseM);
 							room17();
@@ -2014,6 +2045,7 @@ You record it in your notebook.");
 						if (doorE13 == true)
 						{
 							Console.WriteLine("You hold up the red keycard to the panel adjacent the door.");
+							Thread.Sleep(pauseS);
 							Console.WriteLine("The door whirs opens and you proceed through.");
 							Thread.Sleep(pauseM);
 							room13();
@@ -2068,9 +2100,12 @@ You quickly grow bored of it and power down the machine.");
 					case "enter medipod":
 						if (playerHealth < 20)
 						{
-							Console.WriteLine(@"You climb into the pod. At first nothing happens, but then the lid suddenly lowers.
-The pod fills with electromagnetic gas.
-Lights flash as you are scanned by the medipod. A robotic voice announces:
+							Console.WriteLine(@"You climb into the pod. At first nothing happens, but then the lid suddenly lowers.");
+							Thread.Sleep(pauseM);
+                            Console.WriteLine(	 @"The pod fills with electromagnetic gas.
+Lights flash as you are scanned by the medipod.");
+							Thread.Sleep(pauseM);
+                            Console.WriteLine(	@"A robotic voice announces:
 ""Subject, Human... Age, Unknown... Initiating healing protocol""
 You feel a series of rapid shocks and pass out.");
 							Thread.Sleep(4000);
@@ -2088,7 +2123,8 @@ You exit the pod and continue on your way.");
 					case "medipod":
 					case "look at medipod":
                         Console.WriteLine("This is a standard medipod capable of treating a variety of lifeforms.");
-                        Console.WriteLine("To use, the subject simply enters the pod and is treated automatically.");
+						Thread.Sleep(pauseM);
+						Console.WriteLine("To use, the subject simply enters the pod and is treated automatically.");
 						Thread.Sleep(pauseM);
 						break;
 					case "north":
@@ -2376,7 +2412,8 @@ You exit the pod and continue on your way.");
 						case "":
 							break;
 						case "hpspbpdbptnpvprslppps":
-							doorS24 = true;
+						case "hpspbpdbptnpvprslppps?":
+						doorS24 = true;
 							break;
 						case "north":
 							Console.WriteLine("You travel north.");
