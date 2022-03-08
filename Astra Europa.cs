@@ -79,6 +79,27 @@ namespace ConsoleApp1
             Console.WriteLine(notebook);
 			Console.ReadLine();
 		}
+
+		// This method formats and displays important status information like health and current weapon
+		public static void PlayerStatus()
+        {
+			string weapon = "Unarmed";
+			string ammo = "N/A";
+            if (inventory.Contains("Phaser"))
+            {
+				weapon = "Phaser";
+				ammo = phaserAmmo.ToString() + "/5";
+            }
+            Console.WriteLine(
+@$"Health: {playerHealth}/20
+Weapon: {weapon}
+Ammo:	{ammo}
+
+Press enter to continue...
+");
+			Console.ReadLine();
+        }
+
 		/*  -Player Input Method-
 		 * This method is called in the rooms when we ask for the next command, i.e. switch(playerInput())
 		 * It checks if the command is to open the inventory, open the help text, open the options, read the notebook,
@@ -150,6 +171,10 @@ After a brief rest, your condition has improved considerably.");
                         }
 						playerInput = "";
 					}
+					break;
+				case "status":
+					PlayerStatus();
+					playerInput = "";
 					break;
 				case "n":
                     playerInput = "north";
@@ -3403,7 +3428,7 @@ You exit the pod and continue on your way.");
 		static void Main(string[] args)
         {
 			//testRoom1();
-			
+
 			TitleScreen();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
