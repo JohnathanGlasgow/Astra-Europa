@@ -1727,7 +1727,7 @@ You record it in your notebook.");
 				Console.Clear();
                 Console.WriteLine("You reach the top of the ladder and, and are blinded by the light of the outside world, a stark contrast to the dark areas found bellow. ");
 				Console.WriteLine("The room you are in is lit due to the 360 degree view out the windows. On the floor though, a message written in blood reads ");
-                Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets'.");
+                Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets. These parts are a Fuse, a Capacitor and a Codex Microchip'.");
                 Console.WriteLine("You have one direction before you, east or you can head back down the ladder, south.");
 				switch (playerInput())
 				{
@@ -1800,9 +1800,44 @@ You record it in your notebook.");
 			while (playerLocation == 113)
             {
 				Console.Clear();
-                Console.WriteLine("This section seems to be a supply depot with shelves stacked from floor to ceiling with various parts and components.");
+                Console.WriteLine("This section seems to be a supply depot with shelves stacked from floor to ceiling with various parts and components, you think to yourself this place could be useful.");
                 Console.WriteLine("You can search a shelf to the east and to the west. South takes you onwards.");
-            }
+
+				switch (playerInput())
+                {
+					case "":
+						break;
+					case "east":
+                        Console.WriteLine("This shelf is labeled with the sign 'Electrical Components'.");
+                        Console.WriteLine("You spend some time here, methodically reviewing each box and each shelf then you stuck it, A fuse.");
+						Thread.Sleep(pauseM);
+						break;
+					case "get fuse":
+						Console.WriteLine("You pick up the fuse buried under countless other parts. But this is but one peice of the puzzle.");
+						Thread.Sleep(pauseM);
+						inventory.Add("fuse");
+						break;
+					case "west":
+                        Console.WriteLine("This shelf is labeled with the sign 'Spare Parts'.");
+                        Console.WriteLine("Cautionsly, you rummage through the 10 or so containers looking for what you need. In the second to last box you find what you are looking for, a Capacitor.");
+						Thread.Sleep(pauseM);
+						break;
+					case "get capacitor":
+                        Console.WriteLine("You pick up the Capacitor and store it away for later use. But this is but one peice of the puzzle.");
+						Thread.Sleep(pauseM);
+						inventory.Add("capacitor");
+						break;
+					case "south":
+                        Console.WriteLine("As you approach the door to leave this room you notice the next room looks longer than any other room?");
+						Thread.Sleep(pauseM);
+						room114();
+						break;
+					default :
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
         }
 		// Room 12
 		public static void room12()
