@@ -1771,7 +1771,25 @@ You record it in your notebook.");
                         Console.WriteLine("After giving the latch a heafty wack, the lid springs open revealing a new weapon, a Stun Baton.");
 						Thread.Sleep(pauseM);
 						break;
-
+					case "get Stun Baton":
+                        Console.WriteLine("You pick up the Stun Baton, this can be used to breifly incapacitate enemies.");
+						Thread.Sleep(pauseM);
+						inventory.Add("Stun Baton");
+						break;
+					case "south":
+                        Console.WriteLine("You step through a pratically closed door.");
+						Thread.Sleep(pauseM);
+						room113();
+						break;
+					case "west":
+                        Console.WriteLine("This way leads back to the 360 degree viewing room.");
+						Thread.Sleep(pauseM);
+						room111();
+						break;
+					default:
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
                 }
             }
         }
