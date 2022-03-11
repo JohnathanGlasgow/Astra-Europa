@@ -1729,6 +1729,25 @@ You record it in your notebook.");
 				Console.WriteLine("The room you are in is lit due to the 360 degree view out the windows. On the floor though, a message written in blood reads ");
                 Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets'.");
                 Console.WriteLine("You have one direction before you, east or you can head back down the ladder, south.");
+				switch (playerInput())
+				{
+					case "":
+						break;
+					case "east":
+                        Console.WriteLine("You squezze your body through the small hatch that leads to the next section");
+						room112();
+						Thread.Sleep(pauseM);
+						break;
+					case "south":
+                        Console.WriteLine("Tou head back down the ladder.");
+						room11();
+						Thread.Sleep(pauseM);
+						break;
+					default :
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(pauseM);
+						break;
+				}
             }
         }
 		// Room 12
