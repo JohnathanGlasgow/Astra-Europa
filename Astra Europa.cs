@@ -1761,6 +1761,18 @@ You record it in your notebook.");
                 Console.WriteLine("You climb out of the hatch to find yourself in what seems to be a sleeping quarters for the crew that was stationed here.");
                 Console.WriteLine("You notice that all but one of the footlockers have been ransacked, almost as if someone was looking for something?");
                 Console.WriteLine("To the north you will find the unopened locker, and to the south an open door that leads onwards.");
+
+				switch(playerInput())
+                {
+					case "":
+						break;
+					case "north":
+                        Console.WriteLine("You inspect footlocker and notice that the latch is locked but you arent so easily deterred.");
+                        Console.WriteLine("After giving the latch a heafty wack, the lid springs open revealing a new weapon, a Stun Baton.");
+						Thread.Sleep(pauseM);
+						break;
+
+                }
             }
         }
 		// Room 12
