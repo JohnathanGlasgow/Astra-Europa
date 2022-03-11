@@ -1702,7 +1702,7 @@ You record it in your notebook.");
 						room6();
 						break;
 					case "north":
-                        Console.WriteLine("You up the ladder to an upper section.");
+                        Console.WriteLine("You go up the ladder to an upper section.");
 						Thread.Sleep(pauseM);
 						room111();
 						break;
@@ -1754,7 +1754,14 @@ You record it in your notebook.");
 		// Room 112 flows on from room111, here you find a sleeping quarters and a new weapon a stun baton.
 		public static void room112()
         {
-
+			playerLocation = 112;
+			while (playerLocation == 112)
+            {
+				Console.Clear();
+                Console.WriteLine("You climb out of the hatch to find yourself in what seems to be a sleeping quarters for the crew that was stationed here.");
+                Console.WriteLine("You notice that all but one of the footlockers have been ransacked, almost as if someone was looking for something?");
+                Console.WriteLine("To the north you will find the unopened locker, and to the south an open door that leads onwards.");
+            }
         }
 		// Room 12
 		public static void room12()
