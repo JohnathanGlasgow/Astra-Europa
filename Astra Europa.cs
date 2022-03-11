@@ -1739,7 +1739,7 @@ You record it in your notebook.");
 						Thread.Sleep(pauseM);
 						break;
 					case "south":
-                        Console.WriteLine("Tou head back down the ladder.");
+                        Console.WriteLine("You head back down the ladder.");
 						room11();
 						Thread.Sleep(pauseM);
 						break;
@@ -1749,6 +1749,12 @@ You record it in your notebook.");
 						break;
 				}
             }
+        }
+
+		// Room 112 flows on from room111, here you find a sleeping quarters and a new weapon a stun baton.
+		public static void room112()
+        {
+
         }
 		// Room 12
 		public static void room12()
