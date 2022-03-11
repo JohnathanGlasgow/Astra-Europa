@@ -1751,7 +1751,7 @@ You record it in your notebook.");
             }
         }
 
-		// Room 112 flows on from room111, here you find a sleeping quarters and a new weapon a stun baton.
+		// Room 11.2 flows on from room111, here you find a sleeping quarters and a new weapon a stun baton.
 		public static void room112()
         {
 			playerLocation = 112;
@@ -1792,6 +1792,11 @@ You record it in your notebook.");
 						break;
                 }
             }
+        }
+		// Room 11.3 flows on from room11.2, its a storage room which the player has to find two components used to repair the weapons cache.
+		private static void room113()
+        {
+
         }
 		// Room 12
 		public static void room12()
