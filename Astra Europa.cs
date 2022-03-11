@@ -1796,7 +1796,13 @@ You record it in your notebook.");
 		// Room 11.3 flows on from room11.2, its a storage room which the player has to find two components used to repair the weapons cache.
 		private static void room113()
         {
-
+			playerLocation = 113;
+			while (playerLocation == 113)
+            {
+				Console.Clear();
+                Console.WriteLine("This section seems to be a supply depot with shelves stacked from floor to ceiling with various parts and components.");
+                Console.WriteLine("You can search a shelf to the east and to the west. South takes you onwards.");
+            }
         }
 		// Room 12
 		public static void room12()
