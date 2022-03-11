@@ -1701,6 +1701,11 @@ You record it in your notebook.");
 						Thread.Sleep(pauseM);
 						room6();
 						break;
+					case "north":
+                        Console.WriteLine("You up the ladder to an upper section.");
+						Thread.Sleep(pauseM);
+						room111();
+						break;
 					case "get phaser":
                         Console.WriteLine("You pick up the phaser, looks like it's good for five shots.");
 						Thread.Sleep(pauseM);
