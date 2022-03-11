@@ -1718,7 +1718,19 @@ You record it in your notebook.");
 				}
 			}
 		}
-
+		//Room 11.1 is located above room 11 and is an observation deck with an item that lists parts needed to open a weapons cache
+		public static void room111()
+        {
+			playerLocation = 111;
+			while(playerLocation == 111)
+            {
+				Console.Clear();
+                Console.WriteLine("You reach the top of the ladder and, and are blinded by the light of the outside world, a stark contrast to the dark areas found bellow. ");
+				Console.WriteLine("The room you are in is lit due to the 360 degree view out the windows. On the floor though, a message written in blood reads ");
+                Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets'.");
+                Console.WriteLine("You have one direction before you, east or you can head back down the ladder, south.");
+            }
+        }
 		// Room 12
 		public static void room12()
 		{
