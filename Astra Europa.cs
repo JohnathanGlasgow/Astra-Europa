@@ -3372,7 +3372,9 @@ You exit the pod and continue on your way.");
 		//Could add to the end of the game upon completion
 		public static void BossRoom()
         {
+			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("You enter a room in which there is no escape, you are being hunted");
+			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("                            *----------------*");
 			Console.WriteLine("                       ___                     ___");
 			Console.WriteLine("                    |                               |");
@@ -3383,7 +3385,7 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("     |                   /           * *             `,                  |");
 			Console.WriteLine("   /                    |            * *              |                     `,");
 			Console.WriteLine(" |                        `,         /  `,           /                         |");
-			Console.WriteLine("*                        `, ______      ______  /                                 *");
+			Console.WriteLine("*                        `, ______      ______  /                               *");
 		}
 		public static void Credits()
 		{
