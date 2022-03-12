@@ -1858,6 +1858,12 @@ You record it in your notebook.");
 					case "south":
                         Console.WriteLine("You open each locker hoping almost expecting something to be hidden with in one of them. Then on the bottom shelf of the final locker you find something spectacular.");
                         Console.WriteLine("You discover the Codex Microchip.");
+						Thread.Sleep(pauseM);
+						break;
+					case "get codex microchip":
+                        Console.WriteLine("You grab the Codex Microchip, knowing that this brings you one step closer to unlocking the yet to be discoverd weapons cache.");
+						Thread.Sleep(pauseM);
+						inventory.Add("Codex Microchip");
 						break;
 
                 }
