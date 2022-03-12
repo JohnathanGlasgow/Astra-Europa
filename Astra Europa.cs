@@ -3389,12 +3389,24 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("                   =i;,,,,,,,,,,,;i=");
 			Console.WriteLine("                     `============,");
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.WriteLine("A Death-Bot spots you in the distance, the obvious glow haunts you... it knows your location");
+			Console.WriteLine("A Death-Bot senses movement in the distance, the blinding red light haunts you... it knows your location");
 			Thread.Sleep(4000);
+			Console.ForegroundColor = ConsoleColor.DarkRed;
 			Console.WriteLine("                        DIE HUMAN!");
 			Combat2();
+            if (playerHealth < 1)
+            {
+                Console.WriteLine("You fought heroically but ultimately the Death-Bot bested you");
+                genericDeath();
+            }
 
-		}
+            else
+            {
+                Console.WriteLine("The Death-Bot was no match for your skill, you proceed to the next room");
+                playerLocation = 41;
+            }
+
+        }
 		public static void Credits()
 		{
 			Console.Clear();
