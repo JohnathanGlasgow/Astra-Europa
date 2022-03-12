@@ -1850,6 +1850,17 @@ You record it in your notebook.");
                 Console.WriteLine("You step through the door and enter a long section, longer than any other section before. The automated system spings to life, the lights come on and you here the wurring sound of machines.");
                 Console.WriteLine("The lights reveal this place to be a firing range, the targets zip forward towards you. The gun racks are empty and there is no weapons cache in sight, it must be close now?");
                 Console.WriteLine("There are some lockers standing against the south wall and yet another door located to the east.");
+
+				switch(playerInput())
+                {
+					case "":
+						break;
+					case "south":
+                        Console.WriteLine("You open each locker hoping almost expecting something to be hidden with in one of them. Then on the bottom shelf of the final locker you find something spectacular.");
+                        Console.WriteLine("You discover the Codex Microchip.");
+						break;
+
+                }
             }
         }
 		// Room 12
