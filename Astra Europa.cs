@@ -1839,6 +1839,12 @@ You record it in your notebook.");
 				}
 			}
         }
+		
+		//room 11.4 flows on from room 11.3, its a firing range that also has one part to be found in it
+		public static void room114()
+        {
+
+        }
 		// Room 12
 		public static void room12()
 		{
