@@ -1865,6 +1865,16 @@ You record it in your notebook.");
 						Thread.Sleep(pauseM);
 						inventory.Add("Codex Microchip");
 						break;
+					case "east":
+                        Console.WriteLine("You eagerly walk towards the next door, anticipating that you will dicover what you have been looking for.");
+						Thread.Sleep(pauseM);
+						room115();
+						break;
+					default:
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+
 
                 }
             }
