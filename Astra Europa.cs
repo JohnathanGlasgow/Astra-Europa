@@ -3372,20 +3372,20 @@ You exit the pod and continue on your way.");
 		//Could add to the end of the game upon completion
 		public static void BossRoom()
         {
-			Console.ForegroundColor = ConsoleColor.Red;
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine("You enter a room in which there is no escape, you are being hunted");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("                            *----------------*");
-			Console.WriteLine("                       ___                     ___");
-			Console.WriteLine("                    |                               |");
-			Console.WriteLine("                 __                                    __");
-			Console.WriteLine("              [                                            ] ");
-			Console.WriteLine("          ___                /  '          '   `,               ___");
-			Console.WriteLine("       /                   /     `,       /       `,                 `,");
-			Console.WriteLine("     |                   /           * *             `,                  |");
-			Console.WriteLine("   /                    |            * *              |                     `,");
-			Console.WriteLine(" |                        `,         /  `,           /                         |");
-			Console.WriteLine("*                        `, ______      ______  /                               *");
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("                      ____________");
+			Console.WriteLine("                 ,;iY--------------Yi;,");
+			Console.WriteLine("               II`  ,;   ,;iiii;,  ,; II");
+			Console.WriteLine("            .II   II'`_____________'II  II");
+			Console.WriteLine("      ,gzi=  ='  II`,    YIIIIIY,   `II ` II '=izg,");
+			Console.WriteLine("      'izg=,     II,     '+II+'     II  `II   =gzi'");
+			Console.WriteLine("             `II    II,   'II',   II   II`");
+			Console.WriteLine("               II,    =*iiiiiiiii*= .II");
+			Console.WriteLine("                   =i;,,,,,,,,,,,;i=");
+			Console.WriteLine("                     `============,");
+
 		}
 		public static void Credits()
 		{
