@@ -3370,6 +3370,21 @@ You exit the pod and continue on your way.");
 
 		//Seen in the Menu
 		//Could add to the end of the game upon completion
+		public static void BossRoom()
+        {
+			Console.WriteLine("You enter a room in which there is no escape, you are being hunted");
+			Console.WriteLine("                            *----------------*");
+			Console.WriteLine("                       ___                     ___");
+			Console.WriteLine("                    |                               |");
+			Console.WriteLine("                 __                                    __");
+			Console.WriteLine("              [                                            ] ");
+			Console.WriteLine("          ___                /  '          '   `,               ___");
+			Console.WriteLine("       /                   /     `,       /       `,                 `,");
+			Console.WriteLine("     |                   /           * *             `,                  |");
+			Console.WriteLine("   /                    |            * *              |                     `,");
+			Console.WriteLine(" |                        `,         /  `,           /                         |");
+			Console.WriteLine("*                        `, ______      ______  /                                 *");
+		}
 		public static void Credits()
 		{
 			Console.Clear();
