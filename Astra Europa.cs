@@ -3372,8 +3372,11 @@ You exit the pod and continue on your way.");
 		//Could add to the end of the game upon completion
 		public static void BossRoom()
         {
+			playerLocation = 40;
+			monster2Location = 40;
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine("You enter a room in which there is no escape, you are being hunted");
+			Thread.Sleep(5000);
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("                      ____________");
 			Console.WriteLine("                 ,;iY--------------Yi;,");
@@ -3385,6 +3388,11 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("               II,    =*iiiiiiiii*= .II");
 			Console.WriteLine("                   =i;,,,,,,,,,,,;i=");
 			Console.WriteLine("                     `============,");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("A Death-Bot spots you in the distance, the obvious glow haunts you... it knows your location");
+			Thread.Sleep(4000);
+			Console.WriteLine("                        DIE HUMAN!");
+			Combat2();
 
 		}
 		public static void Credits()
