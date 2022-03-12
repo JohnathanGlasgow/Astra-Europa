@@ -1879,6 +1879,12 @@ You record it in your notebook.");
                 }
             }
         }
+
+		//room11.5 is the armoury and where the weapons cache box is located and needed to be repaired
+		private static void room115()
+        {
+
+        }
 		// Room 12
 		public static void room12()
 		{
