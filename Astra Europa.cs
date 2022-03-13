@@ -1832,6 +1832,11 @@ You record it in your notebook.");
 						Thread.Sleep(pauseM);
 						room114();
 						break;
+					case "north":
+                        Console.WriteLine("You travel back to the sleeping quarters.");
+						Thread.Sleep(pauseM);
+						room112();
+						break;
 					default :
                         Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
