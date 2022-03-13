@@ -1875,6 +1875,11 @@ You record it in your notebook.");
 						Thread.Sleep(pauseM);
 						room115();
 						break;
+					case "north":
+                        Console.WriteLine("You walk back into the supply depot.");
+						Thread.Sleep(pauseM);
+						room113();
+						break;
 					default:
                         Console.WriteLine("Invalid Input");
 						Thread.Sleep(500);
