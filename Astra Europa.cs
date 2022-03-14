@@ -1755,17 +1755,36 @@ You record it in your notebook.");
 		// Room 11.2 flows on from room111, here you find a sleeping quarters and a new weapon a stun baton.
 		public static void room112()
         {
+			bool north = false;
 			playerLocation = 112;
 			while (playerLocation == 112)
             {
 				Console.Clear();
-                Console.WriteLine("You climb out of the hatch to find yourself in what seems to be a sleeping quarters for the crew that was stationed here.");
-                Console.WriteLine("You notice that all but one of the footlockers have been ransacked, almost as if someone was looking for something?");
-                Console.WriteLine("To the north you will find the unopened locker, and to the south an open door that leads onwards.");
-
+				if(north==false)
+                {
+					Console.WriteLine("You climb out of the hatch to find yourself in what seems to be a sleeping quarters for the crew that was stationed here.");
+					Console.WriteLine("You notice that all but one of the footlockers have been ransacked, almost as if someone was looking for something?");
+					Console.WriteLine("To the north you will find the unopened locker, and to the south an open door that leads onwards.");
+				}
+				if (north==true)
+                {
+                    Console.WriteLine("After giving the latch a heafty wack, the lid spings open revealing a new weapon, a Stun Baton.");
+					Thread.Sleep(pauseM);
+                }
 				switch(playerInput())
                 {
 					case "":
+						break;
+					case "north":
+						north = true;
+						break;
+					case "get stun baton":
+						if(north==true)
+                        {
+                            Console.WriteLine("You pick up the stun baton, this is used to briefly incapacitate enemies.");
+							Thread.Sleep(pauseM);
+							inventory.Add("stun baton");
+                        }
 						break;
 					case "south":
                         Console.WriteLine("You step through a pratically closed door.");
