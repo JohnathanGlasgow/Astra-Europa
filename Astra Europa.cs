@@ -1684,7 +1684,7 @@ You record it in your notebook.");
 				}
 
                 Console.WriteLine("A hallway to the west leads to the observation room.");
-                Console.WriteLine("You spy a bunkbed through the slightly ajar door to the south.");
+                Console.WriteLine("You spy a bunkbed through the slightly ajar door to the south and a ladder to the north.");
 				switch (playerInput())
 				{
 					case "":
@@ -1727,7 +1727,8 @@ You record it in your notebook.");
 				Console.Clear();
                 Console.WriteLine("You reach the top of the ladder and, and are blinded by the light of the outside world, a stark contrast to the dark areas found bellow. ");
 				Console.WriteLine("The room you are in is lit due to the 360 degree view out the windows. On the floor though, a message written in blood reads ");
-                Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets. These parts are a Fuse, a Capacitor and a Codex Microchip'.");
+				Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets.");
+                Console.WriteLine("These parts are a Fuse, a Capacitor and a Codex Microchip'.");
                 Console.WriteLine("You have one direction before you, east or you can head back down the ladder, south.");
 				switch (playerInput())
 				{
@@ -1766,16 +1767,6 @@ You record it in your notebook.");
                 {
 					case "":
 						break;
-					case "north":
-                        Console.WriteLine("You inspect footlocker and notice that the latch is locked but you arent so easily deterred.");
-                        Console.WriteLine("After giving the latch a heafty wack, the lid springs open revealing a new weapon, a Stun Baton.");
-						Thread.Sleep(pauseM);
-						break;
-					case "get Stun Baton":
-                        Console.WriteLine("You pick up the Stun Baton, this can be used to breifly incapacitate enemies.");
-						Thread.Sleep(pauseM);
-						inventory.Add("Stun Baton");
-						break;
 					case "south":
                         Console.WriteLine("You step through a pratically closed door.");
 						Thread.Sleep(pauseM);
@@ -1794,7 +1785,7 @@ You record it in your notebook.");
             }
         }
 		// Room 11.3 flows on from room11.2, its a storage room which the player has to find two components used to repair the weapons cache.
-		private static void room113()
+		public static void room113()
         {
 			playerLocation = 113;
 			while (playerLocation == 113)
@@ -1868,7 +1859,7 @@ You record it in your notebook.");
 					case "get codex microchip":
                         Console.WriteLine("You grab the Codex Microchip, knowing that this brings you one step closer to unlocking the yet to be discoverd weapons cache.");
 						Thread.Sleep(pauseM);
-						inventory.Add("Codex Microchip");
+						inventory.Add("codex-microchip");
 						break;
 					case "east":
                         Console.WriteLine("You eagerly walk towards the next door, anticipating that you will dicover what you have been looking for.");
@@ -1891,9 +1882,59 @@ You record it in your notebook.");
         }
 
 		//room11.5 is the armoury and where the weapons cache box is located and needed to be repaired
-		private static void room115()
+		public static void room115()
         {
+			bool part1 = false;
+			bool part2 = false;
+			bool part3 = false;
+			playerLocation = 115;
+			while (playerLocation ==115)
+            {
+				Console.WriteLine("You walk towards the north wall where the command console for the weapons cache is located. The console tells you that 3 parts a reqiured to repair the weapons cache locker.");
 
+				switch (playerInput())
+                {
+					case "":
+						break;
+					case "use fuse":
+						if(inventory.Contains("fuse"))
+                        {
+							Console.WriteLine("You insert the fuse");
+							part1 = true;
+						}
+						Thread.Sleep(pauseM);
+						break;
+					case "use capacitor":
+						if (inventory.Contains("capacitor"))
+                        {
+                            Console.WriteLine("You insert the capacitor");
+							part2 = true;
+                        }
+						Thread.Sleep(pauseM);
+						break;
+					case "use codex-microchip":
+						if(inventory.Contains("codex-microchip"))
+                        {
+                            Console.WriteLine("You insert the codex-microchip.");
+							part3= true;
+                        }
+						Thread.Sleep(pauseM);
+						break;
+					case "south":
+                        Console.WriteLine("This takes you back to the firing range.");
+						Thread.Sleep(pauseM);
+						room114();
+						break;
+					default:
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+                        
+
+                        
+
+                }
+            }
         }
 		// Room 12
 		public static void room12()
