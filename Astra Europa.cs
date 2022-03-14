@@ -3391,6 +3391,7 @@ You exit the pod and continue on your way.");
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine("A Death-Bot senses movement in the distance, the blinding red light haunts you... it knows your location");
 			Thread.Sleep(4000);
+			Console.Clear();
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.WriteLine("                               _____");
 			Console.WriteLine("- - - - - - . . , ______  `,  /  V  `,  /  _____ , . . - - - - - -");
