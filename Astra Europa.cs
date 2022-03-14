@@ -1787,36 +1787,64 @@ You record it in your notebook.");
 		// Room 11.3 flows on from room11.2, its a storage room which the player has to find two components used to repair the weapons cache.
 		public static void room113()
         {
+			bool east = false;
+			bool west = false;
 			playerLocation = 113;
 			while (playerLocation == 113)
             {
 				Console.Clear();
-                Console.WriteLine("This section seems to be a supply depot with shelves stacked from floor to ceiling with various parts and components, you think to yourself this place could be useful.");
-                Console.WriteLine("You can search a shelf to the east and to the west. South takes you onwards.");
-
+				if (east==false && west==false)
+                {
+					Console.WriteLine("This section seems to be a supply depot with shelves stacked from floor to ceiling with various parts and components, you think to yourself this place could be useful.");
+					Console.WriteLine("You can search a shelf to the east and to the west. South takes you onwards.");
+				}
+				if(east==true && west==false)
+                {
+					Console.WriteLine("This shelf is labeled with the sign 'Electrical Components'.");
+					Console.WriteLine("You spend some time here, methodically reviewing each box and each shelf then you stuck it, A fuse.");
+					Thread.Sleep(pauseM);
+				}
+				if(east==false && west==true)
+                {
+					Console.WriteLine("This shelf is labeled with the sign 'Spare Parts'.");
+					Console.WriteLine("Cautionsly, you rummage through the 10 or so containers looking for what you need. In the second to last box you find what you are looking for, a Capacitor.");
+					Thread.Sleep(pauseM);
+				}
 				switch (playerInput())
                 {
 					case "":
 						break;
 					case "east":
-                        Console.WriteLine("This shelf is labeled with the sign 'Electrical Components'.");
-                        Console.WriteLine("You spend some time here, methodically reviewing each box and each shelf then you stuck it, A fuse.");
-						Thread.Sleep(pauseM);
+                        east = true;
+						west = false;
 						break;
 					case "get fuse":
-						Console.WriteLine("You pick up the fuse buried under countless other parts. But this is but one peice of the puzzle.");
-						Thread.Sleep(pauseM);
-						inventory.Add("fuse");
+						if(east==true)
+                        {
+							Console.WriteLine("You pick up the fuse buried under countless other parts. But this is but one peice of the puzzle.");
+							Thread.Sleep(pauseM);
+							inventory.Add("fuse");
+						}
+                        else
+                        {
+                            Console.WriteLine("Invalid Input.");
+                        }
 						break;
 					case "west":
-                        Console.WriteLine("This shelf is labeled with the sign 'Spare Parts'.");
-                        Console.WriteLine("Cautionsly, you rummage through the 10 or so containers looking for what you need. In the second to last box you find what you are looking for, a Capacitor.");
-						Thread.Sleep(pauseM);
+						east = false;
+						west = true;
 						break;
 					case "get capacitor":
-                        Console.WriteLine("You pick up the Capacitor and store it away for later use. But this is but one peice of the puzzle.");
-						Thread.Sleep(pauseM);
-						inventory.Add("capacitor");
+                        if (west == true)
+                        {
+							Console.WriteLine("You pick up the Capacitor and store it away for later use. But this is but one peice of the puzzle.");
+							Thread.Sleep(pauseM);
+							inventory.Add("capacitor");
+						}
+                        else
+                        {
+                            Console.WriteLine("Invalid Input.");
+                        }
 						break;
 					case "south":
                         Console.WriteLine("As you approach the door to leave this room you notice the next room looks longer than any other room?");
@@ -1890,7 +1918,15 @@ You record it in your notebook.");
 			playerLocation = 115;
 			while (playerLocation ==115)
             {
-				Console.WriteLine("You walk towards the north wall where the command console for the weapons cache is located. The console tells you that 3 parts a reqiured to repair the weapons cache locker.");
+				if (part1==false && part2==false && part3==false)
+                {
+					Console.WriteLine("You walk towards the north wall where the command console for the weapons cache is located. The console tells you that 3 parts a reqiured to repair the weapons cache locker.");
+				}
+                else
+                {
+                    Console.WriteLine("You have unlocked the weapons cache and in side you find a BFG-9000!!!");
+                }
+				
 
 				switch (playerInput())
                 {
@@ -1902,6 +1938,10 @@ You record it in your notebook.");
 							Console.WriteLine("You insert the fuse");
 							part1 = true;
 						}
+                        else
+                        {
+							Console.WriteLine("You are missing this part!!!");
+						}
 						Thread.Sleep(pauseM);
 						break;
 					case "use capacitor":
@@ -1910,6 +1950,10 @@ You record it in your notebook.");
                             Console.WriteLine("You insert the capacitor");
 							part2 = true;
                         }
+                        else
+                        {
+							Console.WriteLine("You are missing this part!!!");
+						}
 						Thread.Sleep(pauseM);
 						break;
 					case "use codex-microchip":
@@ -1918,12 +1962,28 @@ You record it in your notebook.");
                             Console.WriteLine("You insert the codex-microchip.");
 							part3= true;
                         }
+                        else
+                        {
+                            Console.WriteLine("You are missing this part!!!");
+                        }
 						Thread.Sleep(pauseM);
 						break;
 					case "south":
                         Console.WriteLine("This takes you back to the firing range.");
 						Thread.Sleep(pauseM);
 						room114();
+						break;
+					case "get BFG-9000":
+						if(part1==true && part2==true && part3==true)
+                        {
+                            Console.WriteLine("You pick up the BFG-9000.");
+							inventory.Add("BFG-9000");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
+                        }
+						Thread.Sleep(pauseM);
 						break;
 					default:
                         Console.WriteLine("Invalid Input");
