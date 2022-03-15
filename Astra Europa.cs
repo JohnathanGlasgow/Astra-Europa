@@ -3453,6 +3453,73 @@ You exit the pod and continue on your way.");
 					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
 					Console.WriteLine("attack, block");
 				}
+				while (combatInput == false)
+				{
+
+					switch (playerInput())
+					{
+						case "attack":
+							combatInput = true;
+							playerHit = rand.Next(7);
+							if (playerHit != 0)
+							{
+								Console.WriteLine($"You do {playerHit + 1} points of damage");
+								monsterHealth = monsterHealth - (playerHit + 1);
+								Thread.Sleep(1000);
+							}
+							else
+							{
+								Console.WriteLine("Your attack failed");
+								Thread.Sleep(1000);
+							}
+							break;
+						case "block":
+							combatInput = true;
+							playerBlock = true;
+							Console.WriteLine("You brace for an incoming attack");
+							Thread.Sleep(1000);
+							break;
+						case "shoot":
+							if (inventory.Contains("Phaser"))
+							{
+								if (phaserAmmo == 0)
+								{
+									Console.WriteLine("Out of ammo!");
+									Thread.Sleep(1000);
+									combatInput = false;
+								}
+								else
+								{
+									combatInput = true;
+									phaserAmmo--;
+									playerHit = rand.Next(14);
+									if (playerHit > 1)
+									{
+										Console.WriteLine($"You do {playerHit + 5} points of damage");
+										monsterHealth = monsterHealth - (playerHit + 5);
+										Thread.Sleep(1000);
+									}
+									else
+									{
+										Console.WriteLine("Your shot misses");
+										Thread.Sleep(1000);
+									}
+								}
+
+							}
+							else
+							{
+								Console.WriteLine("Invalid Input");
+								Thread.Sleep(1000);
+								combatInput = false;
+							}
+							break;
+						default:
+							Console.WriteLine("Invalid Input");
+							Thread.Sleep(1000);
+							break;
+					}
+				}
 			}
 		}
 		public static void Credits()
