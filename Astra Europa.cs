@@ -1950,14 +1950,14 @@ You record it in your notebook.");
             {
 				if (part1==false && part2==false && part3==false)
                 {
-					Console.WriteLine("You walk towards the north wall where the command console for the weapons cache is located. The console tells you that 3 parts a reqiured to repair the weapons cache locker.");
+					Console.WriteLine("You enter the final section and walk towards the north wall where the command console for the weapons cache is located.");
+                    Console.WriteLine("The console tells you that 3 parts a reqiured to repair the weapons cache locker, you remeber what the note siad in the viewing room.");
 				}
                 else
                 {
-                    Console.WriteLine("You have unlocked the weapons cache and in side you find a BFG-9000!!!");
+                    Console.WriteLine("You have successfully unlocked the weapons cache and inside you find a BFG-9000!!!. An extremely devastating weapon that can save you in the most dire of times.");
                 }
 				
-
 				switch (playerInput())
                 {
 					case "":
@@ -1965,7 +1965,7 @@ You record it in your notebook.");
 					case "use fuse":
 						if(inventory.Contains("fuse"))
                         {
-							Console.WriteLine("You insert the fuse");
+							Console.WriteLine("You insert the fuse, sparks fly out, for once you believe that is a good sign.");
 							part1 = true;
 						}
                         else
@@ -1977,7 +1977,7 @@ You record it in your notebook.");
 					case "use capacitor":
 						if (inventory.Contains("capacitor"))
                         {
-                            Console.WriteLine("You insert the capacitor");
+                            Console.WriteLine("You insert the capacitor, the terminal flickers to life, getting close now.");
 							part2 = true;
                         }
                         else
@@ -1989,7 +1989,7 @@ You record it in your notebook.");
 					case "use codex-microchip":
 						if(inventory.Contains("codex-microchip"))
                         {
-                            Console.WriteLine("You insert the codex-microchip.");
+                            Console.WriteLine("You insert the codex-microchip, the brain for this command console.");
 							part3= true;
                         }
                         else
