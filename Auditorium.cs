@@ -62,17 +62,30 @@ namespace ConsoleApp1
 
         public static void Run()
         {
-            qTSetup("You enter a dimly lit theater. The stench of stale popcorn abounds.\n" + 
-                "You hear movement all around you. Suddenly there is warm air on your neck.",
-    "Too late! Something jumps on your back and bites off your head!", "Press T to turn around!", ConsoleKey.T);
+            qTSetup("You enter the dimly lit theater. The stench of stale popcorn abounds.\n" + 
+"You hear movement all around you. Suddenly there is warm air on your neck.",
+"Too late! Something jumps on your back and bites off your head!", "Press T to turn around!", ConsoleKey.T);
             qTSetup("You turn and see a giant spider hanging before you.",
-    "You're too slow! The spider pounces on you and sucks your blood.", "Press R to run away!", ConsoleKey.R);
+"You're too slow! The spider pounces on you and sucks your blood.", "Press R to run away!", ConsoleKey.R);
             qTSetup("You run down the center aisle. You can hear the spider clambering behind you.\n" +
-                "In the darkness you make out debris blocking your path.",
-    "You're too slow! The spider catches up to you and drags you back to its web.", "Press L to leap over the debris!", ConsoleKey.L);
+"In the darkness you make out debris blocking your path.",
+"You're too slow! The spider catches up to you and drags you back to its web.", "Press L to leap over the debris!", ConsoleKey.L);
             qTSetup("You athletically clear the debris. The dirty and torn cinema screen rises before you.\n" +
-    "To your horror, a throng of spiders begin to descend the screen. More debris blocks the way to the left.",
+"To your horror, a throng of spiders begin to descend the screen. More debris blocks the way to the left.",
 "The spiders descend upon you. You're torn apart as they fight over their prey.", "Press -> to peel off to the right!", ConsoleKey.RightArrow);
+            qTSetup("You shoot off to the right. The mob of spiders is close behind while you hear the sound of metal twisting ahead.\n" +
+"A rafter crashes down before you, blocking your path.",
+"The spiders descend upon you. You cease to move as they inject their paralyzing venom.", "Press S to slide beneath the rafter!", ConsoleKey.S);
+            qTSetup("You slide neatly below the wreckage.\n" + 
+"You manage to gain some distance on the spiders and see double doors marked 'Employees Only'.\n" +
+"Unfortunately, tiles fall around you as it becomes apparent the ceiling is about to collapse.",
+"You are crushed under the weight of the falling ceiling.", "Press P to pounce through the doors!", ConsoleKey.P);
+            qTSetup("You crash through the doors to safety. You hear the spiders squeal as they are crushed by the ceiling.\n" +
+"However, your sense of relief quickly fades as you realise you are surrounded by thick webbing. \n" + 
+"You hear a thousand tiny legs rattling through the ducts above.\n" + 
+"It grows louder and louder until... A flood of baby spiders comes pouring out a vent above!\n" + 
+"The only way forward is a narrow corridor leading further into the nest.",
+"You are swarmed by the tiny spiders. Soon you will be nothing but spider baby food.", "Press B to bolt down the corridor", ConsoleKey.B);
             //e2();
         }
 
