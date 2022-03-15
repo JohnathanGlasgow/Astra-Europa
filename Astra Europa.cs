@@ -3395,7 +3395,10 @@ You exit the pod and continue on your way.");
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.WriteLine("                               _____");
 			Console.WriteLine("- - - - - - . . , ______  `,  /  V  `,  /  _____ , . . - - - - - -");
-			Console.WriteLine("     ` ' '  '== ____  [ O ] < [ === ] > [ O ]  ____==' ' ' `");
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("                            < [ === ] >");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("     ` ' '  '== ____  [ O ]               [ O ]  ____==' ' ' `");
 			Console.WriteLine("            `, = ! >   `,  __  ' V `  __ /   < ! = /");
 			Console.WriteLine("            ` -- .  ___ /  | O | A | O |  `, ___ . -- '");
 			Console.WriteLine("             /   |         `,  / O `,  /     |  `,");
@@ -3410,8 +3413,8 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("       /                                  V");
 			Console.ForegroundColor = ConsoleColor.DarkRed;
 			Console.WriteLine("                        DIE HUMAN!");
-			Combat2();
-            if (playerHealth < 1)
+			//Combat3();
+            if (playerHealth == 0)
             {
                 Console.WriteLine("You fought heroically but ultimately the Death-Bot bested you");
                 genericDeath();
@@ -3419,11 +3422,18 @@ You exit the pod and continue on your way.");
 
             else
             {
-                Console.WriteLine("The Death-Bot was no match for your skill, you proceed to the next room");
+                Console.WriteLine("The Death-Bot was no match for your skill");
+				Console.WriteLine("A hidden door opens, you venture inside to escape");
                 playerLocation = 41;
             }
 
         }
+
+		public static void Combat3()
+		{
+
+		
+		}
 		public static void Credits()
 		{
 			Console.Clear();
