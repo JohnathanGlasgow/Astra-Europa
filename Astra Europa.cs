@@ -3413,7 +3413,7 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("       /                                  V");
 			Console.ForegroundColor = ConsoleColor.DarkRed;
 			Console.WriteLine("                        DIE HUMAN!");
-			//Combat3();
+			Combat3();
             if (playerHealth == 0)
             {
                 Console.WriteLine("You fought heroically but ultimately the Death-Bot bested you");
