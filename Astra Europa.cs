@@ -3417,6 +3417,7 @@ You exit the pod and continue on your way.");
             if (playerHealth == 0)
             {
                 Console.WriteLine("You fought heroically but ultimately the Death-Bot bested you");
+				Thread.Sleep(4000);
                 genericDeath();
             }
 
@@ -3424,6 +3425,7 @@ You exit the pod and continue on your way.");
             {
                 Console.WriteLine("The Death-Bot was no match for your skill");
 				Console.WriteLine("A hidden door opens, you venture inside to escape");
+				Thread.Sleep(4000);
                 playerLocation = 41;
             }
 
