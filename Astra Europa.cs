@@ -3431,8 +3431,29 @@ You exit the pod and continue on your way.");
 
 		public static void Combat3()
 		{
+			int monsterHealth = 40, playerHit;
+			bool playerBlock;
+			Random rand = new Random();
 
-		
+			while (playerHealth > 0 && monsterHealth > 0)
+			{
+				bool combatInput = false;
+				playerBlock = false;
+				Console.Clear();
+				if (inventory.Contains("Phaser"))
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
+					Console.WriteLine($"{phaserAmmo} phaser ammo");
+					Console.WriteLine("attack, block, shoot");
+				}
+				else
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
+					Console.WriteLine("attack, block");
+				}
+			}
 		}
 		public static void Credits()
 		{
