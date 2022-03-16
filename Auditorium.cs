@@ -11,7 +11,6 @@ namespace ConsoleApp1
         private const int REPEAT = 10;
         private static bool brk;
         private static bool success;
-        private static bool end;
 
         // this method clears any keys waiting to be input
         public static void ClearInput()
@@ -50,20 +49,17 @@ namespace ConsoleApp1
         // at that point a QTE happens
         private static void qTSetup(string setup, string failure, string prompt, ConsoleKey ck)
         {
-            if (!end)
+            ClearInput();
+            Console.Clear();
+            Console.WriteLine(setup);
+            Console.WriteLine("[PRESS ENTER]");
+            Console.ReadLine();
+            if (!(Outcome(prompt, ck)))
             {
-                ClearInput();
                 Console.Clear();
-                Console.WriteLine(setup);
-                Console.WriteLine("[PRESS ENTER]");
+                Console.WriteLine(failure);
+                Console.WriteLine("Press enter to try again...");
                 Console.ReadLine();
-                if (!(Outcome(prompt, ck)))
-                {
-                    Console.Clear();
-                    Console.WriteLine(failure);
-                    Console.WriteLine("Press enter to try again...");
-                    Console.ReadLine();
-                }
             }
         }
 
@@ -72,7 +68,7 @@ namespace ConsoleApp1
         public static void Run()
         {
             REPEAT:
-            qTSetup("You enter the dimly lit theater. The stench of stale popcorn abounds.\n" +
+            qTSetup("You enter the dimly lit auditorium. A musty stench abounds.\n" +
 "You hear movement all around you. Suddenly there is warm air on your neck.",
 "Too late! Something jumps on your back and bites off your head!", "Press T to turn around!", ConsoleKey.T);
             if(!success)
