@@ -1826,7 +1826,7 @@ You record it in your notebook.");
 				if(east==false && west==true)
                 {
 					Console.WriteLine("This shelf is labeled with the sign 'Spare Parts'.");
-					Console.WriteLine("Cautionsly, you rummage through the 10 or so containers looking for what you need. In the second to last box you find what you are looking for, a Capacitor.");
+					Console.WriteLine("Cautionsly, you rummage through the 10 or so containers looking for what you need. In the second to last box you find what you are looking for, a capacitor.");
 					Thread.Sleep(pauseM);
 				}
 				switch (playerInput())
@@ -1900,7 +1900,7 @@ You record it in your notebook.");
                 if (south == true)
                 {
 					Console.WriteLine("You open each locker hoping almost expecting something to be hidden with in one of them. Then on the bottom shelf of the final locker you find something spectacular.");
-					Console.WriteLine("You discover the Codex Microchip.");
+					Console.WriteLine("You discover the codex-microchip.");
 					Thread.Sleep(pauseM);
 				}
 
@@ -1911,7 +1911,7 @@ You record it in your notebook.");
 					case "south":
                        south = true;
 						break;
-					case "get codex microchip":
+					case "get codex-microchip":
 						if(south == true)
                         {
 							Console.WriteLine("You grab the Codex Microchip, knowing that this brings you one step closer to unlocking the yet to be discoverd weapons cache.");
@@ -3741,7 +3741,8 @@ You exit the pod and continue on your way.");
         {
 			//testRoom1();
 
-			TitleScreen();
+			//TitleScreen();
+			room111();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
