@@ -2211,6 +2211,14 @@ You exit the pod and continue on your way.");
 					//	}
 					//	break;
 
+					// South heads to the auditorium where a sequence of QTE's are triggered
+					// if successful the player will receive a flashlight and return to this room
+					// a global boolean needs to be added to prevent the player from reentering
+					case "south":
+						Auditorium.Run();
+						inventory.Add("Flashlight");
+						room20();
+						break;
 					case "west":
 						Console.WriteLine("You travel west through the corridor.");
 						Thread.Sleep(pauseM);
@@ -3428,8 +3436,8 @@ You exit the pod and continue on your way.");
 		static void Main(string[] args)
         {
 			//testRoom1();
-
-			TitleScreen();
+			room20();
+			//TitleScreen();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
