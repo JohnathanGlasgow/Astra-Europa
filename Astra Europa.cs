@@ -3391,7 +3391,6 @@ You exit the pod and continue on your way.");
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine("A Death-Bot senses movement in the distance, the blinding red light haunts you... it knows your location");
 			Thread.Sleep(4000);
-			Console.Clear();
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.WriteLine("                               _____");
 			Console.WriteLine("- - - - - - . . , ______  `,  /  V  `,  /  _____ , . . - - - - - -");
@@ -3413,6 +3412,7 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("       /                                  V");
 			Console.ForegroundColor = ConsoleColor.DarkRed;
 			Console.WriteLine("                        DIE HUMAN!");
+			Thread.Sleep(4000);
 			Combat3();
             if (playerHealth == 0)
             {
@@ -3582,8 +3582,8 @@ You exit the pod and continue on your way.");
 		static void Main(string[] args)
         {
 			//testRoom1();
-
-			TitleScreen();
+			BossRoom();
+			//TitleScreen();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
