@@ -3375,7 +3375,7 @@ You exit the pod and continue on your way.");
 			playerLocation = 40;
 			monster2Location = 40;
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.WriteLine("You enter a room in which there is no escape, you are being hunted");
+			Console.WriteLine("You enter a room in which there is no escape, you are being hunted.");
 			Thread.Sleep(5000);
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("                      ____________");
@@ -3411,7 +3411,8 @@ You exit the pod and continue on your way.");
 			Console.WriteLine("        /          /____ / `,|          | V |");
 			Console.WriteLine("       /                                  V");
 			Console.ForegroundColor = ConsoleColor.DarkRed;
-			Console.WriteLine("                        DIE HUMAN!");
+			Console.WriteLine("\t\t\tDIE HUMAN!");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Thread.Sleep(4000);
 			Combat3();
             if (playerHealth == 0)
@@ -3424,7 +3425,7 @@ You exit the pod and continue on your way.");
             else
             {
                 Console.WriteLine("The Death-Bot was no match for your skill");
-				Console.WriteLine("A hidden door opens, you venture inside to escape");
+				Console.WriteLine("A hidden door opens, you venture inside to the unknown");
 				Thread.Sleep(4000);
                 playerLocation = 41;
             }
@@ -3433,8 +3434,9 @@ You exit the pod and continue on your way.");
 
 		public static void Combat3()
 		{
-			int monsterHealth = 40, playerHit;
+			int monsterHealth = 100, playerHit, deathBotHit;
 			bool playerBlock;
+			playerHealth = 80;
 			Random rand = new Random();
 
 			while (playerHealth > 0 && monsterHealth > 0)
@@ -3462,11 +3464,11 @@ You exit the pod and continue on your way.");
 					{
 						case "attack":
 							combatInput = true;
-							playerHit = rand.Next(7);
+							playerHit = rand.Next(10);
 							if (playerHit != 0)
 							{
-								Console.WriteLine($"You do {playerHit + 1} points of damage");
-								monsterHealth = monsterHealth - (playerHit + 1);
+								Console.WriteLine($"You do {playerHit + 5} points of damage");
+								monsterHealth = monsterHealth - (playerHit + 5);
 								Thread.Sleep(1000);
 							}
 							else
@@ -3494,11 +3496,11 @@ You exit the pod and continue on your way.");
 								{
 									combatInput = true;
 									phaserAmmo--;
-									playerHit = rand.Next(14);
+									playerHit = rand.Next(20);
 									if (playerHit > 1)
 									{
-										Console.WriteLine($"You do {playerHit + 5} points of damage");
-										monsterHealth = monsterHealth - (playerHit + 5);
+										Console.WriteLine($"You do {playerHit + 10} points of damage");
+										monsterHealth = monsterHealth - (playerHit + 10);
 										Thread.Sleep(1000);
 									}
 									else
@@ -3520,6 +3522,39 @@ You exit the pod and continue on your way.");
 							Console.WriteLine("Invalid Input");
 							Thread.Sleep(1000);
 							break;
+					}
+					if (monsterHealth > 0)
+					{
+						deathBotHit = rand.Next(9);
+						if (deathBotHit != 0)
+						{
+							if (playerBlock == true)
+							{
+								deathBotHit = deathBotHit - 4;
+								if (deathBotHit <= 0)
+								{
+									Console.WriteLine($"You block, the Death-Bot's attack!");
+									Thread.Sleep(2000);
+								}
+								else
+								{
+									playerHealth = playerHealth - (deathBotHit - 4);
+									Console.WriteLine($"You block some of the attack, taking {deathBotHit - 4} damage");
+									Thread.Sleep(2000);
+								}
+							}
+							else
+							{
+								playerHealth = playerHealth - deathBotHit;
+								Console.WriteLine($"You are hit for {deathBotHit} points of damage");
+								Thread.Sleep(2000);
+							}
+						}
+						else
+						{
+							Console.WriteLine("The Death-Bot readies its laser sword, stares with cold precision!");
+							Thread.Sleep(2000);
+						}
 					}
 				}
 			}
