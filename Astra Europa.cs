@@ -3424,6 +3424,7 @@ You exit the pod and continue on your way.");
 
             else
             {
+				Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("The Death-Bot was no match for your skill");
 				Console.WriteLine("A hidden door opens, you venture inside to the unknown");
 				Thread.Sleep(4000);
@@ -3617,7 +3618,6 @@ You exit the pod and continue on your way.");
 		static void Main(string[] args)
         {
 			//testRoom1();
-			BossRoom();
 			//TitleScreen();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
