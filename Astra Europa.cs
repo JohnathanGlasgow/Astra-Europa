@@ -2493,8 +2493,9 @@ You exit the pod and continue on your way.");
 			while (playerLocation == 20)
 			{
 				Console.Clear();
-				Console.WriteLine("You notice two options in this tight room:");
+				Console.WriteLine("You notice three options in this tight room:");
                 Console.WriteLine("To the north through a door... Or west down a corridor marked by a voltage sign...");
+                Console.WriteLine("To the south a grubby door lined in torn red vinyl reads 'AUDITORIUM'.");
 				//Removed Breach
 				//Console.WriteLine("The way south appears to be blocked by another keypad. You hear a strong wind pushing on the door");
 				switch (playerInput())
@@ -2522,7 +2523,17 @@ You exit the pod and continue on your way.");
 					//		Thread.Sleep(500);
 					//	}
 					//	break;
-
+  					// South heads to the auditorium where a sequence of QTE's are triggered
+					// if successful the player will receive a flashlight and return to this room
+					// a global boolean needs to be added to prevent the player from reentering
+					case "south":
+						Auditorium.Run();
+						if (!inventory.Contains("Flashlight"))
+						{
+							inventory.Add("Flashlight");
+						}
+						room20();
+						break;
 					case "west":
 						Console.WriteLine("You travel west through the corridor.");
 						Thread.Sleep(pauseM);
@@ -3932,7 +3943,8 @@ You exit the pod and continue on your way.");
 
 
 			//testRoom1();
-			TitleScreen(
+			
+			TitleScreen();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
@@ -3947,3 +3959,4 @@ You exit the pod and continue on your way.");
 		*/
     }
 }
+
