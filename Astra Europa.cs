@@ -2547,19 +2547,6 @@ You exit the pod and continue on your way.");
 			}
 		}
 
-					case "west":
-						Console.WriteLine("You travel west through the corridor.");
-						Thread.Sleep(pauseM);
-						room15();
-						break;
-					default:
-						Console.WriteLine("Invalid Input");
-						Thread.Sleep(500);
-						break;
-				}
-			}
-		}
-
 		// Room 21
 		public static void room21()
 		{
@@ -3956,8 +3943,8 @@ You exit the pod and continue on your way.");
 
 
 			//testRoom1();
-
-			TitleScreen(
+			
+			TitleScreen();
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
