@@ -1684,7 +1684,7 @@ You record it in your notebook.");
 				}
 
                 Console.WriteLine("A hallway to the west leads to the observation room.");
-                Console.WriteLine("You spy a bunkbed through the slightly ajar door to the south.");
+                Console.WriteLine("You spy a bunkbed through the slightly ajar door to the south and a ladder to the north.");
 				switch (playerInput())
 				{
 					case "":
@@ -1701,6 +1701,11 @@ You record it in your notebook.");
 						Thread.Sleep(pauseM);
 						room6();
 						break;
+					case "north":
+                        Console.WriteLine("You go up the ladder to an upper section.");
+						Thread.Sleep(pauseM);
+						room111();
+						break;
 					case "get phaser":
                         Console.WriteLine("You pick up the phaser, looks like it's good for five shots.");
 						Thread.Sleep(pauseM);
@@ -1713,7 +1718,314 @@ You record it in your notebook.");
 				}
 			}
 		}
+		//Room 11.1 is located above room 11 and is an observation deck with an item that lists parts needed to open a weapons cache
+		public static void room111()
+        {
+			playerLocation = 111;
+			while(playerLocation == 111)
+            {
+				Console.Clear();
+                Console.WriteLine("You reach the top of the ladder and, and are blinded by the light of the outside world, a stark contrast to the dark areas found bellow. ");
+				Console.WriteLine("The room you are in is lit due to the 360 degree view out the windows. On the floor though, a message written in blood reads ");
+				Console.WriteLine("'Ahead you'll find a weapons cache but it is locked, you'll need to find 3 componets in order to unluck its and reveil its secrets.");
+                Console.WriteLine("These parts are a Fuse, a Capacitor and a Codex Microchip'.");
+                Console.WriteLine("You have one direction before you, east or you can head back down the ladder, south.");
+				switch (playerInput())
+				{
+					case "":
+						break;
+					case "east":
+                        Console.WriteLine("You squezze your body through the small hatch that leads to the next section");
+						room112();
+						Thread.Sleep(pauseM);
+						break;
+					case "south":
+                        Console.WriteLine("You head back down the ladder.");
+						room11();
+						Thread.Sleep(pauseM);
+						break;
+					default :
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(pauseM);
+						break;
+				}
+            }
+        }
 
+		// Room 11.2 flows on from room111, here you find a sleeping quarters and a new weapon a stun baton.
+		public static void room112()
+        {
+			bool north = false;
+			playerLocation = 112;
+			while (playerLocation == 112)
+            {
+				Console.Clear();
+				if(north==false)
+                {
+					Console.WriteLine("You climb out of the hatch to find yourself in what seems to be a sleeping quarters for the crew that was stationed here.");
+					Console.WriteLine("You notice that all but one of the footlockers have been ransacked, almost as if someone was looking for something?");
+					Console.WriteLine("To the north you will find the unopened locker, and to the south an open door that leads onwards.");
+				}
+				if (north==true)
+                {
+                    Console.WriteLine("After giving the latch a heafty wack, the lid spings open revealing a new weapon, a Stun Baton.");
+					Thread.Sleep(pauseM);
+                }
+				switch(playerInput())
+                {
+					case "":
+						break;
+					case "north":
+						north = true;
+						break;
+					case "get stun baton":
+						if(north==true)
+                        {
+                            Console.WriteLine("You pick up the stun baton, this is used to briefly incapacitate enemies.");
+							Thread.Sleep(pauseM);
+							inventory.Add("stun baton");
+                        }
+						break;
+					case "south":
+                        Console.WriteLine("You step through a pratically closed door.");
+						Thread.Sleep(pauseM);
+						room113();
+						break;
+					case "west":
+                        Console.WriteLine("This way leads back to the 360 degree viewing room.");
+						Thread.Sleep(pauseM);
+						room111();
+						break;
+					default:
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+                }
+            }
+        }
+		// Room 11.3 flows on from room11.2, its a storage room which the player has to find two components used to repair the weapons cache.
+		public static void room113()
+        {
+			bool east = false;
+			bool west = false;
+			playerLocation = 113;
+			while (playerLocation == 113)
+            {
+				Console.Clear();
+				if (east==false && west==false)
+                {
+					Console.WriteLine("This section seems to be a supply depot with shelves stacked from floor to ceiling with various parts and components, you think to yourself this place could be useful.");
+					Console.WriteLine("You can search a shelf to the east and to the west. South takes you onwards.");
+				}
+				if(east==true && west==false)
+                {
+					Console.WriteLine("This shelf is labeled with the sign 'Electrical Components'.");
+					Console.WriteLine("You spend some time here, methodically reviewing each box and each shelf then you stuck it, A fuse.");
+					Thread.Sleep(pauseM);
+				}
+				if(east==false && west==true)
+                {
+					Console.WriteLine("This shelf is labeled with the sign 'Spare Parts'.");
+					Console.WriteLine("Cautionsly, you rummage through the 10 or so containers looking for what you need. In the second to last box you find what you are looking for, a capacitor.");
+					Thread.Sleep(pauseM);
+				}
+				switch (playerInput())
+                {
+					case "":
+						break;
+					case "east":
+                        east = true;
+						west = false;
+						break;
+					case "get fuse":
+						if(east==true)
+                        {
+							Console.WriteLine("You pick up the fuse buried under countless other parts. But this is but one peice of the puzzle.");
+							Thread.Sleep(pauseM);
+							inventory.Add("fuse");
+						}
+                        else
+                        {
+                            Console.WriteLine("Invalid Input.");
+                        }
+						break;
+					case "west":
+						east = false;
+						west = true;
+						break;
+					case "get capacitor":
+                        if (west == true)
+                        {
+							Console.WriteLine("You pick up the Capacitor and store it away for later use. But this is but one peice of the puzzle.");
+							Thread.Sleep(pauseM);
+							inventory.Add("capacitor");
+						}
+                        else
+                        {
+                            Console.WriteLine("Invalid Input.");
+                        }
+						break;
+					case "south":
+                        Console.WriteLine("As you approach the door to leave this room you notice the next room looks longer than any other room?");
+						Thread.Sleep(pauseM);
+						room114();
+						break;
+					case "north":
+                        Console.WriteLine("You travel back to the sleeping quarters.");
+						Thread.Sleep(pauseM);
+						room112();
+						break;
+					default :
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+        }
+		
+		//room 11.4 flows on from room 11.3, its a firing range that also has one part to be found in it
+		public static void room114()
+        {
+			bool south = false;
+			playerLocation = 114;
+			while (playerLocation == 114)
+            {
+				Console.Clear();
+				if(south == false)
+                {
+					Console.WriteLine("You step through the door and enter a long section, longer than any other section before. The automated system spings to life, the lights come on and you here the wurring sound of machines.");
+					Console.WriteLine("The lights reveal this place to be a firing range, the targets zip forward towards you. The gun racks are empty and there is no weapons cache in sight, it must be close now?");
+					Console.WriteLine("There are some lockers standing against the south wall and yet another door located to the east.");
+				}
+                if (south == true)
+                {
+					Console.WriteLine("You open each locker hoping almost expecting something to be hidden with in one of them. Then on the bottom shelf of the final locker you find something spectacular.");
+					Console.WriteLine("You discover the codex-microchip.");
+					Thread.Sleep(pauseM);
+				}
+
+				switch(playerInput())
+                {
+					case "":
+						break;
+					case "south":
+                       south = true;
+						break;
+					case "get codex-microchip":
+						if(south == true)
+                        {
+							Console.WriteLine("You grab the Codex Microchip, knowing that this brings you one step closer to unlocking the yet to be discoverd weapons cache.");
+							Thread.Sleep(pauseM);
+							inventory.Add("codex-microchip");
+						}
+						break;
+					case "east":
+                        Console.WriteLine("You eagerly walk towards the next door, anticipating that you will dicover what you have been looking for.");
+						Thread.Sleep(pauseM);
+						room115();
+						break;
+					case "north":
+                        Console.WriteLine("You walk back into the supply depot.");
+						Thread.Sleep(pauseM);
+						room113();
+						break;
+					default:
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+
+
+                }
+            }
+        }
+
+		//room11.5 is the armoury and where the weapons cache box is located and needed to be repaired
+		public static void room115()
+        {
+			bool part1 = false;
+			bool part2 = false;
+			bool part3 = false;
+			playerLocation = 115;
+			while (playerLocation ==115)
+            {
+				if (part1==false && part2==false && part3==false)
+                {
+					Console.WriteLine("You enter the final section and walk towards the north wall where the command console for the weapons cache is located.");
+                    Console.WriteLine("The console tells you that 3 parts a reqiured to repair the weapons cache locker, you remeber what the note siad in the viewing room.");
+				}
+                else
+                {
+                    Console.WriteLine("You have successfully unlocked the weapons cache and inside you find a BFG-9000!!!. An extremely devastating weapon that can save you in the most dire of times.");
+                }
+				
+				switch (playerInput())
+                {
+					case "":
+						break;
+					case "use fuse":
+						if(inventory.Contains("fuse"))
+                        {
+							Console.WriteLine("You insert the fuse, sparks fly out, for once you believe that is a good sign.");
+							part1 = true;
+						}
+                        else
+                        {
+							Console.WriteLine("You are missing this part!!!");
+						}
+						Thread.Sleep(pauseM);
+						break;
+					case "use capacitor":
+						if (inventory.Contains("capacitor"))
+                        {
+                            Console.WriteLine("You insert the capacitor, the terminal flickers to life, getting close now.");
+							part2 = true;
+                        }
+                        else
+                        {
+							Console.WriteLine("You are missing this part!!!");
+						}
+						Thread.Sleep(pauseM);
+						break;
+					case "use codex-microchip":
+						if(inventory.Contains("codex-microchip"))
+                        {
+                            Console.WriteLine("You insert the codex-microchip, the brain for this command console.");
+							part3= true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You are missing this part!!!");
+                        }
+						Thread.Sleep(pauseM);
+						break;
+					case "south":
+                        Console.WriteLine("This takes you back to the firing range.");
+						Thread.Sleep(pauseM);
+						room114();
+						break;
+					case "get BFG-9000":
+						if(part1==true && part2==true && part3==true)
+                        {
+                            Console.WriteLine("You pick up the BFG-9000.");
+							inventory.Add("BFG-9000");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
+                        }
+						Thread.Sleep(pauseM);
+						break;
+					default:
+                        Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+                        
+
+                        
+
+                }
+            }
+        }
 		// Room 12
 		public static void room12()
 		{
@@ -2211,8 +2523,7 @@ You exit the pod and continue on your way.");
 					//		Thread.Sleep(500);
 					//	}
 					//	break;
-
-					// South heads to the auditorium where a sequence of QTE's are triggered
+  					// South heads to the auditorium where a sequence of QTE's are triggered
 					// if successful the player will receive a flashlight and return to this room
 					// a global boolean needs to be added to prevent the player from reentering
 					case "south":
@@ -2223,6 +2534,19 @@ You exit the pod and continue on your way.");
 						}
 						room20();
 						break;
+					case "west":
+						Console.WriteLine("You travel west through the corridor.");
+						Thread.Sleep(pauseM);
+						room15();
+						break;
+					default:
+						Console.WriteLine("Invalid Input");
+						Thread.Sleep(500);
+						break;
+				}
+			}
+		}
+
 					case "west":
 						Console.WriteLine("You travel west through the corridor.");
 						Thread.Sleep(pauseM);
@@ -3382,6 +3706,196 @@ You exit the pod and continue on your way.");
 
 		//Seen in the Menu
 		//Could add to the end of the game upon completion
+		public static void BossRoom()
+        {
+			playerLocation = 40;
+			monster2Location = 40;
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("You enter a room in which there is no escape, you are being hunted.");
+			Thread.Sleep(5000);
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("                      ____________");
+			Console.WriteLine("                 ,;iY--------------Yi;,");
+			Console.WriteLine("               II`  ,;  ,;iiii;,  ,; II");
+			Console.WriteLine("            .II   II'`_____________'II  II");
+			Console.WriteLine("      ,gzi=  ='  II`,    YIIIIIY,   `II ` II '=izg,");
+			Console.WriteLine("      'izg=,     II,     '+II+'     II  `II   =gzi'");
+			Console.WriteLine("             `II    II,   'II',   II   II`");
+			Console.WriteLine("               II,    =*iiiiiiiii*= .II");
+			Console.WriteLine("                   =i;,,,,,,,,,,,;i=");
+			Console.WriteLine("                     `============,");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("A Death-Bot senses movement in the distance, the blinding red light haunts you... it knows your location");
+			Thread.Sleep(4000);
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("                               _____");
+			Console.WriteLine("- - - - - - . . , ______  `,  /  V  `,  /  _____ , . . - - - - - -");
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("                            < [ === ] >");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("     ` ' '  '== ____  [ O ]               [ O ]  ____==' ' ' `");
+			Console.WriteLine("            `, = ! >   `,  __  ' V `  __ /   < ! = /");
+			Console.WriteLine("            ` -- .  ___ /  | O | A | O |  `, ___ . -- '");
+			Console.WriteLine("             /   |         `,  / O `,  /     |  `,");
+			Console.WriteLine("     ______ < Y / >       ___` - - - '___    < `, Y >");
+			Console.WriteLine("    / O . /   @   /      |    `   O  '   |       /@");
+			Console.WriteLine("       ` /   /   /       ` V ' - - - - ` V '");
+			Console.WriteLine("        /   /   /        C ] >        [  =  ]");
+			Console.WriteLine("       /   /   /         | V >         V Y V");
+			Console.WriteLine("          /              | | /         `,  |");
+			Console.WriteLine("         /           , / >   <          * V *");
+			Console.WriteLine("        /          /____ / `,|          | V |");
+			Console.WriteLine("       /                                  V");
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+			Console.WriteLine("\t\t\tDIE HUMAN!");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Thread.Sleep(4000);
+			Combat3();
+            if (playerHealth == 0)
+            {
+                Console.WriteLine("You fought heroically but ultimately the Death-Bot bested you");
+				Thread.Sleep(4000);
+                genericDeath();
+            }
+
+            else
+            {
+				Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("The Death-Bot was no match for your skill");
+				Console.WriteLine("A hidden door opens, you venture inside to the unknown");
+				Thread.Sleep(4000);
+                playerLocation = 41;
+            }
+
+        }
+
+		public static void Combat3()
+		{
+			int monsterHealth = 100, playerHit, deathBotHit;
+			bool playerBlock;
+			playerHealth = 80;
+			Random rand = new Random();
+
+			while (playerHealth > 0 && monsterHealth > 0)
+			{
+				bool combatInput = false;
+				playerBlock = false;
+				Console.Clear();
+				if (inventory.Contains("Phaser"))
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
+					Console.WriteLine($"{phaserAmmo} phaser ammo");
+					Console.WriteLine("attack, block, shoot");
+				}
+				else
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
+					Console.WriteLine("attack, block");
+				}
+				while (combatInput == false)
+				{
+
+					switch (playerInput())
+					{
+						case "attack":
+							combatInput = true;
+							playerHit = rand.Next(10);
+							if (playerHit != 0)
+							{
+								Console.WriteLine($"You do {playerHit + 5} points of damage");
+								monsterHealth = monsterHealth - (playerHit + 5);
+								Thread.Sleep(1000);
+							}
+							else
+							{
+								Console.WriteLine("Your attack failed");
+								Thread.Sleep(1000);
+							}
+							break;
+						case "block":
+							combatInput = true;
+							playerBlock = true;
+							Console.WriteLine("You brace for an incoming attack");
+							Thread.Sleep(1000);
+							break;
+						case "shoot":
+							if (inventory.Contains("Phaser"))
+							{
+								if (phaserAmmo == 0)
+								{
+									Console.WriteLine("Out of ammo!");
+									Thread.Sleep(1000);
+									combatInput = false;
+								}
+								else
+								{
+									combatInput = true;
+									phaserAmmo--;
+									playerHit = rand.Next(20);
+									if (playerHit > 1)
+									{
+										Console.WriteLine($"You do {playerHit + 10} points of damage");
+										monsterHealth = monsterHealth - (playerHit + 10);
+										Thread.Sleep(1000);
+									}
+									else
+									{
+										Console.WriteLine("Your shot misses");
+										Thread.Sleep(1000);
+									}
+								}
+
+							}
+							else
+							{
+								Console.WriteLine("Invalid Input");
+								Thread.Sleep(1000);
+								combatInput = false;
+							}
+							break;
+						default:
+							Console.WriteLine("Invalid Input");
+							Thread.Sleep(1000);
+							break;
+					}
+					if (monsterHealth > 0)
+					{
+						deathBotHit = rand.Next(9);
+						if (deathBotHit != 0)
+						{
+							if (playerBlock == true)
+							{
+								deathBotHit = deathBotHit - 4;
+								if (deathBotHit <= 0)
+								{
+									Console.WriteLine($"You block, the Death-Bot's attack!");
+									Thread.Sleep(2000);
+								}
+								else
+								{
+									playerHealth = playerHealth - (deathBotHit - 4);
+									Console.WriteLine($"You block some of the attack, taking {deathBotHit - 4} damage");
+									Thread.Sleep(2000);
+								}
+							}
+							else
+							{
+								playerHealth = playerHealth - deathBotHit;
+								Console.WriteLine($"You are hit for {deathBotHit} points of damage");
+								Thread.Sleep(2000);
+							}
+						}
+						else
+						{
+							Console.WriteLine("The Death-Bot readies its laser sword, stares with cold precision!");
+							Thread.Sleep(2000);
+						}
+					}
+				}
+			}
+		}
 		public static void Credits()
 		{
 			Console.Clear();
@@ -3439,9 +3953,11 @@ You exit the pod and continue on your way.");
 
 		static void Main(string[] args)
         {
+
+
 			//testRoom1();
-			room20();
-			//TitleScreen();
+
+			TitleScreen(
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
@@ -3456,3 +3972,4 @@ You exit the pod and continue on your way.");
 		*/
     }
 }
+
