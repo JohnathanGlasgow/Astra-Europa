@@ -3682,6 +3682,196 @@ You exit the pod and continue on your way.");
 
 		//Seen in the Menu
 		//Could add to the end of the game upon completion
+		public static void BossRoom()
+        {
+			playerLocation = 40;
+			monster2Location = 40;
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("You enter a room in which there is no escape, you are being hunted.");
+			Thread.Sleep(5000);
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("                      ____________");
+			Console.WriteLine("                 ,;iY--------------Yi;,");
+			Console.WriteLine("               II`  ,;  ,;iiii;,  ,; II");
+			Console.WriteLine("            .II   II'`_____________'II  II");
+			Console.WriteLine("      ,gzi=  ='  II`,    YIIIIIY,   `II ` II '=izg,");
+			Console.WriteLine("      'izg=,     II,     '+II+'     II  `II   =gzi'");
+			Console.WriteLine("             `II    II,   'II',   II   II`");
+			Console.WriteLine("               II,    =*iiiiiiiii*= .II");
+			Console.WriteLine("                   =i;,,,,,,,,,,,;i=");
+			Console.WriteLine("                     `============,");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine("A Death-Bot senses movement in the distance, the blinding red light haunts you... it knows your location");
+			Thread.Sleep(4000);
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("                               _____");
+			Console.WriteLine("- - - - - - . . , ______  `,  /  V  `,  /  _____ , . . - - - - - -");
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("                            < [ === ] >");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("     ` ' '  '== ____  [ O ]               [ O ]  ____==' ' ' `");
+			Console.WriteLine("            `, = ! >   `,  __  ' V `  __ /   < ! = /");
+			Console.WriteLine("            ` -- .  ___ /  | O | A | O |  `, ___ . -- '");
+			Console.WriteLine("             /   |         `,  / O `,  /     |  `,");
+			Console.WriteLine("     ______ < Y / >       ___` - - - '___    < `, Y >");
+			Console.WriteLine("    / O . /   @   /      |    `   O  '   |       /@");
+			Console.WriteLine("       ` /   /   /       ` V ' - - - - ` V '");
+			Console.WriteLine("        /   /   /        C ] >        [  =  ]");
+			Console.WriteLine("       /   /   /         | V >         V Y V");
+			Console.WriteLine("          /              | | /         `,  |");
+			Console.WriteLine("         /           , / >   <          * V *");
+			Console.WriteLine("        /          /____ / `,|          | V |");
+			Console.WriteLine("       /                                  V");
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+			Console.WriteLine("\t\t\tDIE HUMAN!");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Thread.Sleep(4000);
+			Combat3();
+            if (playerHealth == 0)
+            {
+                Console.WriteLine("You fought heroically but ultimately the Death-Bot bested you");
+				Thread.Sleep(4000);
+                genericDeath();
+            }
+
+            else
+            {
+				Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("The Death-Bot was no match for your skill");
+				Console.WriteLine("A hidden door opens, you venture inside to the unknown");
+				Thread.Sleep(4000);
+                playerLocation = 41;
+            }
+
+        }
+
+		public static void Combat3()
+		{
+			int monsterHealth = 100, playerHit, deathBotHit;
+			bool playerBlock;
+			playerHealth = 80;
+			Random rand = new Random();
+
+			while (playerHealth > 0 && monsterHealth > 0)
+			{
+				bool combatInput = false;
+				playerBlock = false;
+				Console.Clear();
+				if (inventory.Contains("Phaser"))
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
+					Console.WriteLine($"{phaserAmmo} phaser ammo");
+					Console.WriteLine("attack, block, shoot");
+				}
+				else
+				{
+					Console.WriteLine($"Your Health {playerHealth}");
+					Console.WriteLine($"Death-Bot's Health {monsterHealth}");
+					Console.WriteLine("attack, block");
+				}
+				while (combatInput == false)
+				{
+
+					switch (playerInput())
+					{
+						case "attack":
+							combatInput = true;
+							playerHit = rand.Next(10);
+							if (playerHit != 0)
+							{
+								Console.WriteLine($"You do {playerHit + 5} points of damage");
+								monsterHealth = monsterHealth - (playerHit + 5);
+								Thread.Sleep(1000);
+							}
+							else
+							{
+								Console.WriteLine("Your attack failed");
+								Thread.Sleep(1000);
+							}
+							break;
+						case "block":
+							combatInput = true;
+							playerBlock = true;
+							Console.WriteLine("You brace for an incoming attack");
+							Thread.Sleep(1000);
+							break;
+						case "shoot":
+							if (inventory.Contains("Phaser"))
+							{
+								if (phaserAmmo == 0)
+								{
+									Console.WriteLine("Out of ammo!");
+									Thread.Sleep(1000);
+									combatInput = false;
+								}
+								else
+								{
+									combatInput = true;
+									phaserAmmo--;
+									playerHit = rand.Next(20);
+									if (playerHit > 1)
+									{
+										Console.WriteLine($"You do {playerHit + 10} points of damage");
+										monsterHealth = monsterHealth - (playerHit + 10);
+										Thread.Sleep(1000);
+									}
+									else
+									{
+										Console.WriteLine("Your shot misses");
+										Thread.Sleep(1000);
+									}
+								}
+
+							}
+							else
+							{
+								Console.WriteLine("Invalid Input");
+								Thread.Sleep(1000);
+								combatInput = false;
+							}
+							break;
+						default:
+							Console.WriteLine("Invalid Input");
+							Thread.Sleep(1000);
+							break;
+					}
+					if (monsterHealth > 0)
+					{
+						deathBotHit = rand.Next(9);
+						if (deathBotHit != 0)
+						{
+							if (playerBlock == true)
+							{
+								deathBotHit = deathBotHit - 4;
+								if (deathBotHit <= 0)
+								{
+									Console.WriteLine($"You block, the Death-Bot's attack!");
+									Thread.Sleep(2000);
+								}
+								else
+								{
+									playerHealth = playerHealth - (deathBotHit - 4);
+									Console.WriteLine($"You block some of the attack, taking {deathBotHit - 4} damage");
+									Thread.Sleep(2000);
+								}
+							}
+							else
+							{
+								playerHealth = playerHealth - deathBotHit;
+								Console.WriteLine($"You are hit for {deathBotHit} points of damage");
+								Thread.Sleep(2000);
+							}
+						}
+						else
+						{
+							Console.WriteLine("The Death-Bot readies its laser sword, stares with cold precision!");
+							Thread.Sleep(2000);
+						}
+					}
+				}
+			}
+		}
 		public static void Credits()
 		{
 			Console.Clear();
@@ -3739,10 +3929,10 @@ You exit the pod and continue on your way.");
 
 		static void Main(string[] args)
         {
-			//testRoom1();
 
-			//TitleScreen();
-			room111();
+
+			//testRoom1();
+			TitleScreen(
 			//room1();
 			//Comment out Title and uncomment airlock to skip ship section for faster testing
 
