@@ -113,7 +113,7 @@ namespace ConsoleApp1
             if (!success)
             { goto REPEAT; }
             qTSetup("With a herculean pull, the door flings open. You flee inside, slamming it behind you.\n" +
-"In this moment of respite, you find yourself att the base of a narrow stairwell.\n" +
+"In this moment of respite, you find yourself at the base of a narrow stairwell.\n" +
 "It seems you have company. A skeleton is slumped in the corner.\n" +
 "From its distinctive red cap you discern it is the usher.\n" +
 "Or was the usher. You spot a flashlight in its bony grip.\n" +
